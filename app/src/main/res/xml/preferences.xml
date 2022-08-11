@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:key="pref_compressed_media_name"
+        android:defaultValue="UUID"
+        android:title="@string/settings_compressed_media_name"
+        android:summary="@string/settings_compressed_media_name_summary"
+        android:entries="@array/settings_compressed_media_name"
+        android:entryValues="@array/settings_compressed_media_name_values"
+        />
+    <EditTextPreference
+        android:key="pref_compressed_media_custom_name"
+        android:defaultValue=""
+        android:title="@string/settings_compressed_media_custom_name"
+        android:summary="@string/settings_compressed_media_custom_name_summary" />
+
+    <SwitchPreference
+        android:key="pref_convert_videos_to_mp4"
+        android:defaultValue="false"
+        android:title="@string/settings_convert_videos_to_mp4"
+        android:summary="@string/settings_convert_videos_to_mp4_summary" />
+
+
+    <SwitchPreference
+        android:key="pref_copy_exif_tags"
+        android:defaultValue="false"
+        android:title="@string/settings_copy_exif_tags"
+        android:summary="@string/settings_copy_exif_tags_summary" />
+
+    <PreferenceCategory
+        android:key="prefs_compression"
+        android:title="@string/settings_compression_options_title">
+        <ListPreference
+            android:key="pref_jpeg_qscale"
+            android:defaultValue="10"
+            android:title="@string/settings_jpeg_qscale"
+            android:summary="@string/settings_jpeg_qscale_summary"
+            android:entries="@array/settings_jpeg_qscale"
+            android:entryValues="@array/settings_jpeg_qscale" />
+        <ListPreference
+            android:key="pref_video_crf"
+            android:defaultValue="23"
+            android:title="@string/settings_video_crf"
+            android:summary="@string/settings_video_crf_summary"
+            android:entries="@array/settings_video_crf"
+            android:entryValues="@array/settings_video_crf" />
+
+        <ListPreference
+            android:key="pref_video_max_bitrate"
+            android:defaultValue="2M"
+            android:title="@string/settings_video_max_bitrate"
+            android:summary="@string/settings_video_max_bitrate_summary"
+            android:entries="@array/settings_video_max_bitrate"
+            android:entryValues="@array/settings_video_max_bitrate" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="prefs_interface"
+        android:title="@string/settings_interface_options_title">
+        <SwitchPreference
+            android:key="pref_show_toast_messages"
+            android:defaultValue="true"
+            android:title="@string/settings_show_status_messages"
+            android:summary="@string/settings_show_status_messages_summary" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
