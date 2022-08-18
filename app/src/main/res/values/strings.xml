@@ -41,8 +41,9 @@
 
 
     <string name="app_description">Compress images and videos through ffmpeg before sharing them</string>
-    <string name="introduction_line_1">App functionality (and code) inspired by Scrambled-Exif by juanitobananas <a href="https://gitlab.com/juanitobananas/scrambled-exif">gitlab</a></string>
-    <string name="introduction_line_2">ffmpeg library used is ffmpeg-kit by tanersener <a href="https://github.com/tanersener/ffmpeg-kit">github</a></string>
+    <string name="introduction_line_0">App Created by Caydey <a href="https://github.com/caydey/ffshare">github</a></string>
+    <string name="introduction_line_1">Functionality (and code) inspired by Scrambled-Exif by juanitobananas <a href="https://gitlab.com/juanitobananas/scrambled-exif">gitlab</a></string>
+    <string name="introduction_line_2">FFmpeg library used is ffmpeg-kit by tanersener <a href="https://github.com/tanersener/ffmpeg-kit">github</a></string>
 
     <string name="ffmpeg_command">ffmpeg command running:</string>
     <string name="input_file">Input file:</string>

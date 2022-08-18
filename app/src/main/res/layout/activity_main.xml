@@ -39,6 +39,16 @@
         app:layout_constraintEnd_toEndOf="@+id/tableLayout"
         app:layout_constraintStart_toStartOf="@+id/tableLayout" />
 
+    <TextView
+        android:id="@+id/lblTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toTopOf="@+id/lblDescription"
+        app:layout_constraintEnd_toEndOf="@+id/lblDescription"
+        app:layout_constraintStart_toStartOf="@+id/lblDescription" />
+
     <TableLayout
         android:id="@+id/tableLayout"
         android:layout_width="0dp"
@@ -54,6 +64,20 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/introduction_line_0"
+                android:textSize="16sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp">
 
             <TextView
                 android:id="@+id/lblIntroductionLine1"
@@ -82,16 +106,6 @@
         </TableRow>
 
     </TableLayout>
-
-    <TextView
-        android:id="@+id/lblTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textSize="48sp"
-        app:layout_constraintBottom_toTopOf="@+id/lblDescription"
-        app:layout_constraintEnd_toEndOf="@+id/lblDescription"
-        app:layout_constraintStart_toStartOf="@+id/lblDescription" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
