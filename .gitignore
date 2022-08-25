@@ -15,3 +15,7 @@
 local.properties
 
 /app/release
+
+
+/config.yml
+/repo
