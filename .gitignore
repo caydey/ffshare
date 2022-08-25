@@ -14,8 +14,6 @@
 .cxx
 local.properties
 
-/app/release
-
-
-/config.yml
+*.apk
 /repo
+/stats
