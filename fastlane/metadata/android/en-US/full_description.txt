@@ -1,0 +1,10 @@
+FFShare pipes videos and images through ffmpeg before you share them.
+
+To do this this just share your videos or images and choose <i>FFShare</i>. The app will open showing the compression progress and when its done a new share dialog will reappear with the new compressed video or image.
+
+
+<b>Source Code</b>
+
+This app is open source and hosted on GitHub. A star would be greatly appreciated.
+
+https://github.com/caydey/ffshare
