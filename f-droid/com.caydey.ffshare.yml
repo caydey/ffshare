@@ -14,7 +14,7 @@ Repo: https://github.com/caydey/ffshare.git
 Builds:
   - versionName: '1.0'
     versionCode: 1
-    commit: 3428000c14ea3b5c1e681bd2b5e47b96724eb4e7
+    commit: cfb58a15deca4ddb6ceb97d3cb5bebfd770e7de2
     subdir: app
     sudo:
       - apt-get update || apt-get update
