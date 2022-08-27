@@ -56,8 +56,8 @@ class MediaCompressor(private val context: Context) {
             return
         }
 
-        if (utils.isImage(mediaType)) {
-            // set invisible so i can still let the code below set the time to 0:00 and just makes it easier
+        val showProgress = !utils.isImage(mediaType)
+        if (!showProgress) {
             processedTableRow.visibility = View.INVISIBLE
         }
 
@@ -72,15 +72,19 @@ class MediaCompressor(private val context: Context) {
 
         // need to create new saf param as they are one-use
         val mediaInformation = FFprobeKit.getMediaInformation(FFmpegKitConfig.getSafParameterForRead(context, inputFileUri)).mediaInformation
-        // invalid media file if ffprobe cant parse info
-        if (mediaInformation.duration == null || mediaInformation.size == null) {
-            Timber.d("Detected invalid file")
-            Toast.makeText(context, context.getString(R.string.error_invalid_file), Toast.LENGTH_LONG).show()
-            callback(null)
-            return
+        val inputFileSize = mediaInformation.size.toDouble() // get input file size
+
+        var duration = 0 // default duration for image
+        if (showProgress) {
+            // invalid video file if ffprobe cant parse duration and size
+            if (mediaInformation.duration == null || mediaInformation.size == null) {
+                Timber.d("Unable to get size & duration for media, throwing error")
+                Toast.makeText(context, context.getString(R.string.error_invalid_file), Toast.LENGTH_LONG).show()
+                callback(null)
+                return
+            }
+            duration = (mediaInformation.duration.toFloat() * 1_000).toInt()
         }
-        val duration = (mediaInformation.duration.toFloat() * 1_000).toInt()
-        val inputFileSize = mediaInformation.size.toDouble()
 
         val params = createFFmpegParams(inputFileUri, mediaType)
         val inputSaf: String = FFmpegKitConfig.getSafParameterForRead(context, inputFileUri)
@@ -119,6 +123,7 @@ class MediaCompressor(private val context: Context) {
                     Timber.d("copying exif tags")
                     ExifTools.copyExif(context.contentResolver.openInputStream(inputFileUri)!!, outputFile)
                 }
+                // show compression percentage as toast message
                 if (settings.showStatusMessages) {
                     val outputFileSize = outputFile.length()
                     val outputFileSizeHuman = utils.bytesToHuman(outputFileSize)
@@ -138,8 +143,10 @@ class MediaCompressor(private val context: Context) {
         }, { /* logs */ }, { statistics ->
             // update TextViews with stats
             Handler(Looper.getMainLooper()).post {
-                txtProcessedPercent.text = context.getString(R.string.format_percentage, (statistics.time.toFloat() / duration) * 100)
-                txtProcessedTime.text = utils.millisToMicrowave(statistics.time)
+                if (showProgress) { // only show time processed if video
+                    txtProcessedPercent.text = context.getString(R.string.format_percentage, (statistics.time.toFloat() / duration) * 100)
+                    txtProcessedTime.text = utils.millisToMicrowave(statistics.time)
+                }
                 txtOutputFileSize.text = utils.bytesToHuman(statistics.size)
             }
         })
