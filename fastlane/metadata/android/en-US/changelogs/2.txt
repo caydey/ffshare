@@ -1,0 +1,2 @@
+New in 1.0.1
+- Fixed crash when compressing png images
