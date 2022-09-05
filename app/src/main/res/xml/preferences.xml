@@ -17,7 +17,7 @@
 
     <SwitchPreference
         android:key="pref_convert_videos_to_mp4"
-        android:defaultValue="false"
+        android:defaultValue="true"
         android:title="@string/settings_convert_videos_to_mp4"
         android:summary="@string/settings_convert_videos_to_mp4_summary" />
 
