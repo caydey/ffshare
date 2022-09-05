@@ -1,0 +1,10 @@
+New in 1.1.1
+- Fixed crash when compressing webm videos
+- Fixed crash when using custom output media name
+- By default all video formats are converted to mp4
+
+New in 1.1.0
+- Added support for compressing multiple media files
+
+New in 1.0.1
+- Fixed crash when compressing png images
