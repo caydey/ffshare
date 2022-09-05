@@ -36,9 +36,15 @@ class Utils(private val context: Context) {
             Settings.CompressedMediaNameOpts.CUSTOM -> "${settings.compressedMediaCustomName}.${fileExtension.name.lowercase()}"
         }
         Timber.d("Created output file '%s'", filename)
-        val outputFile = File(context.mediaCacheDir, filename)
+        val outputFile = File(makeCacheUUIDFolder(), filename)
         return Pair(outputFile, fileExtension)
     }
+    private fun makeCacheUUIDFolder(): File {
+        val cacheUUIDFolder = File(context.mediaCacheDir, UUID.randomUUID().toString())
+        cacheUUIDFolder.mkdirs()
+        return cacheUUIDFolder
+    }
+
     private fun getRandomFilename(mediaType: MediaType): String {
         return "${UUID.randomUUID()}.${mediaType.name.lowercase()}"
     }

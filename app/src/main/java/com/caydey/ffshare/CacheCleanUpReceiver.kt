@@ -10,17 +10,29 @@ import java.io.File
 
 class CacheCleanUpReceiver: BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
+        /*
+        Cache structure
+        /media/
+            UUID/custom-name.mp4
+            UUID/custom-name.mp4
+            UUID/UUID.jpg
+            UUID/UUID.jpg
+         */
+
         Timber.d("Cleaning up cache")
+
         val mediaDir = File(context.cacheDir, "media")
         val cacheFiles = mediaDir.listFiles()
 
         cacheFiles?: return
 
+
         for (cacheFile in cacheFiles) {
             // media file older that 1 hour
             if (System.currentTimeMillis() - cacheFile.lastModified() > HOUR) {
-                Timber.d("Deleting file '%s'", cacheFile)
-                cacheFile.delete()
+                Timber.d("Deleting '%s'", cacheFile)
+
+                cacheFile.deleteRecursively()
             }
         }
 
