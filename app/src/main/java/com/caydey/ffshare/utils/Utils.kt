@@ -110,8 +110,10 @@ class Utils(private val context: Context) {
                 Timber.d("Found filetype from extension: webm")
                 mediaType = MediaType.WEBM
             }
-        } else { // unable to get filename, use signature detection
-            Timber.d("unable to read file extension, using file signature")
+        }
+        // unable to get filetype from filename extension, using signature detection
+        if (mediaType == MediaType.UNKNOWN) {
+            Timber.d("unable to find filetype from extension, trying file signature")
             val inputStream = context.contentResolver.openInputStream(uri)
             val signature = getFileHexSignature(inputStream!!)
 
@@ -131,7 +133,7 @@ class Utils(private val context: Context) {
                 Timber.d("Found filetype from signature: mkv")
                 mediaType = MediaType.MKV
             } else {
-                Timber.d("Unable to find filetype from extension or signature")
+                Timber.d("Unable to find filetype from signature")
             }
         }
 
