@@ -22,7 +22,7 @@ const val MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1000
 class Utils(private val context: Context) {
     private val settings: Settings by lazy { Settings(context) }
 
-    fun getCacheOutputFile(uri: Uri, mediaType: MediaType): File {
+    fun getCacheOutputFile(uri: Uri, mediaType: MediaType): Pair<File, MediaType> {
         var fileExtension = mediaType
         // change extension if settings wants
         if (settings.convertVideosToMp4) {
@@ -36,7 +36,8 @@ class Utils(private val context: Context) {
             Settings.CompressedMediaNameOpts.CUSTOM -> "${settings.compressedMediaCustomName}.${fileExtension.name.lowercase()}"
         }
         Timber.d("Created output file '%s'", filename)
-        return File(context.mediaCacheDir, filename)
+        val outputFile = File(context.mediaCacheDir, filename)
+        return Pair(outputFile, fileExtension)
     }
     private fun getRandomFilename(mediaType: MediaType): String {
         return "${UUID.randomUUID()}.${mediaType.name.lowercase()}"

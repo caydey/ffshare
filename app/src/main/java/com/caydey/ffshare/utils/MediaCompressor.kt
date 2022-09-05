@@ -75,7 +75,7 @@ class MediaCompressor(private val context: Context) {
         val inputFileName = utils.getFilenameFromUri(inputFileUri)
 
         // get output file, (random uuid, custom name, original name)
-        val outputFile: File = utils.getCacheOutputFile(inputFileUri, mediaType)
+        val (outputFile, outputFileMediaType) = utils.getCacheOutputFile(inputFileUri, mediaType)
 
         // get Uri from File, needs to be this way not Uri.fromFile(...) to go through security
         val outputFileUri = FileProvider.getUriForFile(context, context.applicationContext.packageName+".fileprovider", outputFile)
@@ -97,7 +97,7 @@ class MediaCompressor(private val context: Context) {
             duration = (mediaInformation.duration.toFloat() * 1_000).toInt()
         }
 
-        val params = createFFmpegParams(inputFileUri, mediaType)
+        val params = createFFmpegParams(inputFileUri, mediaType, outputFileMediaType)
         val inputSaf: String = FFmpegKitConfig.getSafParameterForRead(context, inputFileUri)
         val outputSaf: String = FFmpegKitConfig.getSafParameterForWrite(context, outputFileUri)
         val command = "-y -i $inputSaf $params $outputSaf"
@@ -205,7 +205,7 @@ class MediaCompressor(private val context: Context) {
         iteratorFunction(0) // start iterations
     }
 
-    private fun createFFmpegParams(inputFile: Uri, mediaType: Utils.MediaType): String {
+    private fun createFFmpegParams(inputFile: Uri, mediaType: Utils.MediaType, outputFileMediaType: Utils.MediaType): String {
         val params = StringJoiner(" ")
 
         // video
@@ -213,6 +213,9 @@ class MediaCompressor(private val context: Context) {
             // crf
             params.add("-crf ${settings.videoCrf}")
             // max bitrate
+            if (outputFileMediaType != Utils.MediaType.WEBM) { // ffmpeg does not like these params when the output file is webm
+                params.add("-maxrate ${settings.videoMaxBitrate} -bufsize ${settings.videoMaxBitrate}")
+            }
             params.add("-maxrate ${settings.videoMaxBitrate} -bufsize ${settings.videoMaxBitrate}")
             // pixel format
             params.add("-vf format=yuv420p")
