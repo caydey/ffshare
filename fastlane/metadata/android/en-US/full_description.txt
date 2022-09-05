@@ -1,5 +1,7 @@
 FFShare pipes videos and images through ffmpeg before you share them.
 
+Doing so reduces the file size and also has the added benefit of stripping all metadata that may be attached to your images and videos.
+
 To do this this just share your videos or images and choose <i>FFShare</i>. The app will open showing the compression progress and when its done a new share dialog will reappear with the new compressed video or image.
 
 
