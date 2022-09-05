@@ -3,6 +3,7 @@ package com.caydey.ffshare.utils
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Handler
 import android.os.Looper
@@ -13,8 +14,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import com.arthenica.ffmpegkit.*
+import com.caydey.ffshare.CacheCleanUpReceiver
 import com.caydey.ffshare.R
 import timber.log.Timber
+
 
 import java.io.File
 import java.util.*
@@ -31,7 +34,12 @@ class MediaCompressor(private val context: Context) {
     }
 
     @SuppressLint("SetTextI18n")
-    fun compressFile(activity: Activity, inputFileUri: Uri, callback: (uri: Uri?) -> Unit) {
+    fun compressSingleFile(
+        activity: Activity,
+        inputFileUri: Uri,
+        successHandler: (uri: Uri, inputFileSize: Long, outputFileSize: Long) -> Unit,
+        failureHandler: () -> Unit
+    ) {
         val txtFfmpegCommand: TextView = activity.findViewById(R.id.txtFfmpegCommand)
         val txtInputFile: TextView = activity.findViewById(R.id.txtInputFile)
         val txtInputFileSize: TextView = activity.findViewById(R.id.txtInputFileSize)
@@ -44,15 +52,18 @@ class MediaCompressor(private val context: Context) {
 
         // cancel button
         val btnCancel: Button = activity.findViewById(R.id.btnCancel)
-        btnCancel.setOnClickListener() {
+        btnCancel.setOnClickListener {
+            Toast.makeText(context, context.getString(R.string.canceled), Toast.LENGTH_LONG).show()
+            // cancel all ffmpeg operations
             cancelAllOperations()
-            callback(null)
+
+            failureHandler() // a cancel is a fail
         }
 
         val mediaType = utils.getMediaType(inputFileUri)
         if (mediaType == Utils.MediaType.UNKNOWN) {
             Toast.makeText(context, context.getString(R.string.error_unknown_filetype), Toast.LENGTH_LONG).show()
-            callback(null)
+            failureHandler()
             return
         }
 
@@ -72,7 +83,7 @@ class MediaCompressor(private val context: Context) {
 
         // need to create new saf param as they are one-use
         val mediaInformation = FFprobeKit.getMediaInformation(FFmpegKitConfig.getSafParameterForRead(context, inputFileUri)).mediaInformation
-        val inputFileSize = mediaInformation.size.toDouble() // get input file size
+        val inputFileSize = mediaInformation.size.toLong() // get input file size
 
         var duration = 0 // default duration for image
         if (showProgress) {
@@ -80,7 +91,7 @@ class MediaCompressor(private val context: Context) {
             if (mediaInformation.duration == null || mediaInformation.size == null) {
                 Timber.d("Unable to get size & duration for media, throwing error")
                 Toast.makeText(context, context.getString(R.string.error_invalid_file), Toast.LENGTH_LONG).show()
-                callback(null)
+                failureHandler()
                 return
             }
             duration = (mediaInformation.duration.toFloat() * 1_000).toInt()
@@ -92,14 +103,16 @@ class MediaCompressor(private val context: Context) {
         val command = "-y -i $inputSaf $params $outputSaf"
 
         // set TextViews
-        txtFfmpegCommand.text = "ffmpeg -y -i $inputFileName $params ${outputFile.name}"
-        txtInputFile.text = inputFileName
-        txtInputFileSize.text = utils.bytesToHuman(inputFileSize.toLong())
-        txtOutputFile.text = outputFile.name
-        txtOutputFileSize.text = utils.bytesToHuman(0)
-        txtProcessedTime.text = utils.millisToMicrowave(0)
-        txtProcessedTimeTotal.text = utils.millisToMicrowave(duration)
-        txtProcessedPercent.text = context.getString(R.string.format_percentage, 0.0f)
+        Handler(Looper.getMainLooper()).post {
+            txtFfmpegCommand.text = "ffmpeg -y -i $inputFileName $params ${outputFile.name}"
+            txtInputFile.text = inputFileName
+            txtInputFileSize.text = utils.bytesToHuman(inputFileSize)
+            txtOutputFile.text = outputFile.name
+            txtOutputFileSize.text = utils.bytesToHuman(0)
+            txtProcessedTime.text = utils.millisToMicrowave(0)
+            txtProcessedTimeTotal.text = utils.millisToMicrowave(duration)
+            txtProcessedPercent.text = context.getString(R.string.format_percentage, 0.0f)
+        }
 
         Timber.d("Executing ffmpeg command: 'ffmpeg %s'", command)
         FFmpegKitConfig.setLogLevel(Level.AV_LOG_QUIET) // hide built in ffmpeg logs
@@ -116,29 +129,22 @@ class MediaCompressor(private val context: Context) {
                 Handler(Looper.getMainLooper()).post {
                     Toast.makeText(context, toastMessage, Toast.LENGTH_LONG).show()
                 }
-                callback(null)
+                failureHandler()
             } else { // success
                 Timber.d("ffmpeg command executed successfully")
                 if (settings.copyExifTags && ExifTools.isValidType(mediaType)) {
                     Timber.d("copying exif tags")
                     ExifTools.copyExif(context.contentResolver.openInputStream(inputFileUri)!!, outputFile)
                 }
-                // show compression percentage as toast message
-                if (settings.showStatusMessages) {
-                    val outputFileSize = outputFile.length()
-                    val outputFileSizeHuman = utils.bytesToHuman(outputFileSize)
-                    val compressionPercentage = (1 - (outputFileSize / inputFileSize)) * 100
-                    val toastMessage = context.getString(R.string.media_reduction_message, outputFileSizeHuman, compressionPercentage)
-                    Handler(Looper.getMainLooper()).post {
-                        Timber.d("Showing compression size toast message")
-                        Toast.makeText(context, toastMessage, Toast.LENGTH_LONG).show()
-                        // update TextViews to their final values 97.8% -> 100.0%
-                        txtProcessedPercent.text = context.getString(R.string.format_percentage, 100.0f)
-                        txtProcessedTime.text = utils.millisToMicrowave(duration)
-                        txtOutputFileSize.text = outputFileSizeHuman
-                    }
+                // """Only the original thread that created a view hierarchy can touch its views."""
+                Handler(Looper.getMainLooper()).post {
+                    // update TextViews to their final values 97.8% -> 100.0%
+                    txtProcessedPercent.text = context.getString(R.string.format_percentage, 100.0f)
+                    txtProcessedTime.text = utils.millisToMicrowave(duration)
+                    txtOutputFileSize.text = utils.bytesToHuman(outputFile.length())
                 }
-                callback(outputFileUri)
+                // callback
+                successHandler(outputFileUri, inputFileSize, outputFile.length())
             }
         }, { /* logs */ }, { statistics ->
             // update TextViews with stats
@@ -150,6 +156,53 @@ class MediaCompressor(private val context: Context) {
                 txtOutputFileSize.text = utils.bytesToHuman(statistics.size)
             }
         })
+    }
+
+    fun compressFiles(activity: Activity, inputFilesUri: ArrayList<Uri>, callback: (uris: ArrayList<Uri>?) -> Unit) {
+        val txtCommandNumber: TextView = activity.findViewById(R.id.txtCommandNumber)
+
+        val inputFilesCount = inputFilesUri.size
+
+        val compressedFiles = ArrayList<Uri>()
+
+        var totalInputFileSize = 0L
+        var totalOutputFileSize = 0L
+
+        // since we are working with callbacks a simple for loop wont work
+        lateinit var iteratorFunction: (Int) -> Unit
+        iteratorFunction = fun(i) {
+            if (inputFilesCount > 1) { // show "1 of N" label if N > 1
+                Handler(Looper.getMainLooper()).post {
+                    txtCommandNumber.text = context.getString(R.string.x_of_y, i+1, inputFilesCount)
+                }
+            }
+            Timber.d("Processing %d of %d files", i+1, inputFilesCount)
+
+            compressSingleFile(activity, inputFilesUri[i], failureHandler = {
+                // if 1 file fails they all do
+                callback(null)
+            }, successHandler = { uri, inputFileSize, outputFileSize ->
+                totalInputFileSize += inputFileSize
+                totalOutputFileSize += outputFileSize
+                compressedFiles.add(uri)
+                if (i+1 < inputFilesCount) { // base case
+                    iteratorFunction(i+1) // call to self
+                } else { // end of iterations
+                    // show compression percentage as toast message
+                    if (settings.showStatusMessages) {
+                        val totalOutputFileSizeHuman = utils.bytesToHuman(totalOutputFileSize)
+                        val compressionPercentage = (1 - (totalOutputFileSize.toDouble() / totalInputFileSize)) * 100
+                        val toastMessage = context.getString(R.string.media_reduction_message, totalOutputFileSizeHuman, compressionPercentage)
+                        Handler(Looper.getMainLooper()).post {
+                            Timber.d("Showing compression size toast message")
+                            Toast.makeText(context, toastMessage, Toast.LENGTH_LONG).show()
+                        }
+                    }
+                    callback(compressedFiles)
+                }
+            })
+        }
+        iteratorFunction(0) // start iterations
     }
 
     private fun createFFmpegParams(inputFile: Uri, mediaType: Utils.MediaType): String {

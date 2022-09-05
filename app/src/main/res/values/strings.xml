@@ -5,7 +5,9 @@
     <string name="error_no_uri_intent">No media found in intent</string>
     <string name="error_unknown_filetype">Unknown filetype</string>
     <string name="error_invalid_file">Invalid file</string>
+    <string name="canceled">Canceled</string>
 
+    <string name="x_of_y">%d of %d</string>
 
     <string name="ffmpeg_error">Error compressing media</string>
     <string name="ffmpeg_canceled">Operation canceled</string>

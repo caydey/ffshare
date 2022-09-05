@@ -56,16 +56,19 @@ class HandleMediaActivity : AppCompatActivity() {
 
     private fun onMediaReceive() {
         // "intent" variable is the shared item
-        val mediaUri: Uri? = intent.getParcelableExtra(Intent.EXTRA_STREAM)
-
+        val receivedMedia = when (intent.action) {
+            Intent.ACTION_SEND -> arrayListOf(intent.getParcelableExtra(Intent.EXTRA_STREAM)!!)
+            Intent.ACTION_SEND_MULTIPLE -> intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM)!!
+            else -> ArrayList<Uri>()
+        }
         // unable to get file from intent
-        if (mediaUri == null) {
+        if (receivedMedia.isEmpty()) {
             Toast.makeText(this, getString(R.string.error_no_uri_intent), Toast.LENGTH_LONG).show()
-            Timber.d("No file found in shared intent")
+            Timber.d("No files found in shared intent")
             finish()
         } else {
             // callback
-            mediaCompressor.compressFile(this, mediaUri) { compressedMedia ->
+            mediaCompressor.compressFiles(this, receivedMedia) { compressedMedia ->
                 if (compressedMedia != null) {
                     shareMedia(compressedMedia)
                 }
@@ -74,18 +77,27 @@ class HandleMediaActivity : AppCompatActivity() {
         }
     }
 
-    private fun shareMedia(mediaUri: Uri) {
-        Timber.d("Creating share intent")
-        val shareIntent = Intent(Intent.ACTION_SEND)
+    private fun shareMedia(mediaUris: ArrayList<Uri>) {
+        val shareIntent = Intent()
 
         // temp permissions for other app to view file
         shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
 
+        // add compressed media files
+        if (mediaUris.size == 1) {
+            Timber.d("Creating share intent for single item")
+            shareIntent.action = Intent.ACTION_SEND
+            shareIntent.putExtra(Intent.EXTRA_STREAM, mediaUris[0])
+        } else {
+            Timber.d("Creating share intent for multiple items")
+            shareIntent.action = Intent.ACTION_SEND_MULTIPLE
+            shareIntent.putExtra(Intent.EXTRA_STREAM, mediaUris)
+        }
 
-        shareIntent.setDataAndType(mediaUri, contentResolver.getType(mediaUri))
-
-        // add compressed media file
-        shareIntent.putExtra(Intent.EXTRA_STREAM, mediaUri)
+        // set mime for each file
+        mediaUris.forEach { mediaUri ->
+            shareIntent.setDataAndType(mediaUri, contentResolver.getType(mediaUri))
+        }
 
         val chooser = Intent.createChooser(shareIntent, "media")
         startActivity(chooser)
