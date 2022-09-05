@@ -3,7 +3,6 @@ package com.caydey.ffshare.utils
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.net.Uri
 import android.os.Handler
 import android.os.Looper
@@ -14,12 +13,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import com.arthenica.ffmpegkit.*
-import com.caydey.ffshare.CacheCleanUpReceiver
 import com.caydey.ffshare.R
 import timber.log.Timber
 
 
-import java.io.File
 import java.util.*
 
 
