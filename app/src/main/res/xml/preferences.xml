@@ -16,17 +16,28 @@
         android:summary="@string/settings_compressed_media_custom_name_summary" />
 
     <SwitchPreference
-        android:key="pref_convert_videos_to_mp4"
-        android:defaultValue="true"
-        android:title="@string/settings_convert_videos_to_mp4"
-        android:summary="@string/settings_convert_videos_to_mp4_summary" />
-
-
-    <SwitchPreference
         android:key="pref_copy_exif_tags"
         android:defaultValue="false"
         android:title="@string/settings_copy_exif_tags"
         android:summary="@string/settings_copy_exif_tags_summary" />
+
+    <PreferenceCategory
+        android:key="prefs_conversions"
+        android:title="@string/settings_conversions_options_title">
+        <SwitchPreference
+                android:key="pref_convert_videos_to_mp4"
+                android:defaultValue="true"
+                android:title="@string/settings_convert_videos_to_mp4"
+                android:summary="@string/settings_convert_videos_to_mp4_summary" />
+
+        <SwitchPreference
+            android:key="pref_convert_gif_to_mp4"
+            android:defaultValue="false"
+            android:title="@string/settings_convert_gif_to_mp4"
+            android:summary="@string/settings_convert_gif_to_mp4_summary"/>
+    </PreferenceCategory>
+
+
 
     <PreferenceCategory
         android:key="prefs_compression"

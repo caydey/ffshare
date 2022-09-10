@@ -23,13 +23,7 @@ class Utils(private val context: Context) {
     private val settings: Settings by lazy { Settings(context) }
 
     fun getCacheOutputFile(uri: Uri, mediaType: MediaType): Pair<File, MediaType> {
-        var fileExtension = mediaType
-        // change extension if settings wants
-        if (settings.convertVideosToMp4) {
-            if (isVideo(mediaType)) {
-                fileExtension = MediaType.MP4
-            }
-        }
+        val fileExtension = getOutputFileMediaType(mediaType)
         val filename: String = when (settings.compressedMediaName) {
             Settings.CompressedMediaNameOpts.ORIGINAL -> getFilenameFromUri(uri) ?: getRandomFilename(fileExtension) // if getFilenameFromUri returns null default to randomFilename
             Settings.CompressedMediaNameOpts.UUID -> getRandomFilename(fileExtension)
@@ -38,6 +32,21 @@ class Utils(private val context: Context) {
         Timber.d("Created output file '%s'", filename)
         val outputFile = File(makeCacheUUIDFolder(), filename)
         return Pair(outputFile, fileExtension)
+    }
+    private fun getOutputFileMediaType(inputFileMediaType: MediaType): MediaType {
+        // change extension if settings wants
+        if (settings.convertVideosToMp4) {
+            if (isVideo(inputFileMediaType)) {
+                return MediaType.MP4
+            }
+        }
+        if (settings.convertGifToMp4) {
+            if (inputFileMediaType == MediaType.GIF) {
+                return MediaType.MP4
+            }
+        }
+        // no conversions
+        return inputFileMediaType
     }
     private fun makeCacheUUIDFolder(): File {
         val cacheUUIDFolder = File(context.mediaCacheDir, UUID.randomUUID().toString())

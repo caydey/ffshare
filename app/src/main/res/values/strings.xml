@@ -22,10 +22,15 @@
     <string name="settings_convert_videos_to_mp4">Convert all video formats to mp4</string>
     <string name="settings_convert_videos_to_mp4_summary">Convert mkv, webm formats to mp4</string>
 
+    <string name="settings_convert_gif_to_mp4">Convert gif to mp4</string>
+    <string name="settings_convert_gif_to_mp4_summary">Convert gif to mp4</string>
+
+
     <string name="settings_copy_exif_tags">Preserve Exif tags</string>
     <string name="settings_copy_exif_tags_summary">Preserve Exif tags for output files (only preserves tags for jpeg and png images)</string>
 
     <string name="settings_compression_options_title">Compression options</string>
+    <string name="settings_conversions_options_title">Conversion options</string>
 
     <string name="settings_jpeg_qscale">JPEG image qscale</string>
     <string name="settings_jpeg_qscale_summary">Lower value will result in a larger file size with greater quality (default 10)</string>
