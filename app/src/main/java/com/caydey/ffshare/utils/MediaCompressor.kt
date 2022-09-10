@@ -213,7 +213,6 @@ class MediaCompressor(private val context: Context) {
             if (outputFileMediaType != Utils.MediaType.WEBM) { // ffmpeg does not like these params when the output file is webm
                 params.add("-maxrate ${settings.videoMaxBitrate} -bufsize ${settings.videoMaxBitrate}")
             }
-            params.add("-maxrate ${settings.videoMaxBitrate} -bufsize ${settings.videoMaxBitrate}")
             // pixel format
             params.add("-vf format=yuv420p")
         }
