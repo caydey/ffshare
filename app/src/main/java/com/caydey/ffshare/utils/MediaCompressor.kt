@@ -50,7 +50,7 @@ class MediaCompressor(private val context: Context) {
         // cancel button
         val btnCancel: Button = activity.findViewById(R.id.btnCancel)
         btnCancel.setOnClickListener {
-            Toast.makeText(context, context.getString(R.string.canceled), Toast.LENGTH_LONG).show()
+            Toast.makeText(context, context.getString(R.string.ffmpeg_canceled), Toast.LENGTH_LONG).show()
             // cancel all ffmpeg operations
             cancelAllOperations()
 
@@ -116,32 +116,31 @@ class MediaCompressor(private val context: Context) {
         FFmpegKit.executeAsync(command, { session ->
             // completed
             if (!session.returnCode.isValueSuccess) { // failed
-                val toastMessage = if (session.returnCode.isValueCancel) {
-                    Timber.d("ffmpeg command canceled")
-                    context.getString(R.string.ffmpeg_canceled)
-                } else {
+                if (!session.returnCode.isValueCancel) {
                     Timber.d("ffmpeg command failed")
-                    context.getString(R.string.ffmpeg_error)
+                    Handler(Looper.getMainLooper()).post {
+                        Toast.makeText(context, context.getString(R.string.ffmpeg_error), Toast.LENGTH_LONG).show()
+                    }
+                    failureHandler()
                 }
-                Handler(Looper.getMainLooper()).post {
-                    Toast.makeText(context, toastMessage, Toast.LENGTH_LONG).show()
-                }
-                failureHandler()
             } else { // success
                 Timber.d("ffmpeg command executed successfully")
                 if (settings.copyExifTags && ExifTools.isValidType(mediaType)) {
                     Timber.d("copying exif tags")
                     ExifTools.copyExif(context.contentResolver.openInputStream(inputFileUri)!!, outputFile)
                 }
+                val outputFileCurrentSize = outputFile.length()
                 // """Only the original thread that created a view hierarchy can touch its views."""
                 Handler(Looper.getMainLooper()).post {
                     // update TextViews to their final values 97.8% -> 100.0%
                     txtProcessedPercent.text = context.getString(R.string.format_percentage, 100.0f)
                     txtProcessedTime.text = utils.millisToMicrowave(duration)
-                    txtOutputFileSize.text = utils.bytesToHuman(outputFile.length())
+                    if (outputFileCurrentSize > 0) {
+                        txtOutputFileSize.text = utils.bytesToHuman(outputFileCurrentSize)
+                    }
                 }
                 // callback
-                successHandler(outputFileUri, inputFileSize, outputFile.length())
+                successHandler(outputFileUri, inputFileSize, outputFileCurrentSize)
             }
         }, { /* logs */ }, { statistics ->
             // update TextViews with stats
@@ -155,7 +154,7 @@ class MediaCompressor(private val context: Context) {
         })
     }
 
-    fun compressFiles(activity: Activity, inputFilesUri: ArrayList<Uri>, callback: (uris: ArrayList<Uri>?) -> Unit) {
+    fun compressFiles(activity: Activity, inputFilesUri: ArrayList<Uri>, callback: (uris: ArrayList<Uri>) -> Unit) {
         val txtCommandNumber: TextView = activity.findViewById(R.id.txtCommandNumber)
 
         val inputFilesCount = inputFilesUri.size
@@ -166,40 +165,43 @@ class MediaCompressor(private val context: Context) {
         var totalOutputFileSize = 0L
 
         // since we are working with callbacks a simple for loop wont work
-        lateinit var iteratorFunction: (Int) -> Unit
-        iteratorFunction = fun(i) {
-            if (inputFilesCount > 1) { // show "1 of N" label if N > 1
-                Handler(Looper.getMainLooper()).post {
-                    txtCommandNumber.text = context.getString(R.string.x_of_y, i+1, inputFilesCount)
-                }
-            }
-            Timber.d("Processing %d of %d files", i+1, inputFilesCount)
+        lateinit var iteratorFunction: (Int, Boolean) -> Unit
+        iteratorFunction = fun(i, error) {
+            // base case
+            if (i < inputFilesCount) {
+                Timber.d("Processing %d of %d files", i+1, inputFilesCount)
 
-            compressSingleFile(activity, inputFilesUri[i], failureHandler = {
-                // if 1 file fails they all do
-                callback(null)
-            }, successHandler = { uri, inputFileSize, outputFileSize ->
-                totalInputFileSize += inputFileSize
-                totalOutputFileSize += outputFileSize
-                compressedFiles.add(uri)
-                if (i+1 < inputFilesCount) { // base case
-                    iteratorFunction(i+1) // call to self
-                } else { // end of iterations
-                    // show compression percentage as toast message
-                    if (settings.showStatusMessages) {
-                        val totalOutputFileSizeHuman = utils.bytesToHuman(totalOutputFileSize)
-                        val compressionPercentage = (1 - (totalOutputFileSize.toDouble() / totalInputFileSize)) * 100
-                        val toastMessage = context.getString(R.string.media_reduction_message, totalOutputFileSizeHuman, compressionPercentage)
-                        Handler(Looper.getMainLooper()).post {
-                            Timber.d("Showing compression size toast message")
-                            Toast.makeText(context, toastMessage, Toast.LENGTH_LONG).show()
-                        }
+                if (inputFilesCount > 1) { // show "1 of N" label if N > 1
+                    Handler(Looper.getMainLooper()).post {
+                        txtCommandNumber.text = context.getString(R.string.command_x_of_y, i+1, inputFilesCount)
                     }
-                    callback(compressedFiles)
                 }
-            })
+
+                compressSingleFile(activity, inputFilesUri[i], failureHandler = {
+                    // if 1 file fails don't add it to compressedFiles array
+                    iteratorFunction(i+1, true) // call to self with error flag true
+                }, successHandler = { uri, inputFileSize, outputFileSize ->
+                    totalInputFileSize += inputFileSize
+                    totalOutputFileSize += outputFileSize
+                    compressedFiles.add(uri)
+                    iteratorFunction(i+1, false) // call to self with error flag false
+                })
+            }
+            if (i >= inputFilesCount || error) { // end of iterations
+                // show compression percentage as toast message if there was no error
+                if (settings.showStatusMessages && !error) {
+                    val totalOutputFileSizeHuman = utils.bytesToHuman(totalOutputFileSize)
+                    val compressionPercentage = (1 - (totalOutputFileSize.toDouble() / totalInputFileSize)) * 100
+                    val toastMessage = context.getString(R.string.media_reduction_message, totalOutputFileSizeHuman, compressionPercentage)
+                    Handler(Looper.getMainLooper()).post {
+                        Timber.d("Showing compression size toast message")
+                        Toast.makeText(context, toastMessage, Toast.LENGTH_LONG).show()
+                    }
+                }
+                callback(compressedFiles)
+            }
         }
-        iteratorFunction(0) // start iterations
+        iteratorFunction(0, false) // start iterations
     }
 
     private fun createFFmpegParams(inputFile: Uri, mediaType: Utils.MediaType, outputMediaType: Utils.MediaType): String {

@@ -69,7 +69,7 @@ class HandleMediaActivity : AppCompatActivity() {
         } else {
             // callback
             mediaCompressor.compressFiles(this, receivedMedia) { compressedMedia ->
-                if (compressedMedia != null) {
+                if (compressedMedia.isNotEmpty()) {
                     shareMedia(compressedMedia)
                 }
                 finish()
