@@ -64,6 +64,14 @@
             android:summary="@string/settings_video_max_bitrate_summary"
             android:entries="@array/settings_video_max_bitrate"
             android:entryValues="@array/settings_video_max_bitrate" />
+        <ListPreference
+            android:key="pref_max_resolution"
+            android:defaultValue="480"
+            android:title="@string/settings_max_resolution"
+            android:summary="@string/settings_max_resolution_summary"
+            android:entries="@array/settings_max_resolution"
+            android:entryValues="@array/settings_max_resolution_values"
+            />
     </PreferenceCategory>
 
     <PreferenceCategory

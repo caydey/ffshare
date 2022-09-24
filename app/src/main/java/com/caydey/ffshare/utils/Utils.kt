@@ -8,6 +8,8 @@ import java.util.*
 import android.Manifest
 import android.app.Activity
 import android.content.pm.PackageManager
+import android.graphics.BitmapFactory
+import android.media.MediaMetadataRetriever
 import androidx.exifinterface.media.ExifInterface
 import android.net.Uri
 import android.provider.OpenableColumns
@@ -125,6 +127,7 @@ class Utils(private val context: Context) {
             Timber.d("unable to find filetype from extension, trying file signature")
             val inputStream = context.contentResolver.openInputStream(uri)
             val signature = getFileHexSignature(inputStream!!)
+            inputStream.close()
 
             if (signature.startsWith("FFD8FF")) {
                 Timber.d("Found filetype from signature: webm")
@@ -149,8 +152,21 @@ class Utils(private val context: Context) {
         // basic file-extension detection
         return mediaType
     }
+    fun getMediaResolution(mediaUri: Uri, mediaType: MediaType): Pair<Int,Int> {
+        return if (isImage(mediaType)) {
+            val bitmapOption = BitmapFactory.decodeStream(context.contentResolver.openInputStream(mediaUri)!!)
+            Pair(bitmapOption.width, bitmapOption.height)
+        } else {
+            val retriever = MediaMetadataRetriever()
+            retriever.setDataSource(context, mediaUri)
+            val width = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH)!!.toInt()
+            val height = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT)!!.toInt()
+            retriever.release()
+            Pair(width,height)
+        }
+    }
 
-    fun bytesToHuman(bytes:Long): String {
+    fun bytesToHuman(bytes: Long): String {
         // warning will break for files over 1 petabyte in size
         val units = arrayOf("B", "KiB", "MiB", "GiB", "TiB")
         val byte = 1024f

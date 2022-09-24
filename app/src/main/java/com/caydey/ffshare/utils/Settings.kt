@@ -51,6 +51,10 @@ class Settings(private val context: Context) {
         get() = preferences.getString(VIDEO_MAX_BITRATE, "2M")!!
         set(value) = setPreference(VIDEO_MAX_BITRATE, value)
 
+    var maxResolution: Int
+        get() = preferences.getString(MAX_RESOLUTION, "1080")!!.toInt()
+        set(value) = setPreference(MAX_RESOLUTION, value)
+
     var copyExifTags: Boolean
         get() = preferences.getBoolean(COPY_EXIF_TAGS, false)
         set(value) = setPreference(COPY_EXIF_TAGS, value)
@@ -76,6 +80,7 @@ class Settings(private val context: Context) {
         const val VIDEO_CRF = "pref_video_crf"
         const val JPEG_QSCALE = "pref_jpeg_qscale"
         const val VIDEO_MAX_BITRATE = "pref_video_max_bitrate"
+        const val MAX_RESOLUTION = "pref_max_resolution"
         const val COPY_EXIF_TAGS = "pref_copy_exif_tags"
     }
 }

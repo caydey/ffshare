@@ -24,7 +24,6 @@
     <string name="settings_convert_gif_to_mp4">Convert gif to mp4</string>
     <string name="settings_convert_gif_to_mp4_summary">Convert gif to mp4</string>
 
-
     <string name="settings_copy_exif_tags">Preserve Exif tags</string>
     <string name="settings_copy_exif_tags_summary">Preserve Exif tags for output files (only preserves tags for jpeg and png images)</string>
 
@@ -39,6 +38,9 @@
 
     <string name="settings_video_max_bitrate">Video max bitrate</string>
     <string name="settings_video_max_bitrate_summary">Do not allow a video to go over the specified bitrate (default 2M)</string>
+
+    <string name="settings_max_resolution">Max resolution</string>
+    <string name="settings_max_resolution_summary">Reduce the output resolution, (resolutions under this value will be unaffected)</string>
 
     <string name="settings_interface_options_title">Interface</string>
 

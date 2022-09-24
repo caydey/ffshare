@@ -1,5 +1,6 @@
 package com.caydey.ffshare.utils
 
+
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
@@ -12,11 +13,12 @@ import android.widget.TableRow
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.FileProvider
-import com.arthenica.ffmpegkit.*
+import com.arthenica.ffmpegkit.FFmpegKit
+import com.arthenica.ffmpegkit.FFmpegKitConfig
+import com.arthenica.ffmpegkit.FFprobeKit
+import com.arthenica.ffmpegkit.Level
 import com.caydey.ffshare.R
 import timber.log.Timber
-
-
 import java.util.*
 
 
@@ -64,6 +66,7 @@ class MediaCompressor(private val context: Context) {
             return
         }
 
+        // don't show progress when compressing images (not possible)
         val showProgress = !utils.isImage(mediaType)
         if (!showProgress) {
             processedTableRow.visibility = View.INVISIBLE
@@ -217,6 +220,20 @@ class MediaCompressor(private val context: Context) {
             }
             // pixel format
             params.add("-vf format=yuv420p")
+        }
+
+        // max resolution
+        val (resolutionWidth, resolutionHeight) = utils.getMediaResolution(inputFile, mediaType)
+        val isPortrait = resolutionHeight < resolutionWidth
+        val resolution = if (isPortrait) { resolutionWidth } else { resolutionHeight }
+        val maxResolution = settings.maxResolution
+        // only reduce resolution
+        if (resolution > maxResolution) {
+            if (isPortrait) {
+                params.add("-vf scale=-1:$maxResolution,setsar=1")
+            } else {
+                params.add("-vf scale=$maxResolution:-1,setsar=1")
+            }
         }
 
         // jpeg quality
