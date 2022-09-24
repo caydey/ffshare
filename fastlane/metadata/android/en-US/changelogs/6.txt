@@ -1,0 +1,12 @@
+New in 1.1.3
+- Added option to set maximum video and image resolution
+
+New in 1.1.2
+- Better filetype detection when file extension is missing
+- Added option to convert gif to mp4
+- Improved error handling with multiple media files
+
+New in 1.1.1
+- Fixed crash when compressing webm videos
+- Fixed crash when using custom output media name
+- By default all video formats are converted to mp4
