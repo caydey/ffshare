@@ -36,8 +36,8 @@
     <string name="settings_video_crf">Video crf</string>
     <string name="settings_video_crf_summary">(Constant Rate Factor) Lower value will result in a larger file size with greater quality (default 23)</string>
 
-    <string name="settings_video_max_bitrate">Video max bitrate</string>
-    <string name="settings_video_max_bitrate_summary">Do not allow a video to go over the specified bitrate (default 2M)</string>
+    <string name="settings_video_max_file_size">Video max file size</string>
+    <string name="settings_video_max_file_size_summary">Adjusts video bitrate to create an output less than the specified file size</string>
 
     <string name="settings_max_resolution">Max resolution</string>
     <string name="settings_max_resolution_summary">Reduce the output resolution, (resolutions under this value will be unaffected)</string>

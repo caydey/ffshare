@@ -47,9 +47,9 @@ class Settings(private val context: Context) {
         get() = preferences.getString(JPEG_QSCALE, "10")!!.toInt()
         set(value) = setPreference(JPEG_QSCALE, value)
 
-    var videoMaxBitrate: String
-        get() = preferences.getString(VIDEO_MAX_BITRATE, "2M")!!
-        set(value) = setPreference(VIDEO_MAX_BITRATE, value)
+    var videoMaxFileSize: Int
+        get() = preferences.getString(VIDEO_MAX_FILE_SIZE, "0")!!.toInt()
+        set(value) = setPreference(VIDEO_MAX_FILE_SIZE, value)
 
     var maxResolution: Int
         get() = preferences.getString(MAX_RESOLUTION, "1080")!!.toInt()
@@ -79,7 +79,7 @@ class Settings(private val context: Context) {
         const val SHOW_STATUS_MESSAGES = "pref_show_status_messages"
         const val VIDEO_CRF = "pref_video_crf"
         const val JPEG_QSCALE = "pref_jpeg_qscale"
-        const val VIDEO_MAX_BITRATE = "pref_video_max_bitrate"
+        const val VIDEO_MAX_FILE_SIZE = "pref_video_max_file_size"
         const val MAX_RESOLUTION = "pref_max_resolution"
         const val COPY_EXIF_TAGS = "pref_copy_exif_tags"
     }

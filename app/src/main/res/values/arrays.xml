@@ -5,11 +5,13 @@
         <item>UUID</item>
         <item>Custom</item>
     </array>
+
     <array name="settings_compressed_media_name_values">
         <item>ORIGINAL</item>
         <item>UUID</item>
         <item>CUSTOM</item>
     </array>
+
     <string-array name="settings_jpeg_qscale">
         <item>1</item><item>2</item><item>3</item><item>4</item>
         <item>5</item><item>6</item><item>7</item><item>8</item><item>9</item>
@@ -19,6 +21,7 @@
         <item>25</item><item>26</item><item>27</item><item>28</item><item>29</item>
         <item>30</item><item>31</item>
     </string-array>
+
     <string-array name="settings_video_crf">
         <item>0</item><item>1</item><item>2</item><item>3</item><item>4</item>
         <item>5</item><item>6</item><item>7</item><item>8</item><item>9</item>
@@ -32,15 +35,24 @@
         <item>45</item><item>46</item><item>47</item><item>48</item><item>49</item>
         <item>50</item><item>51</item>
     </string-array>
-    <string-array name="settings_video_max_bitrate">
-        <item>200k</item>
-        <item>400k</item>
-        <item>800k</item>
-        <item>1M</item>
-        <item>2M</item>
+
+    <string-array name="settings_video_max_file_size">
+        <item>No limit</item>
         <item>4M</item>
         <item>8M</item>
+        <item>12M</item>
         <item>16M</item>
+        <item>32M</item>
+        <item>50M</item>
+    </string-array>
+    <string-array name="settings_video_max_file_size_values">
+        <item>0</item>
+        <item>4</item>
+        <item>8</item>
+        <item>12</item>
+        <item>16</item>
+        <item>32</item>
+        <item>50</item>
     </string-array>
 
     <string-array name="settings_max_resolution">

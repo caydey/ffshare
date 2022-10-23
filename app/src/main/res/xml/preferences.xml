@@ -25,10 +25,10 @@
         android:key="prefs_conversions"
         android:title="@string/settings_conversions_options_title">
         <SwitchPreference
-                android:key="pref_convert_videos_to_mp4"
-                android:defaultValue="true"
-                android:title="@string/settings_convert_videos_to_mp4"
-                android:summary="@string/settings_convert_videos_to_mp4_summary" />
+            android:key="pref_convert_videos_to_mp4"
+            android:defaultValue="true"
+            android:title="@string/settings_convert_videos_to_mp4"
+            android:summary="@string/settings_convert_videos_to_mp4_summary" />
 
         <SwitchPreference
             android:key="pref_convert_gif_to_mp4"
@@ -58,12 +58,13 @@
             android:entryValues="@array/settings_video_crf" />
 
         <ListPreference
-            android:key="pref_video_max_bitrate"
-            android:defaultValue="2M"
-            android:title="@string/settings_video_max_bitrate"
-            android:summary="@string/settings_video_max_bitrate_summary"
-            android:entries="@array/settings_video_max_bitrate"
-            android:entryValues="@array/settings_video_max_bitrate" />
+            android:key="pref_video_max_file_size"
+            android:defaultValue="0"
+            android:title="@string/settings_video_max_file_size"
+            android:summary="@string/settings_video_max_file_size_summary"
+            android:entries="@array/settings_video_max_file_size"
+            android:entryValues="@array/settings_video_max_file_size_values" />
+
         <ListPreference
             android:key="pref_max_resolution"
             android:defaultValue="1080"
