@@ -269,19 +269,6 @@ class MediaCompressor(private val context: Context) {
             params.add("-qscale:v $qscale")
         }
 
-        // correct images rotation, this version of ffmpeg wipes orientation metadata
-        if (utils.isImage(mediaType)) {
-            // don't correct image rotation if exif tags are kept (orientation tag wont be destroyed)
-            if (!(settings.copyExifTags && ExifTools.isValidType(mediaType))) {
-                val orientationParam = when(utils.getImageOrientation(inputFile)) {
-                    Utils.Orientation.ROT_0 -> ""
-                    Utils.Orientation.ROT_90 -> "-vf \"transpose=1\"" // clockwise 90
-                    Utils.Orientation.ROT_180 -> "-vf \"transpose=2,transpose=2\"" // counter clockwise 90 x 2
-                    Utils.Orientation.ROT_270 -> "-vf \"transpose=2\"" // counter clockwise 90
-                }
-                params.add(orientationParam)
-            }
-        }
         return params.toString()
     }
 }

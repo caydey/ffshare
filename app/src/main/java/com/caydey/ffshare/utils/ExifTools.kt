@@ -7,25 +7,6 @@ import java.io.InputStream
 
 class ExifTools {
     companion object {
-        fun getTags(inputStream: InputStream): Map<String, String> {
-            val exifMap = mutableMapOf<String, String>()
-            val exifInterface = ExifInterface(inputStream)
-            for (tag in exifTags) {
-                val value: String? = exifInterface.getAttribute(tag)
-                if (value != null) {
-                    exifMap[tag] = value
-                }
-            }
-            return exifMap
-        }
-        fun setTags(file: File, tags: Map<String, String>) {
-            val exifInterface = ExifInterface(file)
-            for ((tag, value) in tags.entries) {
-                exifInterface.setAttribute(tag, value)
-            }
-            exifInterface.saveAttributes()
-        }
-
         fun copyExif(inputFileStream: InputStream, outputFile: File) {
             val inputExifInterface = ExifInterface(inputFileStream)
             val outputExifInterface = ExifInterface(outputFile)
@@ -50,7 +31,6 @@ class ExifTools {
             ExifInterface.TAG_BITS_PER_SAMPLE,
             ExifInterface.TAG_COMPRESSION,
             ExifInterface.TAG_PHOTOMETRIC_INTERPRETATION,
-            ExifInterface.TAG_ORIENTATION,
             ExifInterface.TAG_SAMPLES_PER_PIXEL,
             ExifInterface.TAG_Y_CB_CR_SUB_SAMPLING,
             ExifInterface.TAG_Y_CB_CR_POSITIONING,
