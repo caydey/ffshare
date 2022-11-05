@@ -10,7 +10,6 @@ import android.app.Activity
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.media.MediaMetadataRetriever
-import androidx.exifinterface.media.ExifInterface
 import android.net.Uri
 import android.provider.OpenableColumns
 import androidx.core.content.ContextCompat
@@ -120,6 +119,9 @@ class Utils(private val context: Context) {
             } else if (filename.endsWith(".webm")) {
                 Timber.d("Found filetype from extension: webm")
                 mediaType = MediaType.WEBM
+            } else if (filename.endsWith(".avi")) {
+                Timber.d("Found filetype from extension: avi")
+                mediaType = MediaType.AVI
             }
         }
         // unable to get filetype from filename extension, using signature detection
@@ -144,26 +146,35 @@ class Utils(private val context: Context) {
             } else if (signature.startsWith("1A45DFA3")) { // or webm, but assume mkv, also not that big a deal as only happens when filename is not found
                 Timber.d("Found filetype from signature: mkv")
                 mediaType = MediaType.MKV
+            } else if (signature.startsWith("52494646") && signature.drop(16).startsWith("41564920")) { // 52 49 46 46 ** ** ** ** 41 56 49 20
+                Timber.d("Found filetype from signature: avi")
+                mediaType = MediaType.AVI
             } else {
                 Timber.d("Unable to find filetype from signature")
             }
         }
 
-        // basic file-extension detection
         return mediaType
     }
     fun getMediaResolution(mediaUri: Uri, mediaType: MediaType): Pair<Int,Int> {
-        return if (isImage(mediaType)) {
+        // image
+        if (isImage(mediaType)) {
             val bitmapOption = BitmapFactory.decodeStream(context.contentResolver.openInputStream(mediaUri)!!)
-            Pair(bitmapOption.width, bitmapOption.height)
-        } else {
-            val retriever = MediaMetadataRetriever()
-            retriever.setDataSource(context, mediaUri)
-            val width = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH)!!.toInt()
-            val height = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT)!!.toInt()
-            retriever.release()
-            Pair(width,height)
+            return Pair(bitmapOption.width, bitmapOption.height)
         }
+        // video
+        // attempt to get video resolution
+        val retriever = MediaMetadataRetriever()
+        try {
+            retriever.setDataSource(context, mediaUri)
+        } catch (e: java.lang.RuntimeException) {
+            return Pair(0,0) // unable to read video width/height, usually happens with avi files
+        }
+        // read video resolution
+        val width = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH)!!.toInt()
+        val height = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT)!!.toInt()
+        retriever.release()
+        return Pair(width,height)
     }
 
     fun bytesToHuman(bytes: Long): String {
@@ -190,32 +201,8 @@ class Utils(private val context: Context) {
         return time.dropLast(1)
     }
 
-    fun getImageOrientation(imageUri: Uri): Orientation {
-        return when (ExifInterface(context.contentResolver.openInputStream(imageUri)!!).getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL)) {
-            ExifInterface.ORIENTATION_ROTATE_270 -> {
-                Timber.d("Image rotation 270 degrees")
-                Orientation.ROT_270
-            }
-            ExifInterface.ORIENTATION_ROTATE_180 -> {
-                Timber.d("Image rotation 180 degrees")
-                Orientation.ROT_180
-            }
-            ExifInterface.ORIENTATION_ROTATE_90 -> {
-                Timber.d("Image rotation 90 degrees")
-                Orientation.ROT_90
-            }
-            else -> {
-                Timber.d("Image rotation 0 degrees")
-                Orientation.ROT_0
-            }
-        }
-    }
-    enum class Orientation {
-        ROT_0, ROT_90, ROT_180, ROT_270
-    }
-
     enum class MediaType {
-        MP4, MKV, WEBM,
+        MP4, MKV, WEBM, AVI,
         JPEG, PNG, GIF,
         UNKNOWN
     }
@@ -224,6 +211,7 @@ class Utils(private val context: Context) {
     }
     fun isVideo(type: MediaType): Boolean {
         return type == MediaType.MP4 || type == MediaType.MKV || type == MediaType.WEBM
+                || type == MediaType.AVI
     }
 
 }
