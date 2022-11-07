@@ -41,15 +41,15 @@ class Settings(private val context: Context) {
 
     var videoCrf: Int
         get() = preferences.getString(VIDEO_CRF, "23")!!.toInt()
-        set(value) = setPreference(VIDEO_CRF, value)
+        set(value) = setPreference(VIDEO_CRF, value.toString())
 
     var jpegQscale: Int
         get() = preferences.getString(JPEG_QSCALE, "10")!!.toInt()
-        set(value) = setPreference(JPEG_QSCALE, value)
+        set(value) = setPreference(JPEG_QSCALE, value.toString())
 
     var videoMaxFileSize: Int
         get() = preferences.getString(VIDEO_MAX_FILE_SIZE, "0")!!.toInt()
-        set(value) = setPreference(VIDEO_MAX_FILE_SIZE, value)
+        set(value) = setPreference(VIDEO_MAX_FILE_SIZE, value.toString())
 
     var maxResolution: Int
         get() = preferences.getString(MAX_RESOLUTION, "1080")!!.toInt()
@@ -59,6 +59,9 @@ class Settings(private val context: Context) {
         get() = preferences.getBoolean(COPY_EXIF_TAGS, false)
         set(value) = setPreference(COPY_EXIF_TAGS, value)
 
+    var lastVersion: Int
+        get() = preferences.getInt(LAST_VERSION, 0)
+        set(value) = setPreference(LAST_VERSION, value)
 
     private fun setPreference(key: String, value: String) {
         preferences.edit().putString(key, value).apply()
@@ -82,5 +85,6 @@ class Settings(private val context: Context) {
         const val VIDEO_MAX_FILE_SIZE = "pref_video_max_file_size"
         const val MAX_RESOLUTION = "pref_max_resolution"
         const val COPY_EXIF_TAGS = "pref_copy_exif_tags"
+        const val LAST_VERSION = "pref_last_version"
     }
 }

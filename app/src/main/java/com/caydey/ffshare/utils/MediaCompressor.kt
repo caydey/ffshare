@@ -235,8 +235,8 @@ class MediaCompressor(private val context: Context) {
             if (settings.videoMaxFileSize != 0) {
                 // ffmpeg does not like -maxrate & -bufsize params when the output file is webm
                 if (outputMediaType != Utils.MediaType.WEBM) {
-                    val maxBitrate = ((settings.videoMaxFileSize * 8192) / mediaInformation.duration.toFloat().toInt())
-                    Timber.d("Maximum bitrate for targeted filesize (%dM): %dk", settings.videoMaxFileSize, maxBitrate)
+                    val maxBitrate = (settings.videoMaxFileSize / mediaInformation.duration.toFloat().toInt())
+                    Timber.d("Maximum bitrate for targeted filesize (%dK): %dk", settings.videoMaxFileSize, maxBitrate)
 
                     // audio can have at most one quarter of the total bitrate
                     val audioSplit = maxBitrate / 4

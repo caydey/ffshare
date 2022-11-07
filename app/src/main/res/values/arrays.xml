@@ -38,21 +38,29 @@
 
     <string-array name="settings_video_max_file_size">
         <item>No limit</item>
+        <item>512K</item>
+        <item>1M</item>
+        <item>2M</item>
         <item>4M</item>
         <item>8M</item>
         <item>12M</item>
         <item>16M</item>
         <item>32M</item>
         <item>50M</item>
+        <item>100M</item>
     </string-array>
     <string-array name="settings_video_max_file_size_values">
         <item>0</item>
-        <item>4</item>
-        <item>8</item>
-        <item>12</item>
-        <item>16</item>
-        <item>32</item>
-        <item>50</item>
+        <item>512</item>
+        <item>1024</item>
+        <item>2048</item>
+        <item>4096</item>
+        <item>8192</item>
+        <item>12288</item>
+        <item>16384</item>
+        <item>32768</item>
+        <item>51200</item>
+        <item>102400</item>
     </string-array>
 
     <string-array name="settings_max_resolution">
