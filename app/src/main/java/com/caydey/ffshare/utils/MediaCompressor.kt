@@ -84,6 +84,14 @@ class MediaCompressor(private val context: Context) {
 
         // need to create new saf param as they are one-use
         val mediaInformation = FFprobeKit.getMediaInformation(FFmpegKitConfig.getSafParameterForRead(context, inputFileUri)).mediaInformation
+
+        if (mediaInformation == null) {
+            Timber.d("Unable to get media information, throwing error")
+            Toast.makeText(context, context.getString(R.string.error_invalid_file), Toast.LENGTH_LONG).show()
+            failureHandler()
+            return
+        }
+
         val inputFileSize = mediaInformation.size.toLong() // get input file size
 
         var duration = 0 // default duration for image
