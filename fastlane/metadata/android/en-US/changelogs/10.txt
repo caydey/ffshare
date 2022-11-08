@@ -1,0 +1,11 @@
+New in 1.2.2
+- Added support for AVI videos
+- Added more options for max video file size
+- Reduced apk size
+
+New in 1.2.1
+- Fixed image rotation correction
+
+New in 1.2.0
+- Default video codec is h264
+- Added option to set max output file size for videos
