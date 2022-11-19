@@ -238,10 +238,11 @@ class MediaCompressor(private val context: Context) {
                     val maxBitrate = (settings.videoMaxFileSize / mediaInformation.duration.toFloat().toInt())
                     Timber.d("Maximum bitrate for targeted filesize (%dK): %dk", settings.videoMaxFileSize, maxBitrate)
 
-                    // audio can have at most one quarter of the total bitrate
-                    val audioSplit = maxBitrate / 4
+                    // audio can have at most one third of the total bitrate
+                    val audioSplit = maxBitrate / 3
                     // round audio bitrate down to 192,128,96,64,32,24
-                    val audioBitrate = if (audioSplit > 128) 128
+                    val audioBitrate = if (audioSplit > 192) 192 // maximum audio bitrate is 192k
+                    else if (audioSplit > 128) 128
                     else if (audioSplit > 96) 96
                     else if (audioSplit > 64) 64
                     else if (audioSplit > 32) 32
@@ -263,7 +264,7 @@ class MediaCompressor(private val context: Context) {
         val resolution = if (isPortrait) { resolutionWidth } else { resolutionHeight }
         val maxResolution = settings.maxResolution
         // only reduce resolution
-        if (resolution > maxResolution) {
+        if (resolution > maxResolution && maxResolution != 0) {
             if (isPortrait) {
                 params.add("-vf scale=-1:$maxResolution,setsar=1")
             } else {

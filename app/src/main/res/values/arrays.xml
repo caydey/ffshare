@@ -69,6 +69,7 @@
         <item>720p</item>
         <item>1080p</item>
         <item>2160p</item>
+        <item>No Limit</item>
     </string-array>
     <string-array name="settings_max_resolution_values">
         <item>360</item>
@@ -76,5 +77,6 @@
         <item>720</item>
         <item>1080</item>
         <item>2160</item>
+        <item>0</item>
     </string-array>
 </resources>
