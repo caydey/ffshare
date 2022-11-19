@@ -41,6 +41,11 @@ class Utils(private val context: Context) {
                 return MediaType.MP4
             }
         }
+        if (settings.convertAudiosToMP3) {
+            if (isAudio(inputFileMediaType)) {
+                return MediaType.MP3
+            }
+        }
         if (settings.convertGifToMp4) {
             if (inputFileMediaType == MediaType.GIF) {
                 return MediaType.MP4
@@ -95,36 +100,38 @@ class Utils(private val context: Context) {
     }
 
     fun getMediaType(uri: Uri): MediaType {
-        var filename: String? = getFilenameFromUri(uri)
+        val filename: String? = getFilenameFromUri(uri)
         var mediaType: MediaType = MediaType.UNKNOWN
 
         // get type from file extension
         if (filename != null) {
-            filename = filename.lowercase()
-            if (filename.endsWith(".jpg") || filename.endsWith(".jpeg")) {
-                Timber.d("Found filetype from extension: jpeg")
+            val lFilename = filename.lowercase()
+            if (lFilename.endsWith(".jpg") || lFilename.endsWith(".jpeg")) { // images
                 mediaType = MediaType.JPEG
-            } else if (filename.endsWith(".png")) {
-                Timber.d("Found filetype from extension: png")
+            } else if (lFilename.endsWith(".png")) {
                 mediaType = MediaType.PNG
-            } else if (filename.endsWith(".gif")) {
-                Timber.d("Found filetype from extension: gif")
+            } else if (lFilename.endsWith(".gif")) {
                 mediaType = MediaType.GIF
-            } else if (filename.endsWith(".mp4")) {
-                Timber.d("Found filetype from extension: mp4")
+            } else if (lFilename.endsWith(".mp4")) { // videos
                 mediaType = MediaType.MP4
-            } else if (filename.endsWith(".mkv")) {
-                Timber.d("Found filetype from extension: mkv")
+            } else if (lFilename.endsWith(".mkv")) {
                 mediaType = MediaType.MKV
-            } else if (filename.endsWith(".webm")) {
-                Timber.d("Found filetype from extension: webm")
+            } else if (lFilename.endsWith(".webm")) {
                 mediaType = MediaType.WEBM
-            } else if (filename.endsWith(".avi")) {
-                Timber.d("Found filetype from extension: avi")
+            } else if (lFilename.endsWith(".avi")) {
                 mediaType = MediaType.AVI
+            } else if (lFilename.endsWith(".mp3")) { // audios
+                mediaType = MediaType.MP3
+            } else if (lFilename.endsWith(".ogg")) {
+                mediaType = MediaType.OGG
+            } else if (lFilename.endsWith(".aac")) {
+                mediaType = MediaType.AAC
+            } else if (lFilename.endsWith(".wav")) {
+                mediaType = MediaType.WAV
             }
         }
         // unable to get filetype from filename extension, using signature detection
+        // https://en.wikipedia.org/wiki/List_of_file_signatures
         if (mediaType == MediaType.UNKNOWN) {
             Timber.d("unable to find filetype from extension, trying file signature")
             val inputStream = context.contentResolver.openInputStream(uri)
@@ -132,26 +139,32 @@ class Utils(private val context: Context) {
             inputStream.close()
 
             if (signature.startsWith("FFD8FF")) {
-                Timber.d("Found filetype from signature: webm")
                 mediaType = MediaType.JPEG
             } else if (signature.startsWith("89504E470D0A1A0A")) {
-                Timber.d("Found filetype from signature: png")
                 mediaType = MediaType.PNG
             } else if (signature.startsWith("47494638")) {
-                Timber.d("Found filetype from signature: gif")
                 mediaType = MediaType.GIF
             } else if (signature.drop(8).startsWith("66747970")) { // ** ** ** ** 66 74 79 70 69 73 6F 6D
-                Timber.d("Found filetype from signature: mp4")
                 mediaType = MediaType.MP4
             } else if (signature.startsWith("1A45DFA3")) { // or webm, but assume mkv, also not that big a deal as only happens when filename is not found
-                Timber.d("Found filetype from signature: mkv")
                 mediaType = MediaType.MKV
             } else if (signature.startsWith("52494646") && signature.drop(16).startsWith("41564920")) { // 52 49 46 46 ** ** ** ** 41 56 49 20
-                Timber.d("Found filetype from signature: avi")
                 mediaType = MediaType.AVI
-            } else {
-                Timber.d("Unable to find filetype from signature")
+            } else if (signature.startsWith("494433") || signature.startsWith("FFFB")
+                || signature.startsWith("FFF3") || signature.startsWith("FFF2")) {
+                mediaType = MediaType.MP3
+            } else if (signature.startsWith("4F676753")) {
+                mediaType = MediaType.OGG
+            } else if (signature.startsWith("52494646") && signature.drop(16).startsWith("57415645")) { // 52 49 46 46 ** ** ** ** 57 41 56 45
+                mediaType = MediaType.WAV
             }
+            if (mediaType == MediaType.UNKNOWN) {
+                Timber.d("Unable to find filetype from signature")
+            } else {
+                Timber.d("Found Filetype from signature $mediaType")
+            }
+        } else {
+            Timber.d("Found Filetype from extension $mediaType")
         }
 
         return mediaType
@@ -202,8 +215,9 @@ class Utils(private val context: Context) {
     }
 
     enum class MediaType {
-        MP4, MKV, WEBM, AVI,
-        JPEG, PNG, GIF,
+        MP4, MKV, WEBM, AVI, // videos
+        JPEG, PNG, GIF, // images
+        MP3, OGG, AAC, WAV, // audios
         UNKNOWN
     }
     fun isImage(type: MediaType): Boolean {
@@ -212,6 +226,10 @@ class Utils(private val context: Context) {
     fun isVideo(type: MediaType): Boolean {
         return type == MediaType.MP4 || type == MediaType.MKV || type == MediaType.WEBM
                 || type == MediaType.AVI
+    }
+    fun isAudio(type: MediaType): Boolean {
+        return type == MediaType.MP3 || type == MediaType.OGG || type == MediaType.AAC
+                || type == MediaType.WAV
     }
 
 }

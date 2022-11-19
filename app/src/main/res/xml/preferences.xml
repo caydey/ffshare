@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <ListPreference
-        android:key="pref_compressed_media_name"
-        android:defaultValue="UUID"
-        android:title="@string/settings_compressed_media_name"
-        android:summary="@string/settings_compressed_media_name_summary"
-        android:entries="@array/settings_compressed_media_name"
-        android:entryValues="@array/settings_compressed_media_name_values"
-        />
-    <EditTextPreference
-        android:key="pref_compressed_media_custom_name"
-        android:defaultValue=""
-        android:title="@string/settings_compressed_media_custom_name"
-        android:summary="@string/settings_compressed_media_custom_name_summary" />
+    <PreferenceCategory
+        android:key="prefs_output"
+        android:title="@string/settings_output_options_title">
+        <ListPreference
+            android:key="pref_compressed_media_name"
+            android:defaultValue="UUID"
+            android:title="@string/settings_compressed_media_name"
+            android:summary="@string/settings_compressed_media_name_summary"
+            android:entries="@array/settings_compressed_media_name"
+            android:entryValues="@array/settings_compressed_media_name_values"
+            />
+        <EditTextPreference
+            android:key="pref_compressed_media_custom_name"
+            android:defaultValue=""
+            android:title="@string/settings_compressed_media_custom_name"
+            android:summary="@string/settings_compressed_media_custom_name_summary" />
 
-    <SwitchPreference
-        android:key="pref_copy_exif_tags"
-        android:defaultValue="false"
-        android:title="@string/settings_copy_exif_tags"
-        android:summary="@string/settings_copy_exif_tags_summary" />
+        <SwitchPreference
+            android:key="pref_copy_exif_tags"
+            android:defaultValue="false"
+            android:title="@string/settings_copy_exif_tags"
+            android:summary="@string/settings_copy_exif_tags_summary" />
+    </PreferenceCategory>
 
     <PreferenceCategory
         android:key="prefs_conversions"
@@ -27,14 +31,17 @@
         <SwitchPreference
             android:key="pref_convert_videos_to_mp4"
             android:defaultValue="true"
-            android:title="@string/settings_convert_videos_to_mp4"
-            android:summary="@string/settings_convert_videos_to_mp4_summary" />
+            android:title="@string/settings_convert_videos_to_mp4" />
+
+        <SwitchPreference
+            android:key="pref_convert_audios_to_mp3"
+            android:defaultValue="true"
+            android:title="@string/settings_convert_audios_to_mp3" />
 
         <SwitchPreference
             android:key="pref_convert_gif_to_mp4"
             android:defaultValue="false"
-            android:title="@string/settings_convert_gif_to_mp4"
-            android:summary="@string/settings_convert_gif_to_mp4_summary"/>
+            android:title="@string/settings_convert_gif_to_mp4" />
     </PreferenceCategory>
 
 
@@ -71,8 +78,7 @@
             android:title="@string/settings_max_resolution"
             android:summary="@string/settings_max_resolution_summary"
             android:entries="@array/settings_max_resolution"
-            android:entryValues="@array/settings_max_resolution_values"
-            />
+            android:entryValues="@array/settings_max_resolution_values" />
     </PreferenceCategory>
 
     <PreferenceCategory
