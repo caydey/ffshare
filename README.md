@@ -1,6 +1,6 @@
 # <img src="fastlane/metadata/android/en-US/images/icon.png" height="32"> FFShare
 
-An android app to compress images and videos through ffmpeg before sharing them
+An android app to compress image, video and audio files through ffmpeg before sharing them
 
 [<img src="https://f-droid.org/badge/get-it-on.png"
       alt="Get it on F-Droid"

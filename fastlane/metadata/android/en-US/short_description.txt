@@ -1,1 +1,1 @@
-Compress images and videos through ffmpeg before sharing them
+Compress image, video and audio files through ffmpeg before sharing them
