@@ -36,25 +36,25 @@
     <string name="logs_clear">Effacer</string>
 
     <!-- Settings -->
-    <string name="settings_save_logs">Save FFmpeg command logs</string>
-    <string name="settings_save_logs_summary">All ffmpeg commands that the app runs will be saved and viewable in the "Logs" tab</string>
+    <string name="settings_save_logs">Sauvegarder les journaux de commandes FFmpeg</string>
+    <string name="settings_save_logs_summary">Toutes les commandes ffmpeg exécutées par l\'application seront enregistrées et consultables dans l\'onglet "Journaux"</string>
 
-    <string name="settings_compression_options_title">Compression options</string>
-    <string name="settings_conversions_options_title">Conversion options</string>
-    <string name="settings_output_options_title">Output Options</string>
+    <string name="settings_compression_options_title">Options de compression</string>
+    <string name="settings_conversions_options_title">Options de conversion</string>
+    <string name="settings_output_options_title">Options de sortie</string>
 
-    <string name="settings_compressed_media_name">Compressed media name</string>
-    <string name="settings_compressed_media_name_summary">What to rename a compressed file to</string>
+    <string name="settings_compressed_media_name">Nom du média compressé</string>
+    <string name="settings_compressed_media_name_summary">Comment renommer un fichier compressé</string>
 
-    <string name="settings_compressed_media_custom_name">Custom media name</string>
-    <string name="settings_compressed_media_custom_name_summary">Only applicable if "Custom" is selected for compressed media name</string>
+    <string name="settings_compressed_media_custom_name">Nom de média personnalisé</string>
+    <string name="settings_compressed_media_custom_name_summary">Applicable uniquement si "Personnalisé" est sélectionné pour le nom du média compressé</string>
 
-    <string name="settings_convert_videos_to_mp4">Convert all video formats to mp4</string>
+    <string name="settings_convert_videos_to_mp4">Convertir tous les formats vidéo en mp4</string>
 
 
-    <string name="settings_convert_audios_to_mp3">Convert all audio formats to mp3</string>
+    <string name="settings_convert_audios_to_mp3">Convertir tous les formats audio en mp3</string>
 
-    <string name="settings_convert_gif_to_mp4">Convert gif to mp4</string>
+    <string name="settings_convert_gif_to_mp4">Convertir les gif en mp4</string>
 
     <string name="settings_copy_exif_tags">Preserve Exif tags</string>
     <string name="settings_copy_exif_tags_summary">Preserve Exif tags for output files (only preserves tags for jpeg and png images)</string>
