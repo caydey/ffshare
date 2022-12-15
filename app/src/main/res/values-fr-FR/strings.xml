@@ -1,0 +1,80 @@
+<resources>
+    <string name="app_name">FFShare</string>
+    <string name="menu_item_settings">Paramètres</string>
+
+    <string name="error_no_uri_intent">Aucun média trouvé dans l\'intention</string>
+    <string name="error_unknown_filetype">Type de fichier inconnu</string>
+    <string name="error_invalid_file">Fichier invalide</string>
+
+    <string name="command_x_of_y">%d de %d</string>
+
+    <string name="ffmpeg_error">Erreur de compression du média</string>
+    <string name="ffmpeg_canceled">Annulé</string>
+
+
+    <string name="app_description">Compresser images et vidéos via ffmpeg avant de les partager</string>
+    <string name="introduction_line_0">Application Créée par Caydey <a href="https://github.com/caydey/ffshare">github</a></string>
+    <string name="introduction_line_1">Fonctionnalité (et code) inspirée de Scrambled-Exif par juanitobananas <a href="https://gitlab.com/juanitobananas/scrambled-exif">gitlab</a></string>
+    <string name="introduction_line_2">La bibliothèque FFmpeg utilisée est le kit ffmpeg de tanersener <a href="https://github.com/tanersener/ffmpeg-kit">github</a></string>
+
+    <string name="ffmpeg_command">Commande ffmpeg en cours d\'exécution:</string>
+    <string name="input_file">Fichier source:</string>
+    <string name="input_file_size">Taille de la source:</string>
+    <string name="output_file">Fichier final:</string>
+    <string name="output_file_size">Taille final:</string>
+
+    <string name="processed">Traité</string>
+    <string name="remaining">Restant</string>
+    <string name="x_of_x">de</string>
+
+    <string name="word_reduction">réduction</string>
+    <string name="media_reduction_message">%s (%.1f%% réduction)</string>
+    <string name="format_percentage" translatable="false">%.1f%%</string>
+
+    <string name="cancel_ffmpeg">Annuler</string>
+
+    <string name="logs_clear">Effacer</string>
+
+    <!-- Settings -->
+    <string name="settings_save_logs">Save FFmpeg command logs</string>
+    <string name="settings_save_logs_summary">All ffmpeg commands that the app runs will be saved and viewable in the "Logs" tab</string>
+
+    <string name="settings_compression_options_title">Compression options</string>
+    <string name="settings_conversions_options_title">Conversion options</string>
+    <string name="settings_output_options_title">Output Options</string>
+
+    <string name="settings_compressed_media_name">Compressed media name</string>
+    <string name="settings_compressed_media_name_summary">What to rename a compressed file to</string>
+
+    <string name="settings_compressed_media_custom_name">Custom media name</string>
+    <string name="settings_compressed_media_custom_name_summary">Only applicable if "Custom" is selected for compressed media name</string>
+
+    <string name="settings_convert_videos_to_mp4">Convert all video formats to mp4</string>
+
+
+    <string name="settings_convert_audios_to_mp3">Convert all audio formats to mp3</string>
+
+    <string name="settings_convert_gif_to_mp4">Convert gif to mp4</string>
+
+    <string name="settings_copy_exif_tags">Preserve Exif tags</string>
+    <string name="settings_copy_exif_tags_summary">Preserve Exif tags for output files (only preserves tags for jpeg and png images)</string>
+
+    <string name="settings_jpeg_qscale">JPEG image qscale</string>
+    <string name="settings_jpeg_qscale_summary">Lower value will result in a larger file size with greater quality (default 10)</string>
+
+    <string name="settings_video_crf">Video crf</string>
+    <string name="settings_video_crf_summary">(Constant Rate Factor) Lower value will result in a larger file size with greater quality (default 23)</string>
+
+    <string name="settings_video_max_file_size">Video max file size</string>
+    <string name="settings_video_max_file_size_summary">Adjusts video bitrate to create an output less than the specified file size</string>
+
+    <string name="settings_max_resolution">Max resolution</string>
+    <string name="settings_max_resolution_summary">Reduce the output resolution, (resolutions under this value will be unaffected)</string>
+
+    <string name="settings_interface_options_title">Interface</string>
+
+    <string name="settings_show_status_messages">Show status messages</string>
+    <string name="settings_show_status_messages_summary">Show output file size in toast messages</string>
+
+
+</resources>
