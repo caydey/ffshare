@@ -5,4 +5,9 @@
     <color name="cyan">#00FFFF</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
+
+    <color name="failed">#F08080</color>
+
+    <color name="light_grey">#DCDCDC</color>
+    <color name="dark_grey">#696969</color>
 </resources>

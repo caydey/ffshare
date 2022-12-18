@@ -3,8 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.caydey.ffshare.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_history"
         android:orderInCategory="100"
+        android:title="@string/menu_item_logs" />
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="200"
         android:title="@string/menu_item_settings"
         app:showAsAction="never" />
 </menu>

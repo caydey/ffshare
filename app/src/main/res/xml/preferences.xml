@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference
+            android:key="pref_save_logs"
+            android:defaultValue="false"
+            android:title="@string/settings_save_logs"
+            android:summary="@string/settings_save_logs_summary" />
     <PreferenceCategory
         android:key="prefs_output"
         android:title="@string/settings_output_options_title">

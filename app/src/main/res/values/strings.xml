@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">FFShare</string>
     <string name="menu_item_settings">Settings</string>
+    <string name="menu_item_logs">Logs</string>
+    <string name="menu_item_delete_logs">Delete all Logs</string>
 
     <string name="error_no_uri_intent">No media found in intent</string>
     <string name="error_unknown_filetype">Unknown filetype</string>
@@ -10,6 +12,15 @@
 
     <string name="ffmpeg_error">Error compressing media</string>
     <string name="ffmpeg_canceled">Canceled</string>
+
+    <string name="log_output_copy">Copy</string>
+    <string name="close">Close</string>
+    <string name="ffmpegCommandTitle">FFmpeg command</string>
+    <string name="ffmpegOutputTitle">FFmpeg output</string>
+
+    <string name="log_copied_toast">Log Saved to Clipboard</string>
+
+    <string name="title_activity_logs">Logs</string>
 
 
     <string name="app_description">Compress images and videos through ffmpeg before sharing them</string>
@@ -36,8 +47,8 @@
     <string name="logs_clear">Clear</string>
 
     <!-- Settings -->
-    <string name="settings_save_logs">Save FFmpeg command logs</string>
-    <string name="settings_save_logs_summary">All ffmpeg commands that the app runs will be saved and viewable in the "Logs" tab</string>
+    <string name="settings_save_logs">Enable logs</string>
+    <string name="settings_save_logs_summary">Save all executed FFmpeg commands</string>
 
     <string name="settings_compression_options_title">Compression options</string>
     <string name="settings_conversions_options_title">Conversion options</string>
@@ -75,6 +86,4 @@
 
     <string name="settings_show_status_messages">Show status messages</string>
     <string name="settings_show_status_messages_summary">Show output file size in toast messages</string>
-
-
 </resources>

@@ -16,9 +16,10 @@ import androidx.core.content.FileProvider
 import com.arthenica.ffmpegkit.FFmpegKit
 import com.arthenica.ffmpegkit.FFmpegKitConfig
 import com.arthenica.ffmpegkit.FFprobeKit
-import com.arthenica.ffmpegkit.Level
 import com.arthenica.ffmpegkit.MediaInformation
 import com.caydey.ffshare.R
+import com.caydey.ffshare.utils.logs.Log
+import com.caydey.ffshare.utils.logs.LogsDbHelper
 import timber.log.Timber
 import java.util.*
 
@@ -26,6 +27,7 @@ import java.util.*
 class MediaCompressor(private val context: Context) {
     private val utils: Utils by lazy { Utils(context) }
     private val settings: Settings by lazy { Settings(context) }
+    private val logsDbHelper by lazy { LogsDbHelper(context) }
 
 
     fun cancelAllOperations() {
@@ -73,14 +75,16 @@ class MediaCompressor(private val context: Context) {
             processedTableRow.visibility = View.INVISIBLE
         }
 
-        val inputFileName = utils.getFilenameFromUri(inputFileUri)
+        var inputFileName = utils.getFilenameFromUri(inputFileUri)
+        if (inputFileName == null) {
+            inputFileName = "unknown"
+        }
 
         // get output file, (random uuid, custom name, original name)
         val (outputFile, outputMediaType) = utils.getCacheOutputFile(inputFileUri, mediaType)
 
         // get Uri from File, needs to be this way not Uri.fromFile(...) to go through security
         val outputFileUri = FileProvider.getUriForFile(context, context.applicationContext.packageName+".fileprovider", outputFile)
-
 
         // need to create new saf param as they are one-use
         val mediaInformation = FFprobeKit.getMediaInformation(FFmpegKitConfig.getSafParameterForRead(context, inputFileUri)).mediaInformation
@@ -110,10 +114,11 @@ class MediaCompressor(private val context: Context) {
         val inputSaf: String = FFmpegKitConfig.getSafParameterForRead(context, inputFileUri)
         val outputSaf: String = FFmpegKitConfig.getSafParameterForWrite(context, outputFileUri)
         val command = "-y -i $inputSaf $params $outputSaf"
+        val prettyCommand = "ffmpeg -y -i $inputFileName $params ${outputFile.name}"
 
         // set TextViews
         Handler(Looper.getMainLooper()).post {
-            txtFfmpegCommand.text = "ffmpeg -y -i $inputFileName $params ${outputFile.name}"
+            txtFfmpegCommand.text = prettyCommand
             txtInputFile.text = inputFileName
             txtInputFileSize.text = utils.bytesToHuman(inputFileSize)
             txtOutputFile.text = outputFile.name
@@ -124,16 +129,26 @@ class MediaCompressor(private val context: Context) {
         }
 
         Timber.d("Executing ffmpeg command: 'ffmpeg %s'", command)
-        FFmpegKitConfig.setLogLevel(Level.AV_LOG_QUIET) // hide built in ffmpeg logs
         FFmpegKit.executeAsync(command, { session ->
             // completed
             if (!session.returnCode.isValueSuccess) { // failed
-                if (!session.returnCode.isValueCancel) {
+                if (!session.returnCode.isValueCancel) { // failure was not caused by a cancel
                     Timber.d("ffmpeg command failed")
-//                    Timber.d(session.allLogsAsString)
                     Handler(Looper.getMainLooper()).post {
                         Toast.makeText(context, context.getString(R.string.ffmpeg_error), Toast.LENGTH_LONG).show()
                     }
+                    // save log
+
+                    logsDbHelper.addLog(Log(
+                        System.currentTimeMillis(),
+                        prettyCommand,
+                        inputFileName,
+                        outputFile.name,
+                        false,
+                        session.output,
+                        inputFileSize,
+                        -1
+                    ))
                     failureHandler()
                 }
             } else { // success
@@ -152,6 +167,17 @@ class MediaCompressor(private val context: Context) {
                         txtOutputFileSize.text = utils.bytesToHuman(outputFileCurrentSize)
                     }
                 }
+
+                logsDbHelper.addLog(Log(
+                    System.currentTimeMillis(),
+                    prettyCommand,
+                    inputFileName,
+                    outputFile.name,
+                    true,
+                    session.output,
+                    inputFileSize,
+                    outputFileCurrentSize
+                ))
                 // callback
                 successHandler(outputFileUri, inputFileSize, outputFileCurrentSize)
             }
@@ -228,8 +254,10 @@ class MediaCompressor(private val context: Context) {
             // pixel format
             params.add("-vf format=yuv420p")
 
-            // h264 codec
-            params.add("-c:v h264")
+            // h264 codec for mp4
+            if (outputMediaType == Utils.MediaType.MP4) {
+                params.add("-c:v h264")
+            }
 
             //  max file size (limit the bitrate to achieve this)
             if (settings.videoMaxFileSize != 0) {
@@ -258,17 +286,19 @@ class MediaCompressor(private val context: Context) {
             }
         }
 
-        // max resolution
-        val (resolutionWidth, resolutionHeight) = utils.getMediaResolution(inputFile, mediaType)
-        val isPortrait = resolutionHeight < resolutionWidth
-        val resolution = if (isPortrait) { resolutionWidth } else { resolutionHeight }
-        val maxResolution = settings.maxResolution
-        // only reduce resolution
-        if (resolution > maxResolution && maxResolution != 0) {
-            if (isPortrait) {
-                params.add("-vf scale=-1:$maxResolution,setsar=1")
-            } else {
-                params.add("-vf scale=$maxResolution:-1,setsar=1")
+        // max resolution (only affects videos and images)
+        if (utils.isVideo(mediaType) || utils.isImage(mediaType)) {
+            val (resolutionWidth, resolutionHeight) = utils.getMediaResolution(inputFile, mediaType)
+            val isPortrait = resolutionHeight < resolutionWidth
+            val resolution = if (isPortrait) { resolutionWidth } else { resolutionHeight }
+            val maxResolution = settings.maxResolution
+            // only reduce resolution
+            if (resolution > maxResolution && maxResolution != 0) {
+                if (isPortrait) {
+                    params.add("-vf scale=-1:$maxResolution,setsar=1")
+                } else {
+                    params.add("-vf scale=$maxResolution:-1,setsar=1")
+                }
             }
         }
 

@@ -67,6 +67,10 @@ class Settings(private val context: Context) {
         get() = preferences.getInt(LAST_VERSION, 0)
         set(value) = setPreference(LAST_VERSION, value)
 
+    var saveLogs: Boolean
+        get() = preferences.getBoolean(SAVE_LOGS, true)
+        set(value) = setPreference(SAVE_LOGS, value)
+
     private fun setPreference(key: String, value: String) {
         preferences.edit().putString(key, value).apply()
     }
@@ -91,5 +95,6 @@ class Settings(private val context: Context) {
         const val MAX_RESOLUTION = "pref_max_resolution"
         const val COPY_EXIF_TAGS = "pref_copy_exif_tags"
         const val LAST_VERSION = "pref_last_version"
+        const val SAVE_LOGS = "pref_save_logs"
     }
 }

@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_settings -> startActivity(Intent(applicationContext, PreferencesActivity::class.java))
+            R.id.action_history -> startActivity(Intent(applicationContext, LogsActivity::class.java))
         }
         return super.onOptionsItemSelected(item)
     }
