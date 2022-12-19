@@ -8,10 +8,10 @@ android {
 
     defaultConfig {
         applicationId "com.caydey.ffshare"
-        minSdk 24
+        minSdk 26
         targetSdk 32
-        versionCode 11
-        versionName "1.2.3"
+        versionCode 12
+        versionName "1.2.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
