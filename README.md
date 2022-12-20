@@ -1,7 +1,7 @@
 # <img src="fastlane/metadata/android/en-US/images/icon.png" height="32"> FFShare
 
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/caydey/FFShare)
-![GitHub release (latest by date)](https://img.shields.io/github/downloads/caydey/FFShare/latest/total)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/caydey/FFShare)](https://github.com/caydey/ffshare/releases/latest)
+[![GitHub release (latest by date)](https://img.shields.io/github/downloads/caydey/FFShare/latest/total)](https://github.com/caydey/ffshare/releases/latest)
 
 An android app to compress image, video and audio files through ffmpeg before sharing them
 
