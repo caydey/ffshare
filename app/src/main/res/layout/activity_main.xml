@@ -30,13 +30,14 @@
         android:id="@+id/lblDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="16dp"
         android:layout_weight="1"
         android:text="@string/app_description"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/tableLayout"
         app:layout_constraintEnd_toEndOf="@+id/tableLayout"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/tableLayout" />
 
     <TextView
@@ -45,8 +46,9 @@
         android:layout_height="wrap_content"
         android:text="@string/app_name"
         android:textSize="48sp"
-        app:layout_constraintBottom_toTopOf="@+id/lblDescription"
+        app:layout_constraintBottom_toTopOf="@+id/lblVersion"
         app:layout_constraintEnd_toEndOf="@+id/lblDescription"
+        app:layout_constraintHorizontal_bias="0.522"
         app:layout_constraintStart_toStartOf="@+id/lblDescription" />
 
     <TableLayout
@@ -106,6 +108,15 @@
         </TableRow>
 
     </TableLayout>
+
+    <TextView
+        android:id="@+id/lblVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/version"
+        app:layout_constraintBottom_toTopOf="@+id/lblDescription"
+        app:layout_constraintEnd_toEndOf="@+id/lblDescription"
+        app:layout_constraintStart_toStartOf="@+id/lblDescription" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

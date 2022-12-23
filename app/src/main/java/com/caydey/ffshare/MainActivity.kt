@@ -19,6 +19,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
 
+        val versionName = packageManager.getPackageInfo(applicationContext.packageName, 0).versionName
+        findViewById<TextView>(R.id.lblVersion).text = getString(R.string.version, versionName)
+
         // allow clicking on links
         findViewById<TextView>(R.id.lblIntroductionLine0).movementMethod = LinkMovementMethod.getInstance()
         findViewById<TextView>(R.id.lblIntroductionLine1).movementMethod = LinkMovementMethod.getInstance()
