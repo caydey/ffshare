@@ -71,6 +71,10 @@ class Settings(private val context: Context) {
         get() = preferences.getBoolean(SAVE_LOGS, true)
         set(value) = setPreference(SAVE_LOGS, value)
 
+    var compressionPreset: String
+        get() = preferences.getString(COMPRESSION_PRESET, "medium")!!
+        set(value) = setPreference(COMPRESSION_PRESET, value)
+
     private fun setPreference(key: String, value: String) {
         preferences.edit().putString(key, value).apply()
     }
@@ -96,5 +100,6 @@ class Settings(private val context: Context) {
         const val COPY_EXIF_TAGS = "pref_copy_exif_tags"
         const val LAST_VERSION = "pref_last_version"
         const val SAVE_LOGS = "pref_save_logs"
+        const val COMPRESSION_PRESET = "pref_compression_preset"
     }
 }

@@ -15,8 +15,7 @@
             android:title="@string/settings_compressed_media_name"
             android:summary="@string/settings_compressed_media_name_summary"
             android:entries="@array/settings_compressed_media_name"
-            android:entryValues="@array/settings_compressed_media_name_values"
-            />
+            android:entryValues="@array/settings_compressed_media_name_values" />
         <EditTextPreference
             android:key="pref_compressed_media_custom_name"
             android:defaultValue=""
@@ -68,6 +67,14 @@
             android:summary="@string/settings_video_crf_summary"
             android:entries="@array/settings_video_crf"
             android:entryValues="@array/settings_video_crf" />
+
+        <ListPreference
+            android:key="pref_compression_preset"
+            android:defaultValue="medium"
+            android:title="@string/settings_compression_preset"
+            android:summary="@string/settings_compression_preset_summary"
+            android:entries="@array/settings_compression_preset"
+            android:entryValues="@array/settings_compression_preset" />
 
         <ListPreference
             android:key="pref_video_max_file_size"

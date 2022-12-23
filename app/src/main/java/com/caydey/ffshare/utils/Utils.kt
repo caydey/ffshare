@@ -24,7 +24,7 @@ class Utils(private val context: Context) {
     private val settings: Settings by lazy { Settings(context) }
 
     fun getCacheOutputFile(uri: Uri, mediaType: MediaType): Pair<File, MediaType> {
-        val fileExtension = getOutputFileMediaType(mediaType)
+        val fileExtension = getOutputFileMediaType(mediaType) // some files are converted to different formats e.g. mkv to mp4
         val filename: String = when (settings.compressedMediaName) {
             Settings.CompressedMediaNameOpts.ORIGINAL -> getFilenameFromUri(uri) ?: getRandomFilename(fileExtension) // if getFilenameFromUri returns null default to randomFilename
             Settings.CompressedMediaNameOpts.UUID -> getRandomFilename(fileExtension)

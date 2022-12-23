@@ -246,6 +246,9 @@ class MediaCompressor(private val context: Context) {
     private fun createFFmpegParams(inputFile: Uri, mediaInformation: MediaInformation, mediaType: Utils.MediaType, outputMediaType: Utils.MediaType): String {
         val params = StringJoiner(" ")
 
+        // preset
+        params.add("-preset ${settings.compressionPreset}")
+
         // video
         if (utils.isVideo(outputMediaType)) { // check outputMediaType not mediaType because conversions
             // crf

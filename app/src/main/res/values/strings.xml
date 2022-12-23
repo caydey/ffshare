@@ -22,6 +22,8 @@
 
     <string name="title_activity_logs">Logs</string>
 
+    <string name="version">Version: %s</string>
+
 
     <string name="app_description">Compress images and videos through ffmpeg before sharing them</string>
     <string name="introduction_line_0">App Created by caydey <a href="https://github.com/caydey/ffshare">github</a></string>
@@ -86,4 +88,7 @@
 
     <string name="settings_show_status_messages">Show status messages</string>
     <string name="settings_show_status_messages_summary">Show output file size in toast messages</string>
+
+    <string name="settings_compression_preset">FFmpeg compression preset</string>
+    <string name="settings_compression_preset_summary">Slower speed with a higher quality output or faster speed with a lower quality output</string>
 </resources>
