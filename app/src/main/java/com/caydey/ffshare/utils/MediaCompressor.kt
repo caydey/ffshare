@@ -140,7 +140,6 @@ class MediaCompressor(private val context: Context) {
                     // save log
 
                     logsDbHelper.addLog(Log(
-                        System.currentTimeMillis(),
                         prettyCommand,
                         inputFileName,
                         outputFile.name,
@@ -169,7 +168,6 @@ class MediaCompressor(private val context: Context) {
                 }
 
                 logsDbHelper.addLog(Log(
-                    System.currentTimeMillis(),
                     prettyCommand,
                     inputFileName,
                     outputFile.name,

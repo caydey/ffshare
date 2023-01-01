@@ -1,6 +1,7 @@
 package com.caydey.ffshare.utils.logs
 
 import android.annotation.SuppressLint
+import com.caydey.ffshare.App
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -12,8 +13,20 @@ class Log(
     val successful: Boolean,
     val ffmpeg_output: String,
     val inputSize: Long,
-    val outputSize:Long
+    val outputSize: Long,
+    val appVersion: String
 ) {
+    constructor(command: String, inputFileName: String, outputFileName: String, successful: Boolean, ffmpeg_output: String, inputSize: Long, outputSize: Long): this(
+        System.currentTimeMillis(),
+        command,
+        inputFileName,
+        outputFileName,
+        successful,
+        ffmpeg_output,
+        inputSize,
+        outputSize,
+        App.versionName
+    )
     @SuppressLint("SimpleDateFormat")
     fun getFormattedTime(): String {
         // date
@@ -27,6 +40,7 @@ class Log(
         // Output:
         //
         // Result: SUCCESS|FAILURE
+        // App Version: x.x.x
 
         val builder = StringBuilder()
 
@@ -45,15 +59,9 @@ class Log(
             builder.append("FAILURE")
         }
 
+        builder.append("\n")
+        builder.append("App Version: $appVersion")
+
         return builder.toString()
     }
-//    //
-//    constructor(command: String, successful: Boolean, output: String, inputSize: Long, outputSize:Long): this(
-//        System.currentTimeMillis(),
-//        command,
-//        successful,
-//        output,
-//        inputSize,
-//        outputSize
-//    )
 }

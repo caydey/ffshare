@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
 
-        val versionName = packageManager.getPackageInfo(applicationContext.packageName, 0).versionName
+        val versionName = App.versionName
         findViewById<TextView>(R.id.lblVersion).text = getString(R.string.version, versionName)
 
         // allow clicking on links

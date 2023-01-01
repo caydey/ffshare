@@ -51,7 +51,8 @@ class LogsDbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
             COLUMN_NAME_SUCCESSFUL,
             COLUMN_NAME_FFMPEG_OUTPUT,
             COLUMN_NAME_INPUT_SIZE,
-            COLUMN_NAME_OUTPUT_SIZE
+            COLUMN_NAME_OUTPUT_SIZE,
+            COLUMN_NAME_APP_VERSION
         )
         val cursor = readableDatabase.query(TABLE_NAME, fields, null,null,null,null,"$COLUMN_NAME_TIME DESC")
         while (cursor.moveToNext()) {
@@ -63,7 +64,8 @@ class LogsDbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
                 cursor.getInt(4) != 0,
                 gzipDecompress(cursor.getString(5)),
                 cursor.getLong(6),
-                cursor.getLong(7)
+                cursor.getLong(7),
+                cursor.getString(8)
             ))
         }
         cursor.close()
@@ -87,6 +89,7 @@ class LogsDbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
         contentValues.put(COLUMN_NAME_FFMPEG_OUTPUT, gzipCompress(log.ffmpeg_output))
         contentValues.put(COLUMN_NAME_INPUT_SIZE, log.inputSize)
         contentValues.put(COLUMN_NAME_OUTPUT_SIZE, log.outputSize)
+        contentValues.put(COLUMN_NAME_APP_VERSION, log.appVersion)
         writableDatabase.insert(TABLE_NAME, null, contentValues)
 
         logCount++
@@ -113,7 +116,7 @@ class LogsDbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
     companion object {
         const val MAX_LOGS = 50
         const val DATABASE_NAME = "logs.db"
-        const val DATABASE_VERSION = 1
+        const val DATABASE_VERSION = 2
         private const val TABLE_NAME = "Log"
         private const val COLUMN_NAME_ID = "id"
         private const val COLUMN_NAME_TIME = "time"
@@ -124,6 +127,7 @@ class LogsDbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
         private const val COLUMN_NAME_FFMPEG_OUTPUT = "output"
         private const val COLUMN_NAME_INPUT_SIZE = "inputSize"
         private const val COLUMN_NAME_OUTPUT_SIZE = "outputSize"
+        private const val COLUMN_NAME_APP_VERSION = "appVersion"
         const val SQL_CREATE_ENTRIES = """CREATE TABLE $TABLE_NAME (
             $COLUMN_NAME_ID integer primary key autoincrement,
             $COLUMN_NAME_TIME long,
@@ -133,7 +137,8 @@ class LogsDbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
             $COLUMN_NAME_SUCCESSFUL integer,
             $COLUMN_NAME_FFMPEG_OUTPUT string,
             $COLUMN_NAME_INPUT_SIZE long,
-            $COLUMN_NAME_OUTPUT_SIZE long
+            $COLUMN_NAME_OUTPUT_SIZE long,
+            $COLUMN_NAME_APP_VERSION string
         )"""
         const val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS $TABLE_NAME"
     }
