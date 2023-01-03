@@ -16,6 +16,8 @@
             android:summary="@string/settings_compressed_media_name_summary"
             android:entries="@array/settings_compressed_media_name"
             android:entryValues="@array/settings_compressed_media_name_values" />
+
+        <!-- Only visible if pref_compressed_media_name == "CUSTOM" -->
         <EditTextPreference
             android:key="pref_compressed_media_custom_name"
             android:defaultValue=""
