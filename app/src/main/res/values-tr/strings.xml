@@ -1,0 +1,95 @@
+<resources>
+    <string name="app_name">FFShare</string>
+    <string name="menu_item_settings">Ayarlar</string>
+    <string name="menu_item_logs">Günlük</string>
+    <string name="menu_item_delete_logs">Bütün günlükleri sil</string>
+
+    <string name="error_no_uri_intent">Aradığınız medya bulunamadı</string>
+    <string name="error_unknown_filetype">Bilinmeyen dosya türü</string>
+    <string name="error_invalid_file">Geçersiz dosya</string>
+
+    <string name="command_x_of_y">%d of %d</string>
+
+    <string name="ffmpeg_error">Medya sıkıştırılırken hata oluştu</string>
+    <string name="ffmpeg_canceled">İptal edildi</string>
+
+    <string name="log_output_copy">Kopyala</string>
+    <string name="close">Kapalı</string>
+    <string name="ffmpegCommandTitle">FFmpeg komutu</string>
+    <string name="ffmpegOutputTitle">FFmpeg çıkışı</string>
+
+    <string name="log_copied_toast">Günlük Panoya Kaydedildid</string>
+
+    <string name="title_activity_logs">Günlük</string>
+
+    <string name="version">Sürüm: %s</string>
+
+
+    <string name="app_description">Görüntüleri ve videoları paylaşmadan önce ffmpeg aracılığıyla sıkıştırın</string>
+    <string name="introduction_line_0">Uygulamayı oluşturan: caydey<a href="https://github.com/caydey/ffshare">github</a></string>
+    <string name="introduction_line_1">Juanitobananas tarafından Scrambled-Exif'ten ilham alan işlevsellik (ve kod) <a href="https://gitlab.com/juanitobananas/scrambled-exif">gitlab</a></string>
+    <string name="introduction_line_2">Kullanılan FFmpeg kütüphanesi tanersener tarafından hazırlanan ffmpeg-kit'tir. <a href="https://github.com/tanersener/ffmpeg-kit">github</a></string>
+
+    <string name="ffmpeg_command">ffmpeg komutu çalışıyor:</string>
+    <string name="input_file">Giriş dosyası:</string>
+    <string name="input_file_size">Giriş boyutu:</string>
+    <string name="output_file">Çıktı dosyası:</string>
+    <string name="output_file_size">Çıktı boyutu:</string>
+
+    <string name="processed">İşlenen</string>
+    <string name="remaining">Kalan</string>
+    <string name="x_of_x">of</string>
+
+    <string name="word_reduction">Azalt</string>
+    <string name="media_reduction_message">%s (%.1f%% Azalt)</string>
+    <string name="format_percentage" translatable="false">%.1f%%</string>
+
+    <string name="cancel_ffmpeg">İptal</string>
+
+    <string name="logs_clear">Temizle</string>
+
+    <!-- Settings -->
+    <string name="settings_save_logs">Günlükleri etkinleştir</string>
+    <string name="settings_save_logs_summary">Yürütülen tüm FFmpeg komutlarını kaydet</string>
+
+    <string name="settings_compression_options_title">Sıkıştırma seçenekleri</string>
+    <string name="settings_conversions_options_title">Dönüştürme seçenekleri</string>
+    <string name="settings_output_options_title">Çıkış Seçenekleri</string>
+
+    <string name="settings_compressed_media_name">Sıkıştırılmış medya adı</string>
+    <string name="settings_compressed_media_name_summary">Sıkıştırılmış dosyayı yeniden adlandırmak istiyor musun </string>
+
+    <string name="settings_compressed_media_custom_name">Özel ortam adı</string>
+    <string name="settings_compressed_media_custom_name_summary">Yalnızca sıkıştırılmış ortam adı için "Özel" seçiliyse uygulanabilir</string>
+
+    <string name="settings_convert_videos_to_mp4">Tüm video formatlarını mp4'e dönüştürün</string>
+
+
+    <string name="settings_convert_audios_to_mp3">Tüm ses formatlarını mp3'e dönüştürün</string>
+
+    <string name="settings_convert_gif_to_mp4">GIF'i mp4'e dönüştür</string>
+
+    <string name="settings_copy_exif_tags">Exif etiketlerini koru</string>
+    <string name="settings_copy_exif_tags_summary">Çıktı dosyaları için Exif etiketlerini koru (yalnızca jpeg ve png görüntüleri için etiketleri korur)</string>
+
+    <string name="settings_jpeg_qscale">JPEG görüntü qscale</string>
+    <string name="settings_jpeg_qscale_summary">Daha düşük değer, daha yüksek kalitede daha büyük bir dosya boyutuna neden olur (varsayılan 10)</string>
+
+    <string name="settings_video_crf">Video crf</string>
+    <string name="settings_video_crf_summary">(Sabit Oran Faktörü) Daha düşük değer, daha yüksek kalitede daha büyük bir dosya boyutuna neden olur (varsayılan 23)</string>
+
+    <string name="settings_video_max_file_size">Video maksimum dosya boyutu</string>
+    <string name="settings_video_max_file_size_summary">Belirtilen dosya boyutundan daha küçük bir çıktı oluşturmak için video bit hızını ayarlar</string>
+
+    <string name="settings_max_resolution">Maksimum çözünürlük</string>
+    <string name="settings_max_resolution_summary">Çıkış çözünürlüğünü azaltın, (bu değerin altındaki çözünürlükler etkilenmez)</string>
+
+    <string name="settings_interface_options_title">Arayüz</string>
+
+    <string name="settings_show_status_messages">Durum mesajlarını göster</string>
+    <string name="settings_show_status_messages_summary">Uyarı mesajlarında çıktı dosyası boyutunu göster</string>
+
+    <string name="settings_compression_preset">FFmpeg sıkıştırma ön ayarı</string>
+    <string name="settings_compression_preset_summary">SFFmpeg sıkıştırma ön ayarı</string>
+    <string name="settings_compression_preset_summary">Daha yüksek kaliteli bir çıktı ile daha yavaş hız veya daha düşük kaliteli bir çıktı ile daha yüksek hız</string>
+</resources>
