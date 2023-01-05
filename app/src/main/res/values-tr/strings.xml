@@ -91,4 +91,6 @@
 
     <string name="settings_compression_preset">FFmpeg sıkıştırma ön ayarı</string>
     <string name="settings_compression_preset_summary">SFFmpeg sıkıştırma ön ayarı</string>
+    <string name="settings_compression_preset_summary">Daha yüksek kaliteli bir çıktı ile daha yavaş hız veya daha düşük kaliteli bir çıktı ile daha yüksek hız</string>
+</resources>
 </resources>
