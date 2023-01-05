@@ -27,8 +27,8 @@
 
     <string name="app_description">Görüntüleri ve videoları paylaşmadan önce ffmpeg aracılığıyla sıkıştırın</string>
     <string name="introduction_line_0">Uygulamayı oluşturan: caydey<a href="https://github.com/caydey/ffshare">github</a></string>
-    <string name="introduction_line_1">Juanitobananas tarafından Scrambled-Exif'ten ilham alan işlevsellik (ve kod) <a href="https://gitlab.com/juanitobananas/scrambled-exif">gitlab</a></string>
-    <string name="introduction_line_2">Kullanılan FFmpeg kütüphanesi tanersener tarafından hazırlanan ffmpeg-kit'tir. <a href="https://github.com/tanersener/ffmpeg-kit">github</a></string>
+    <string name="introduction_line_1">Juanitobananas tarafından Scrambled-Exif\'ten ilham alan işlevsellik (ve kod) <a href="https://gitlab.com/juanitobananas/scrambled-exif">gitlab</a></string>
+    <string name="introduction_line_2">Kullanılan FFmpeg kütüphanesi tanersener tarafından hazırlanan ffmpeg-kit\'tir. <a href="https://github.com/tanersener/ffmpeg-kit">github</a></string>
 
     <string name="ffmpeg_command">ffmpeg komutu çalışıyor:</string>
     <string name="input_file">Giriş dosyası:</string>
@@ -62,12 +62,12 @@
     <string name="settings_compressed_media_custom_name">Özel ortam adı</string>
     <string name="settings_compressed_media_custom_name_summary">Yalnızca sıkıştırılmış ortam adı için "Özel" seçiliyse uygulanabilir</string>
 
-    <string name="settings_convert_videos_to_mp4">Tüm video formatlarını mp4'e dönüştürün</string>
+    <string name="settings_convert_videos_to_mp4">Tüm video formatlarını mp4\'e dönüştürün</string>
 
 
-    <string name="settings_convert_audios_to_mp3">Tüm ses formatlarını mp3'e dönüştürün</string>
+    <string name="settings_convert_audios_to_mp3">Tüm ses formatlarını mp3\'e dönüştürün</string>
 
-    <string name="settings_convert_gif_to_mp4">GIF'i mp4'e dönüştür</string>
+    <string name="settings_convert_gif_to_mp4">GIF\'i mp4\'e dönüştür</string>
 
     <string name="settings_copy_exif_tags">Exif etiketlerini koru</string>
     <string name="settings_copy_exif_tags_summary">Çıktı dosyaları için Exif etiketlerini koru (yalnızca jpeg ve png görüntüleri için etiketleri korur)</string>
@@ -90,6 +90,5 @@
     <string name="settings_show_status_messages_summary">Uyarı mesajlarında çıktı dosyası boyutunu göster</string>
 
     <string name="settings_compression_preset">FFmpeg sıkıştırma ön ayarı</string>
-    <string name="settings_compression_preset_summary">SFFmpeg sıkıştırma ön ayarı</string>
     <string name="settings_compression_preset_summary">Daha yüksek kaliteli bir çıktı ile daha yavaş hız veya daha düşük kaliteli bir çıktı ile daha yüksek hız</string>
 </resources>
