@@ -1,1 +1,1 @@
-Compress image, video and audio files through ffmpeg before sharing them
+Görüntü, video ve ses dosyalarını paylaşmadan önce ffmpeg aracılığıyla sıkıştırın
