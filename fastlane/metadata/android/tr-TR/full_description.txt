@@ -1,0 +1,12 @@
+FFShare, siz paylaşmadan önce görüntü, video ve ses dosyalarını ffmpeg aracılığıyla aktarır.
+
+Bunu yapmak, dosya boyutunu küçültür ve ayrıca bu dosyalara eklenebilecek tüm meta verileri çıkarma avantajına sahiptir.
+
+Bunu yapmak için videolarınızı veya resimlerinizi paylaşın ve <i>FFShare</i>'yi seçin.  Uygulama, sıkıştırma ilerlemesini gösterecek şekilde açılacak ve tamamlandığında, yeni sıkıştırılmış video veya görüntü ile yeni bir paylaşım iletişim kutusu yeniden görünecektir.
+
+
+<b>Kaynak kodu</b>
+
+Bu uygulama açık kaynaklıdır ve GitHub'da barındırılmaktadır.  Bir yıldız verirseniz çok sevinirim.
+
+https://github.com/caydey/ffshare
