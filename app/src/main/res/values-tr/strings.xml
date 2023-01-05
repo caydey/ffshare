@@ -1,43 +1,43 @@
 <resources>
     <string name="app_name">FFShare</string>
-    <string name="menu_item_settings">Settings</string>
-    <string name="menu_item_logs">Logs</string>
-    <string name="menu_item_delete_logs">Delete all Logs</string>
+    <string name="menu_item_settings">Ayarlar</string>
+    <string name="menu_item_logs">Günlük</string>
+    <string name="menu_item_delete_logs">Bütün günlükleri sil</string>
 
-    <string name="error_no_uri_intent">No media found in intent</string>
-    <string name="error_unknown_filetype">Unknown filetype</string>
-    <string name="error_invalid_file">Invalid file</string>
+    <string name="error_no_uri_intent">Aradığınız medya bulunamadı</string>
+    <string name="error_unknown_filetype">Bilinmeyen dosya türü</string>
+    <string name="error_invalid_file">Geçersiz dosya</string>
 
     <string name="command_x_of_y">%d of %d</string>
 
-    <string name="ffmpeg_error">Error compressing media</string>
-    <string name="ffmpeg_canceled">Canceled</string>
+    <string name="ffmpeg_error">Medya sıkıştırılırken hata oluştu</string>
+    <string name="ffmpeg_canceled">İptal edildi</string>
 
-    <string name="log_output_copy">Copy</string>
-    <string name="close">Close</string>
-    <string name="ffmpegCommandTitle">FFmpeg command</string>
-    <string name="ffmpegOutputTitle">FFmpeg output</string>
+    <string name="log_output_copy">Kopyala</string>
+    <string name="close">Kapalı</string>
+    <string name="ffmpegCommandTitle">FFmpeg komutu</string>
+    <string name="ffmpegOutputTitle">FFmpeg çıkışı</string>
 
-    <string name="log_copied_toast">Log Saved to Clipboard</string>
+    <string name="log_copied_toast">Günlük Panoya Kaydedildid</string>
 
-    <string name="title_activity_logs">Logs</string>
+    <string name="title_activity_logs">Günlük</string>
 
-    <string name="version">Version: %s</string>
+    <string name="version">Sürüm: %s</string>
 
 
-    <string name="app_description">Compress images and videos through ffmpeg before sharing them</string>
-    <string name="introduction_line_0">App Created by caydey <a href="https://github.com/caydey/ffshare">github</a></string>
-    <string name="introduction_line_1">Functionality (and code) inspired by Scrambled-Exif by juanitobananas <a href="https://gitlab.com/juanitobananas/scrambled-exif">gitlab</a></string>
-    <string name="introduction_line_2">FFmpeg library used is ffmpeg-kit by tanersener <a href="https://github.com/tanersener/ffmpeg-kit">github</a></string>
+    <string name="app_description">Görüntüleri ve videoları paylaşmadan önce ffmpeg aracılığıyla sıkıştırın</string>
+    <string name="introduction_line_0">Uygulamayı oluşturan: caydey<a href="https://github.com/caydey/ffshare">github</a></string>
+    <string name="introduction_line_1">Juanitobananas tarafından Scrambled-Exif'ten ilham alan işlevsellik (ve kod) <a href="https://gitlab.com/juanitobananas/scrambled-exif">gitlab</a></string>
+    <string name="introduction_line_2">Kullanılan FFmpeg kütüphanesi tanersener tarafından hazırlanan ffmpeg-kit'tir. <a href="https://github.com/tanersener/ffmpeg-kit">github</a></string>
 
-    <string name="ffmpeg_command">ffmpeg command running:</string>
+    <string name="ffmpeg_command">ffmpeg komutu çalışıyor:</string>
     <string name="input_file">Input file:</string>
     <string name="input_file_size">Input size:</string>
-    <string name="output_file">Output file:</string>
-    <string name="output_file_size">Output size:</string>
+    <string name="output_file">Çıktı dosyası:</string>
+    <string name="output_file_size">Çıktı boyutu:</string>
 
-    <string name="processed">Processed</string>
-    <string name="remaining">Remaining</string>
+    <string name="processed">Işlenen</string>
+    <string name="remaining">Kalan</string>
     <string name="x_of_x">of</string>
 
     <string name="word_reduction">reduction</string>
