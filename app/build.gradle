@@ -21,8 +21,14 @@ android {
             ndk {
                 abiFilters "armeabi-v7a", "arm64-v8a"
             }
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            ndk {
+                abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+            }
+            minifyEnabled false
         }
     }
     compileOptions {
