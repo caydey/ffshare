@@ -14,7 +14,7 @@
     <string name="ffmpeg_canceled">Cancelado</string>
 
     <string name="log_output_copy">Copiar</string>
-    <string name="close">Cerrrar</string>
+    <string name="close">Cerrar</string>
     <string name="ffmpegCommandTitle">Comando FFmpeg</string>
     <string name="ffmpegOutputTitle">Salida FFmpeg</string>
 
@@ -78,8 +78,8 @@
     <string name="settings_video_crf">crf para Vídeo</string>
     <string name="settings_video_crf_summary">(Constant Rate Factor) Un valor menor creará un fichero más grande y de mejor calidad (23 por defecto)</string>
 
-    <string name="settings_video_max_file_size">Video max file size</string>
-    <string name="settings_video_max_file_size_summary">Adjusts video bitrate to create an output less than the specified file size</string>
+    <string name="settings_video_max_file_size">Tamaño máx. fichero de vídeo</string>
+    <string name="settings_video_max_file_size_summary">Ajusta la tasa de bits del vídeo para crear un fichero menor del valor indicado</string>
 
     <string name="settings_max_resolution">Resolución Máx.</string>
     <string name="settings_max_resolution_summary">Reduce la resolución de salida, (no aplica a resoluciones por debajo de este valor)</string>
