@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name">FFShare</string>
+    <string name="menu_item_settings">Ajustes</string>
+    <string name="menu_item_logs">Registro</string>
+    <string name="menu_item_delete_logs">Eliminar todos los registros</string>
+
+    <string name="error_no_uri_intent">No se ha encontrado multimedia</string>
+    <string name="error_unknown_filetype">Tipo de fichero desconocido</string>
+    <string name="error_invalid_file">Tipo de fichero no válido</string>
+
+    <string name="command_x_of_y">%d de %d</string>
+
+    <string name="ffmpeg_error">Error al comprimir multimedia</string>
+    <string name="ffmpeg_canceled">Cancelado</string>
+
+    <string name="log_output_copy">Copiar</string>
+    <string name="close">Cerrar</string>
+    <string name="ffmpegCommandTitle">Comando FFmpeg</string>
+    <string name="ffmpegOutputTitle">Salida FFmpeg</string>
+
+    <string name="log_copied_toast">Registro copiado al portapapeles</string>
+
+    <string name="title_activity_logs">Registros</string>
+
+    <string name="version">Versión: %s</string>
+
+
+    <string name="app_description">Comprimir imágenes y vídeos con ffmpeg antes de compartirlos</string>
+    <string name="introduction_line_0">App Creada por caydey <a href="https://github.com/caydey/ffshare">github</a></string>
+    <string name="introduction_line_1">Funcionabilidad (y código) inspirada por Scrambled-Exif de juanitobananas <a href="https://gitlab.com/juanitobananas/scrambled-exif">gitlab</a></string>
+    <string name="introduction_line_2">Biblioteca Ffmpeg utilizada ffmpeg-kit por tanersener <a href="https://github.com/tanersener/ffmpeg-kit">github</a></string>
+
+    <string name="ffmpeg_command">comando ffmpeg en ejecución:</string>
+    <string name="input_file">Fichero de entrada:</string>
+    <string name="input_file_size">Tamaño de entrada:</string>
+    <string name="output_file">Fichero de salida:</string>
+    <string name="output_file_size">Tamaño de salida:</string>
+
+    <string name="processed">Procesado</string>
+    <string name="remaining">Restante</string>
+    <string name="x_of_x">of</string>
+
+    <string name="word_reduction">reducción</string>
+    <string name="media_reduction_message">%s (%.1f%% de reducción)</string>
+    <string name="format_percentage" translatable="false">%.1f%%</string>
+
+    <string name="cancel_ffmpeg">Cancelar</string>
+
+    <string name="logs_clear">Vaciar</string>
+
+    <!-- Settings -->
+    <string name="settings_save_logs">Activar registros</string>
+    <string name="settings_save_logs_summary">Guardar todos los comandos FFmpeg ejecutados</string>
+
+    <string name="settings_compression_options_title">Opciones de compresión</string>
+    <string name="settings_conversions_options_title">Opciones de conversión</string>
+    <string name="settings_output_options_title">Opciones de salida</string>
+
+    <string name="settings_compressed_media_name">Nombre del fichero comprimido</string>
+    <string name="settings_compressed_media_name_summary">El nombre del fichero de salida</string>
+
+    <string name="settings_compressed_media_custom_name">Nombre personalizado</string>
+    <string name="settings_compressed_media_custom_name_summary">Sólo se aplica si "Personalizado" está seleccionado en Nombre del fichero comprimido</string>
+
+    <string name="settings_convert_videos_to_mp4">Convertir todos los formatos de vídeo a mp4</string>
+
+
+    <string name="settings_convert_audios_to_mp3">Convertir todos los formatos de audio a mp3</string>
+
+    <string name="settings_convert_gif_to_mp4">Convertir gif a mp4</string>
+
+    <string name="settings_copy_exif_tags">Conservar etiquetas EXIF</string>
+    <string name="settings_copy_exif_tags_summary">Conservar etiquetas Exif en el fichero de salida (de aplicación sólo para imágenes jpeg y png)</string>
+
+    <string name="settings_jpeg_qscale">qscale para JPEG</string>
+    <string name="settings_jpeg_qscale_summary">Valor más bajo hará un fichero de mayor tamaño y mejor calidad (10 por defecto)</string>
+
+    <string name="settings_video_crf">crf para Vídeo</string>
+    <string name="settings_video_crf_summary">(Constant Rate Factor) Un valor menor creará un fichero más grande y de mejor calidad (23 por defecto)</string>
+
+    <string name="settings_video_max_file_size">Tamaño máx. fichero de vídeo</string>
+    <string name="settings_video_max_file_size_summary">Ajusta la tasa de bits del vídeo para crear un fichero menor del valor indicado</string>
+
+    <string name="settings_max_resolution">Resolución Máx.</string>
+    <string name="settings_max_resolution_summary">Reduce la resolución de salida, (no aplica a resoluciones por debajo de este valor)</string>
+
+    <string name="settings_interface_options_title">Interfaz</string>
+
+    <string name="settings_show_status_messages">Mostrar mensajes de estado</string>
+    <string name="settings_show_status_messages_summary">Mostrar tamaño del fichero de salida en el resumen</string>
+
+    <string name="settings_compression_preset">Compresión FFmpeg por defecto</string>
+    <string name="settings_compression_preset_summary">Menor velocidad con mayor calidad o Mayor velocidad con menor calidad</string>
+</resources>
