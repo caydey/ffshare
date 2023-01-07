@@ -21,5 +21,5 @@ An android app to compress image, video and audio files through ffmpeg before sh
 
 ## Used Libraries
 
-- [FFmpegKit](https://github.com/tanersener/ffmpeg-kit)
+- [FFmpegKit](https://github.com/arthenica/ffmpeg-kit)
 - [Timber](https://github.com/JakeWharton/timber)
