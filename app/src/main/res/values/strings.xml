@@ -70,7 +70,7 @@
     <string name="settings_convert_gif_to_mp4">Convert gif to mp4</string>
 
     <string name="settings_copy_exif_tags">Preserve Exif tags</string>
-    <string name="settings_copy_exif_tags_summary">Preserve Exif tags for output files (only preserves tags for jpeg and png images)</string>
+    <string name="settings_copy_exif_tags_summary">Preserve Exif tags for output files</string>
 
     <string name="settings_jpeg_qscale">JPEG image qscale</string>
     <string name="settings_jpeg_qscale_summary">Lower value will result in a larger file size with greater quality (default 10)</string>
