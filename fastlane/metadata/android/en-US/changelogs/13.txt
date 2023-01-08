@@ -1,0 +1,10 @@
+New in 1.2.5
+- Added FFmpeg compression preset option
+- Added support to copy video metadata
+- Added Turkish,Spanish & Galican translations
+
+New in 1.2.4
+- Added logging, disabled by default (enable in settings)
+
+New in 1.2.3
+- Added support for audio files
