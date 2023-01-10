@@ -5,7 +5,7 @@
       height="80">](https://f-droid.org/app/com.caydey.ffshare)
 
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/caydey/FFShare)](https://github.com/caydey/ffshare/releases/latest)
-[![GitHub release (latest by date)](https://img.shields.io/github/downloads/caydey/FFShare/latest/total)](https://github.com/caydey/ffshare/releases/latest)
+[![GitHub all releases](https://img.shields.io/github/downloads/caydey/ffshare/total)](https://github.com/caydey/ffshare/releases/latest)
 [![GitHub license](https://img.shields.io/github/license/caydey/ffshare)](https://github.com/caydey/ffshare/blob/master/LICENSE)
 
 An android app to compress image, video and audio files through ffmpeg before sharing them
