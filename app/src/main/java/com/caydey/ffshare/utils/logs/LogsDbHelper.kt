@@ -95,9 +95,15 @@ class LogsDbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
         logCount++
 
         // prune old logs
-        if (logCount > MAX_LOGS) {
-            val deleteCount = logCount - MAX_LOGS
-            writableDatabase.execSQL("DELETE FROM $TABLE_NAME ORDER BY $COLUMN_NAME_TIME DESC LIMIT $deleteCount")
+        if (logCount > MAX_LOGS_TRIGGER_DELETE) {
+            Timber.d("pruning logs to $MAX_LOGS in sqlite database")
+            writableDatabase.execSQL("DELETE FROM $TABLE_NAME WHERE $COLUMN_NAME_ID NOT IN (" +
+                    "SELECT $COLUMN_NAME_ID FROM $TABLE_NAME ORDER BY $COLUMN_NAME_TIME DESC LIMIT $MAX_LOGS)"
+            )
+            // reset logCount
+            logCount = MAX_LOGS
+
+
         }
     }
 
@@ -115,6 +121,7 @@ class LogsDbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
     }
     companion object {
         const val MAX_LOGS = 50
+        const val MAX_LOGS_TRIGGER_DELETE = MAX_LOGS+10
         const val DATABASE_NAME = "logs.db"
         const val DATABASE_VERSION = 2
         private const val TABLE_NAME = "Log"
