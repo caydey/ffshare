@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name">FFShare</string>
+    <string name="menu_item_settings">设置</string>
+    <string name="menu_item_logs">日志</string>
+    <string name="menu_item_delete_logs">删除所有日志</string>
+
+    <string name="error_no_uri_intent">未在Intent API传入的URI中找到媒体文件</string>
+    <string name="error_unknown_filetype">文件类型未知</string>
+    <string name="error_invalid_file">文件无效</string>
+
+    <string name="command_x_of_y">%d of %d</string>
+
+    <string name="ffmpeg_error">压缩媒体时出错</string>
+    <string name="ffmpeg_canceled">已取消</string>
+
+    <string name="log_output_copy">复制</string>
+    <string name="close">关闭</string>
+    <string name="ffmpegCommandTitle">FFmpeg命令</string>
+    <string name="ffmpegOutputTitle">FFmpeg输出</string>
+
+    <string name="log_copied_toast">日志已复制到剪贴板</string>
+
+    <string name="title_activity_logs">日志</string>
+
+    <string name="version">版本：%s</string>
+
+
+    <string name="app_description">在分享图片和视频之前通过FFmpeg压缩它们</string>
+    <string name="introduction_line_0">此应用由caydey制作：<a href="https://github.com/caydey/ffshare">GitHub</a></string>
+    <string name="introduction_line_1">功能（和代码）受juanitobananas的Scrambled Exif启发：<a href="https://gitlab.com/juanitobananas/scrambled-exif">GitLab</a></string>
+    <string name="introduction_line_2">使用的FFmpeg库为ARTHENICA的FFmpegKit：<a href="https://github.com/arthenica/ffmpeg-kit">GitHub</a></string>
+
+    <string name="ffmpeg_command">正在运行FFmpeg命令：</string>
+    <string name="input_file">输入文件：</string>
+    <string name="input_file_size">输入大小：</string>
+    <string name="output_file">输出文件：</string>
+    <string name="output_file_size">输出大小：</string>
+
+    <string name="processed">已处理</string>
+    <string name="remaining">剩余</string>
+    <string name="x_of_x">，总共</string>
+
+    <string name="word_reduction">缩小</string>
+    <string name="media_reduction_message">%s (缩小了%.1f%%)</string>
+    <string name="format_percentage" translatable="false">%.1f%%</string>
+
+    <string name="cancel_ffmpeg">取消</string>
+
+    <string name="logs_clear">清除</string>
+
+    <!-- Settings -->
+    <string name="settings_save_logs">开启日志记录</string>
+    <string name="settings_save_logs_summary">保存所有执行过的FFmpeg命令和运行时的输出</string>
+
+    <string name="settings_compression_options_title">压缩选项</string>
+    <string name="settings_conversions_options_title">转换选项</string>
+    <string name="settings_output_options_title">输出选项</string>
+
+    <string name="settings_compressed_media_name">输出媒体名称</string>
+    <string name="settings_compressed_media_name_summary">将压缩后的文件重命名成什么</string>
+
+    <string name="settings_compressed_media_custom_name">自定义输出媒体名称</string>
+    <string name="settings_compressed_media_custom_name_summary">仅在“输出媒体名称”设置为“自定义”时有效</string>
+
+    <string name="settings_convert_videos_to_mp4">视频始终转换到MP4</string>
+
+
+    <string name="settings_convert_audios_to_mp3">转换所有音频格式到MP3</string>
+
+    <string name="settings_convert_gif_to_mp4">转换GIF到MP4</string>
+
+    <string name="settings_copy_exif_tags">保留Exif标签</string>
+    <string name="settings_copy_exif_tags_summary">为输出文件保留Exif标签</string>
+
+    <string name="settings_jpeg_qscale">JPEG图片质量（qscale）</string>
+    <string name="settings_jpeg_qscale_summary">数值越小，文件体积越大，图片质量越好（默认值为10）</string>
+
+    <string name="settings_video_crf">视频CRF</string>
+    <string name="settings_video_crf_summary">（CRF：固定速率系数）数值越小，文件体积越大，视频质量越好（默认值为23）</string>
+
+    <string name="settings_video_max_file_size">视频文件大小上限</string>
+    <string name="settings_video_max_file_size_summary">调整视频码率以便产生小于设定值的输出</string>
+
+    <string name="settings_max_resolution">最大分辨率</string>
+    <string name="settings_max_resolution_summary">缩小输出分辨率，小于此值的分辨率将不受影响</string>
+
+    <string name="settings_interface_options_title">界面</string>
+
+    <string name="settings_show_status_messages">显示状态消息</string>
+    <string name="settings_show_status_messages_summary">在弹出提示框里显示输出文件大小</string>
+
+    <string name="settings_compression_preset">FFmpeg压缩预设</string>
+    <string name="settings_compression_preset_summary">使用更长的时间换来质量更好的输出，或用更短的时间换来质量更差的输出</string>
+</resources>
