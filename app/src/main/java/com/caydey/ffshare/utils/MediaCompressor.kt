@@ -290,15 +290,19 @@ class MediaCompressor(private val context: Context) {
         // max resolution (only affects videos and images)
         if (utils.isVideo(mediaType) || utils.isImage(mediaType)) {
             val (resolutionWidth, resolutionHeight) = utils.getMediaResolution(inputFile, mediaType)
-            val isPortrait = resolutionHeight < resolutionWidth
+            // portrait is when height is bigger than width
+            val isPortrait = resolutionHeight > resolutionWidth
+            // the resolution is the smaller of the dimensions
             val resolution = if (isPortrait) { resolutionWidth } else { resolutionHeight }
             val maxResolution = settings.maxResolution
             // only reduce resolution
             if (resolution > maxResolution && maxResolution != 0) {
                 if (isPortrait) {
-                    params.add("-vf scale=-1:$maxResolution,setsar=1")
-                } else {
+                    // rescale width
                     params.add("-vf scale=$maxResolution:-1,setsar=1")
+                } else {
+                    // rescale height
+                    params.add("-vf scale=-1:$maxResolution,setsar=1")
                 }
             }
         }
