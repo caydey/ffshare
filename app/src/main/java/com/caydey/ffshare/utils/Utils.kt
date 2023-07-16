@@ -13,6 +13,7 @@ import android.media.MediaMetadataRetriever
 import android.net.Uri
 import android.provider.OpenableColumns
 import androidx.core.content.ContextCompat
+import com.caydey.ffshare.BuildConfig
 import timber.log.Timber
 import java.io.InputStream
 import kotlin.math.ln
@@ -219,6 +220,20 @@ class Utils(private val context: Context) {
         JPEG, PNG, GIF, // images
         MP3, OGG, AAC, WAV, // audios
         UNKNOWN
+    }
+    fun supportedMediaType(type: MediaType): Boolean {
+        // obviously unsupported if MediaType isn't even known
+        if (type == MediaType.UNKNOWN) return false
+
+        // support if in "full" flavor
+        if (BuildConfig.FLAVOR == "full") {
+            return true
+        }
+        // video/image only flavor
+        if (!isAudio(type)) { // if not audio then its supported
+            return true
+        }
+        return false
     }
     fun isImage(type: MediaType): Boolean {
         return type == MediaType.JPEG || type == MediaType.PNG || type == MediaType.GIF

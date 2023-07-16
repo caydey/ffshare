@@ -63,7 +63,7 @@ class MediaCompressor(private val context: Context) {
         }
 
         val mediaType = utils.getMediaType(inputFileUri)
-        if (mediaType == Utils.MediaType.UNKNOWN) {
+        if (!utils.supportedMediaType(mediaType)) { // not supported show error
             Toast.makeText(context, context.getString(R.string.error_unknown_filetype), Toast.LENGTH_LONG).show()
             failureHandler()
             return
@@ -75,10 +75,7 @@ class MediaCompressor(private val context: Context) {
             processedTableRow.visibility = View.INVISIBLE
         }
 
-        var inputFileName = utils.getFilenameFromUri(inputFileUri)
-        if (inputFileName == null) {
-            inputFileName = "unknown"
-        }
+        val inputFileName = utils.getFilenameFromUri(inputFileUri) ?: "unknown"
 
         // get output file, (random uuid, custom name, original name)
         val (outputFile, outputMediaType) = utils.getCacheOutputFile(inputFileUri, mediaType)

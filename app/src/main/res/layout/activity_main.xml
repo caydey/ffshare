@@ -46,9 +46,9 @@
         android:layout_height="wrap_content"
         android:text="@string/app_name"
         android:textSize="48sp"
-        app:layout_constraintBottom_toTopOf="@+id/lblVersion"
+        app:layout_constraintBottom_toTopOf="@+id/tableRow"
         app:layout_constraintEnd_toEndOf="@+id/lblDescription"
-        app:layout_constraintHorizontal_bias="0.522"
+        app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="@+id/lblDescription" />
 
     <TableLayout
@@ -109,14 +109,29 @@
 
     </TableLayout>
 
-    <TextView
-        android:id="@+id/lblVersion"
+    <TableRow
+        android:id="@+id/tableRow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/version"
         app:layout_constraintBottom_toTopOf="@+id/lblDescription"
         app:layout_constraintEnd_toEndOf="@+id/lblDescription"
-        app:layout_constraintStart_toStartOf="@+id/lblDescription" />
+        app:layout_constraintStart_toStartOf="@+id/lblDescription">
+
+        <TextView
+            android:id="@+id/lblVersion"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="4dp"
+            android:text="@string/version" />
+
+        <TextView
+            android:id="@+id/lblFlavor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="4dp"
+            android:text="@string/flavor" />
+
+    </TableRow>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

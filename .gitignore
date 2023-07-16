@@ -14,3 +14,5 @@ local.properties
 /repo
 /stats
 /app/release
+
+/github_releases

@@ -22,6 +22,9 @@ class MainActivity : AppCompatActivity() {
         val versionName = App.versionName
         findViewById<TextView>(R.id.lblVersion).text = getString(R.string.version, versionName)
 
+        val flavorName = BuildConfig.FLAVOR
+        findViewById<TextView>(R.id.lblFlavor).text = getString(R.string.flavor, flavorName)
+
         // allow clicking on links
         findViewById<TextView>(R.id.lblIntroductionLine0).movementMethod = LinkMovementMethod.getInstance()
         findViewById<TextView>(R.id.lblIntroductionLine1).movementMethod = LinkMovementMethod.getInstance()
