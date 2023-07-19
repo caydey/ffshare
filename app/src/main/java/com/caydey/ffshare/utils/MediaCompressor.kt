@@ -290,8 +290,9 @@ class MediaCompressor(private val context: Context) {
             // portrait is when height is bigger than width
             val isPortrait = resolutionHeight > resolutionWidth
             // the resolution is the smaller of the dimensions
-            val resolution = if (isPortrait) { resolutionWidth } else { resolutionHeight }
-            val maxResolution = settings.maxResolution
+            val resolution = if (isPortrait) resolutionWidth else resolutionHeight
+            // get max resolution from settings
+            val maxResolution = if (utils.isImage(mediaType)) settings.maxImageResolution else settings.maxVideoResolution
             // only reduce resolution
             if (resolution > maxResolution && maxResolution != 0) {
                 if (isPortrait) {

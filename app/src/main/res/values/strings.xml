@@ -65,7 +65,6 @@
 
     <string name="settings_convert_videos_to_mp4">Convert all video formats to mp4</string>
 
-
     <string name="settings_convert_audios_to_mp3">Convert all audio formats to mp3</string>
 
     <string name="settings_convert_gif_to_mp4">Convert gif to mp4</string>
@@ -82,8 +81,10 @@
     <string name="settings_video_max_file_size">Video max file size</string>
     <string name="settings_video_max_file_size_summary">Adjusts video bitrate to create an output less than the specified file size</string>
 
-    <string name="settings_max_resolution">Max resolution</string>
-    <string name="settings_max_resolution_summary">Reduce the output resolution, (resolutions under this value will be unaffected)</string>
+    <string name="settings_max_video_resolution">Max video resolution</string>
+    <string name="settings_max_video_resolution_summary">Reduce the video output resolution</string>
+    <string name="settings_max_image_resolution">Max image resolution</string>
+    <string name="settings_max_image_resolution_summary">Reduce the image output resolution</string>
 
     <string name="settings_interface_options_title">Interface</string>
 

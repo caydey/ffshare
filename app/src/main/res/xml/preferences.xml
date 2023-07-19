@@ -87,10 +87,17 @@
             android:entryValues="@array/settings_video_max_file_size_values" />
 
         <ListPreference
-            android:key="pref_max_resolution"
+            android:key="pref_max_video_resolution"
             android:defaultValue="1080"
-            android:title="@string/settings_max_resolution"
-            android:summary="@string/settings_max_resolution_summary"
+            android:title="@string/settings_max_video_resolution"
+            android:summary="@string/settings_max_video_resolution_summary"
+            android:entries="@array/settings_max_resolution"
+            android:entryValues="@array/settings_max_resolution_values" />
+        <ListPreference
+            android:key="pref_max_image_resolution"
+            android:defaultValue="2160"
+            android:title="@string/settings_max_image_resolution"
+            android:summary="@string/settings_max_image_resolution_summary"
             android:entries="@array/settings_max_resolution"
             android:entryValues="@array/settings_max_resolution_values" />
     </PreferenceCategory>

@@ -55,9 +55,13 @@ class Settings(private val context: Context) {
         get() = preferences.getString(VIDEO_MAX_FILE_SIZE, "0")!!.toInt()
         set(value) = setPreference(VIDEO_MAX_FILE_SIZE, value.toString())
 
-    var maxResolution: Int
-        get() = preferences.getString(MAX_RESOLUTION, "1080")!!.toInt()
-        set(value) = setPreference(MAX_RESOLUTION, value)
+    var maxVideoResolution: Int
+        get() = preferences.getString(MAX_VIDEO_RESOLUTION, "1080")!!.toInt()
+        set(value) = setPreference(MAX_VIDEO_RESOLUTION, value.toString())
+
+    var maxImageResolution: Int
+        get() = preferences.getString(MAX_IMAGE_RESOLUTION, "2160")!!.toInt()
+        set(value) = setPreference(MAX_IMAGE_RESOLUTION, value.toString())
 
     var copyExifTags: Boolean
         get() = preferences.getBoolean(COPY_EXIF_TAGS, false)
@@ -96,7 +100,8 @@ class Settings(private val context: Context) {
         const val VIDEO_CRF = "pref_video_crf"
         const val JPEG_QSCALE = "pref_jpeg_qscale"
         const val VIDEO_MAX_FILE_SIZE = "pref_video_max_file_size"
-        const val MAX_RESOLUTION = "pref_max_resolution"
+        const val MAX_VIDEO_RESOLUTION = "pref_max_video_resolution"
+        const val MAX_IMAGE_RESOLUTION = "pref_max_image_resolution"
         const val COPY_EXIF_TAGS = "pref_copy_exif_tags"
         const val LAST_VERSION = "pref_last_version"
         const val SAVE_LOGS = "pref_save_logs"
