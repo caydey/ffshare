@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">FFShare</string>
     <string name="menu_item_settings">Settings</string>
     <string name="menu_item_logs">Logs</string>

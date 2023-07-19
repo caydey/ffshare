@@ -81,9 +81,6 @@
     <string name="settings_video_max_file_size">视频文件大小上限</string>
     <string name="settings_video_max_file_size_summary">调整视频码率以便产生小于设定值的输出</string>
 
-    <string name="settings_max_resolution">最大分辨率</string>
-    <string name="settings_max_resolution_summary">缩小输出分辨率，小于此值的分辨率将不受影响</string>
-
     <string name="settings_interface_options_title">界面</string>
 
     <string name="settings_show_status_messages">显示状态消息</string>

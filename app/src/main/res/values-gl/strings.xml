@@ -81,9 +81,6 @@
     <string name="settings_video_max_file_size">Tamaño máx. do vídeo</string>
     <string name="settings_video_max_file_size_summary">Axusta a taxa de bits para crear un ficheiro dun tamaño menor ao indicado</string>
 
-    <string name="settings_max_resolution">Resolución Máx.</string>
-    <string name="settings_max_resolution_summary">Reduce a resolución de saída, (non se aplica a resolucions inferiores a este valor)</string>
-
     <string name="settings_interface_options_title">Interface</string>
 
     <string name="settings_show_status_messages">Mostrar mensaxes de estado</string>

@@ -81,9 +81,6 @@
     <string name="settings_video_max_file_size">Video maksimum dosya boyutu</string>
     <string name="settings_video_max_file_size_summary">Belirtilen dosya boyutundan daha küçük bir çıktı oluşturmak için video bit hızını ayarlar</string>
 
-    <string name="settings_max_resolution">Maksimum çözünürlük</string>
-    <string name="settings_max_resolution_summary">Çıkış çözünürlüğünü azaltın, (bu değerin altındaki çözünürlükler etkilenmez)</string>
-
     <string name="settings_interface_options_title">Arayüz</string>
 
     <string name="settings_show_status_messages">Durum mesajlarını göster</string>
