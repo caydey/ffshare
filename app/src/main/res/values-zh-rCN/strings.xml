@@ -8,7 +8,7 @@
     <string name="error_unknown_filetype">文件类型未知</string>
     <string name="error_invalid_file">文件无效</string>
 
-    <string name="command_x_of_y">%d of %d</string>
+    <string name="command_x_of_y">$1%d of $2%d</string>
 
     <string name="ffmpeg_error">压缩媒体时出错</string>
     <string name="ffmpeg_canceled">已取消</string>

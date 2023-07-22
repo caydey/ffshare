@@ -8,7 +8,7 @@
     <string name="error_unknown_filetype">Unknown/Unsupported filetype</string>
     <string name="error_invalid_file">Invalid file</string>
 
-    <string name="command_x_of_y">%d of %d</string>
+    <string name="command_x_of_y">$1%d of $2%d</string>
 
     <string name="ffmpeg_error">Error compressing media</string>
     <string name="ffmpeg_canceled">Canceled</string>
