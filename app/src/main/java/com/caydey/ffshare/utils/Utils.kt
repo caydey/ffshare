@@ -247,4 +247,10 @@ class Utils(private val context: Context) {
                 || type == MediaType.WAV
     }
 
+    fun getAllowedMimes(): Array<String> {
+        if (BuildConfig.FLAVOR === "full")
+            return arrayOf("audio/*","image/*", "video/*")
+        return arrayOf("image/*", "video/*")
+    }
+
 }
