@@ -2,11 +2,11 @@ FFShare pipes image, video and audio files through ffmpeg before you share them.
 
 Doing so reduces the file size and also has the added benefit of stripping all metadata that may be attached to those files.
 
-To do this this just share your videos or images and choose <i>FFShare</i>. The app will open showing the compression progress and when its done a new share dialog will reappear with the new compressed video or image.
+To do this this just share your media files and choose <i>FFShare</i>. The app will open showing the compression progress and when it's done a new share dialog will reappear with the new compressed file.
 
+<b>Split APKs</b>
+The APK downloaded from F-Droid is the app full version with all features and abi compatibility included. A choice of smaller APKs can be found at https://github.com/caydey/ffshare/releases
 
 <b>Source Code</b>
-
 This app is open source and hosted on GitHub. A star would be greatly appreciated.
-
 https://github.com/caydey/ffshare
