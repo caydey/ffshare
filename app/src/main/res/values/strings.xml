@@ -8,7 +8,7 @@
     <string name="error_unknown_filetype">Unknown/Unsupported filetype</string>
     <string name="error_invalid_file">Invalid file</string>
 
-    <string name="command_x_of_y">$1%d of $2%d</string>
+    <string name="command_x_of_y">%1$d of %2$d</string>
 
     <string name="ffmpeg_error">Error compressing media</string>
     <string name="ffmpeg_canceled">Canceled</string>
@@ -23,7 +23,7 @@
     <string name="title_activity_logs">Logs</string>
 
     <string name="version">Version: %s</string>
-    <string name="flavor">Flavor: %s</string>
+    <string name="flavor" tools:ignore="MissingTranslation">Flavor: %s</string>
 
 
     <string name="app_description">Compress images and videos through ffmpeg before sharing them</string>
@@ -31,7 +31,7 @@
     <string name="introduction_line_1">Functionality (and code) inspired by Scrambled-Exif by juanitobananas <a href="https://gitlab.com/juanitobananas/scrambled-exif">gitlab</a></string>
     <string name="introduction_line_2">FFmpeg library used is ffmpeg-kit by arthenica <a href="https://github.com/arthenica/ffmpeg-kit">github</a></string>
 
-    <string name="select_file_button">Select file</string>
+    <string name="select_file_button" tools:ignore="MissingTranslation">Select file</string>
 
     <string name="ffmpeg_command">ffmpeg command running:</string>
     <string name="input_file">Input file:</string>
@@ -44,7 +44,7 @@
     <string name="x_of_x">of</string>
 
     <string name="word_reduction">reduction</string>
-    <string name="media_reduction_message">%s (%.1f%% reduction)</string>
+    <string name="media_reduction_message">%1$s (%2$.1f%% reduction)</string>
     <string name="format_percentage" translatable="false">%.1f%%</string>
 
     <string name="cancel_ffmpeg">Cancel</string>
@@ -83,10 +83,10 @@
     <string name="settings_video_max_file_size">Video max file size</string>
     <string name="settings_video_max_file_size_summary">Adjusts video bitrate to create an output less than the specified file size</string>
 
-    <string name="settings_max_video_resolution">Max video resolution</string>
-    <string name="settings_max_video_resolution_summary">Reduce the video output resolution</string>
-    <string name="settings_max_image_resolution">Max image resolution</string>
-    <string name="settings_max_image_resolution_summary">Reduce the image output resolution</string>
+    <string name="settings_max_video_resolution" tools:ignore="MissingTranslation">Max video resolution</string>
+    <string name="settings_max_video_resolution_summary" tools:ignore="MissingTranslation">Reduce the video output resolution</string>
+    <string name="settings_max_image_resolution" tools:ignore="MissingTranslation">Max image resolution</string>
+    <string name="settings_max_image_resolution_summary" tools:ignore="MissingTranslation">Reduce the image output resolution</string>
 
     <string name="settings_interface_options_title">Interface</string>
 

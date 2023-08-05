@@ -8,7 +8,7 @@
     <string name="error_unknown_filetype">Bilinmeyen dosya türü</string>
     <string name="error_invalid_file">Geçersiz dosya</string>
 
-    <string name="command_x_of_y">$1%d of $2%d</string>
+    <string name="command_x_of_y">%1$d of %2$d</string>
 
     <string name="ffmpeg_error">Medya sıkıştırılırken hata oluştu</string>
     <string name="ffmpeg_canceled">İptal edildi</string>
@@ -41,7 +41,7 @@
     <string name="x_of_x">of</string>
 
     <string name="word_reduction">Azalt</string>
-    <string name="media_reduction_message">%s (%.1f%% Azalt)</string>
+    <string name="media_reduction_message">%1$s (%2$.1f%% Azalt)</string>
     <string name="format_percentage" translatable="false">%.1f%%</string>
 
     <string name="cancel_ffmpeg">İptal</string>

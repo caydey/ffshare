@@ -8,7 +8,7 @@
     <string name="error_unknown_filetype">Tipo de ficheiro descoñecido</string>
     <string name="error_invalid_file">Tipo de ficheiro non válido</string>
 
-    <string name="command_x_of_y">$1%d de $2%d</string>
+    <string name="command_x_of_y">%1$d de %2$d</string>
 
     <string name="ffmpeg_error">Erro ao comprimir multimedia</string>
     <string name="ffmpeg_canceled">Cancelado</string>
@@ -41,7 +41,7 @@
     <string name="x_of_x">of</string>
 
     <string name="word_reduction">reducción</string>
-    <string name="media_reduction_message">%s (%.1f%% de reducción)</string>
+    <string name="media_reduction_message">%1$s (%2$.1f%% de reducción)</string>
     <string name="format_percentage" translatable="false">%.1f%%</string>
 
     <string name="cancel_ffmpeg">Cancelar</string>
