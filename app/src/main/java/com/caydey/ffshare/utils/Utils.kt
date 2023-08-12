@@ -106,30 +106,27 @@ class Utils(private val context: Context) {
 
         // get type from file extension
         if (filename != null) {
-            val lFilename = filename.lowercase()
-            if (lFilename.endsWith(".jpg") || lFilename.endsWith(".jpeg")) { // images
-                mediaType = MediaType.JPEG
-            } else if (lFilename.endsWith(".png")) {
-                mediaType = MediaType.PNG
-            } else if (lFilename.endsWith(".gif")) {
-                mediaType = MediaType.GIF
-            } else if (lFilename.endsWith(".mp4")) { // videos
-                mediaType = MediaType.MP4
-            } else if (lFilename.endsWith(".mkv")) {
-                mediaType = MediaType.MKV
-            } else if (lFilename.endsWith(".webm")) {
-                mediaType = MediaType.WEBM
-            } else if (lFilename.endsWith(".avi")) {
-                mediaType = MediaType.AVI
-            } else if (lFilename.endsWith(".mp3")) { // audios
-                mediaType = MediaType.MP3
-            } else if (lFilename.endsWith(".ogg")) {
-                mediaType = MediaType.OGG
-            } else if (lFilename.endsWith(".aac")) {
-                mediaType = MediaType.AAC
-            } else if (lFilename.endsWith(".wav")) {
-                mediaType = MediaType.WAV
-            }
+            val extensionsToMediaType = mapOf(
+                // images
+                "jpg" to MediaType.JPEG,
+                "jpeg" to MediaType.JPEG,
+                "png" to MediaType.PNG,
+                "gif" to MediaType.GIF,
+                // videos
+                "mp4" to MediaType.MP4,
+                "mkv" to MediaType.MKV,
+                "webm" to MediaType.WEBM,
+                "avi" to MediaType.AVI,
+                "mov" to MediaType.MP4,
+                // audios
+                "mp3" to MediaType.MP3,
+                "ogg" to MediaType.OGG,
+                "aac" to MediaType.AAC,
+                "wav" to MediaType.WAV
+            )
+
+            val extension = filename.substringAfterLast('.').lowercase()
+            mediaType = extensionsToMediaType[extension] ?: MediaType.UNKNOWN
         }
         // unable to get filetype from filename extension, using signature detection
         // https://en.wikipedia.org/wiki/List_of_file_signatures
@@ -145,7 +142,7 @@ class Utils(private val context: Context) {
                 mediaType = MediaType.PNG
             } else if (signature.startsWith("47494638")) {
                 mediaType = MediaType.GIF
-            } else if (signature.drop(8).startsWith("66747970")) { // ** ** ** ** 66 74 79 70 69 73 6F 6D
+            } else if (signature.drop(8).startsWith("6674797069736F6D")) { // ** ** ** ** 66 74 79 70 69 73 6F 6D
                 mediaType = MediaType.MP4
             } else if (signature.startsWith("1A45DFA3")) { // or webm, but assume mkv, also not that big a deal as only happens when filename is not found
                 mediaType = MediaType.MKV
