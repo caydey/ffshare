@@ -181,7 +181,7 @@ class MediaCompressor(private val context: Context) {
             Handler(Looper.getMainLooper()).post {
                 if (showProgress) { // only show time processed if video
                     txtProcessedPercent.text = context.getString(R.string.format_percentage, (statistics.time.toFloat() / duration) * 100)
-                    txtProcessedTime.text = utils.millisToMicrowave(statistics.time)
+                    txtProcessedTime.text = utils.millisToMicrowave(statistics.time.toInt())
                 }
                 txtOutputFileSize.text = utils.bytesToHuman(statistics.size)
             }
