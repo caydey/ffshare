@@ -122,7 +122,8 @@ class Utils(private val context: Context) {
                 "mp3" to MediaType.MP3,
                 "ogg" to MediaType.OGG,
                 "aac" to MediaType.AAC,
-                "wav" to MediaType.WAV
+                "wav" to MediaType.WAV,
+                "amr" to MediaType.AMR,
             )
 
             val extension = filename.substringAfterLast('.').lowercase()
@@ -155,6 +156,8 @@ class Utils(private val context: Context) {
                 mediaType = MediaType.OGG
             } else if (signature.startsWith("52494646") && signature.drop(16).startsWith("57415645")) { // 52 49 46 46 ** ** ** ** 57 41 56 45
                 mediaType = MediaType.WAV
+            } else if (signature.startsWith("2321414D52")) {
+                mediaType = MediaType.AMR
             }
             if (mediaType == MediaType.UNKNOWN) {
                 Timber.d("Unable to find filetype from signature")
@@ -215,7 +218,7 @@ class Utils(private val context: Context) {
     enum class MediaType {
         MP4, MKV, WEBM, AVI, // videos
         JPEG, PNG, GIF, // images
-        MP3, OGG, AAC, WAV, // audios
+        MP3, OGG, AAC, WAV, AMR, // audios
         UNKNOWN
     }
     fun supportedMediaType(type: MediaType): Boolean {
@@ -241,7 +244,7 @@ class Utils(private val context: Context) {
     }
     fun isAudio(type: MediaType): Boolean {
         return type == MediaType.MP3 || type == MediaType.OGG || type == MediaType.AAC
-                || type == MediaType.WAV
+                || type == MediaType.WAV || type == MediaType.AMR
     }
 
     fun getAllowedMimes(): Array<String> {
