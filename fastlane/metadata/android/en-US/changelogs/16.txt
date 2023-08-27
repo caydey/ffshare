@@ -1,0 +1,14 @@
+New in 1.2.8
+- Added support for AMR audio files
+- Fixed screen rotation bug
+- Upgraded FFmpeg version
+
+New in 1.2.7
+- Manualy select media files within the app
+- Seperate max resolution for images and videos
+- Added split APKs, only available from GitHub Releases
+
+New in 1.2.6
+- Added more translations
+- Logging bug fix
+- Rescaling bug fix 
