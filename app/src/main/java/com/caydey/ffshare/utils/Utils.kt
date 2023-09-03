@@ -84,8 +84,9 @@ class Utils(private val context: Context) {
             val check = ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE)
             return (check == PackageManager.PERMISSION_GRANTED)
         }
-    fun requestReadPermissions(activity: Activity) {
-        ActivityCompat.requestPermissions(activity, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE)
+
+    fun requestPermissions(activity: Activity, permissions: Array<String>) {
+        ActivityCompat.requestPermissions(activity, permissions, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE)
     }
 
 

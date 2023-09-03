@@ -15,15 +15,15 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-    signingConfigs {
-        release {
-            // environment variables from ~/.gradle/gradle.properties
-            storeFile file(FFSHARE_RELEASE_STORE_FILE)
-            storePassword FFSHARE_RELEASE_STORE_PASSWORD
-            keyAlias FFSHARE_RELEASE_KEY_ALIAS
-            keyPassword FFSHARE_RELEASE_KEY_PASSWORD
-        }
-    }
+//    signingConfigs {
+//        release {
+//            // environment variables from ~/.gradle/gradle.properties
+//            storeFile file(FFSHARE_RELEASE_STORE_FILE)
+//            storePassword FFSHARE_RELEASE_STORE_PASSWORD
+//            keyAlias FFSHARE_RELEASE_KEY_ALIAS
+//            keyPassword FFSHARE_RELEASE_KEY_PASSWORD
+//        }
+//    }
     
     splits {
         // Configures multiple APKs based on ABI.
@@ -61,7 +61,7 @@ android {
             }
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+//            signingConfig signingConfigs.release
         }
         debug {
             ndk {

@@ -3,6 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <!--  TODO: For when the app is upgraded to support Android 13  -->
+    <!--  <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>  -->
 
     <application
         android:name=".App"
@@ -47,6 +51,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:mimeType="image/*" />
                 <data android:mimeType="video/*" />
                 <data android:mimeType="audio/*" />
@@ -54,11 +59,13 @@
             <intent-filter>
                 <action android:name="android.intent.action.SEND_MULTIPLE" />
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:mimeType="image/*" />
                 <data android:mimeType="video/*" />
                 <data android:mimeType="audio/*" />
             </intent-filter>
         </activity>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.caydey.ffshare.fileprovider"
@@ -68,10 +75,12 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths" />
         </provider>
+
         <receiver
             android:name=".CacheCleanUpReceiver"
             android:enabled="true"
             android:exported="false" />
-    </application>
 
+        <service android:name=".services.HandleMediaService" />
+    </application>
 </manifest>

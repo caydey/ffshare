@@ -1,12 +1,17 @@
 package com.caydey.ffshare
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
 import androidx.multidex.MultiDexApplication
+import com.caydey.ffshare.services.MEDIA_NOTIFICATION_CHANNEL
 import timber.log.Timber
 
-class App: MultiDexApplication() {
+class App : MultiDexApplication() {
     companion object {
         var versionName = ""
     }
+
     private val settingsVersionUpdater = SettingsVersionUpdater(this)
     override fun onCreate() {
         super.onCreate()
@@ -21,5 +26,19 @@ class App: MultiDexApplication() {
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }
+
+        // Initialize notification channel
+        initializeNotificationChannel()
+    }
+
+    private fun initializeNotificationChannel() {
+        val channel = NotificationChannel(
+            MEDIA_NOTIFICATION_CHANNEL,
+            getString(R.string.media_service_notification_title),
+            NotificationManager.IMPORTANCE_HIGH
+        )
+
+        (getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager)
+            .createNotificationChannel(channel)
     }
 }
