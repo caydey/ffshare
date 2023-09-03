@@ -95,4 +95,12 @@
 
     <string name="settings_compression_preset">FFmpeg compression preset</string>
     <string name="settings_compression_preset_summary">Slower speed with a higher quality output or faster speed with a lower quality output</string>
+
+    <!--  Foreground service  -->
+    <string name="media_service_notification_channel_title" translatable="false">FFShare running in the foreground service</string>
+    <string name="media_service_notification_title" translatable="false">FFShare running</string>
+    <string name="media_service_notification_message" translatable="false">Your file is processing, please wait...</string>
+    <string name="media_service_notification_progress" translatable="false">(%1$d/%2$d) Files are processing, %3$.1f%%</string>
+    <string name="media_service_notification_done" translatable="false">(%1$d/%2$d) Files are done processing, click to share</string>
+
 </resources>
