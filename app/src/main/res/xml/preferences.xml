@@ -100,6 +100,13 @@
             android:summary="@string/settings_max_image_resolution_summary"
             android:entries="@array/settings_max_resolution"
             android:entryValues="@array/settings_max_resolution_values" />
+        <ListPreference
+            android:key="pref_video_codec"
+            android:defaultValue="libx265"
+            android:title="@string/settings_video_codec"
+            android:summary="@string/settings_video_codec_summary"
+            android:entries="@array/settings_video_codec_values"
+            android:entryValues="@array/settings_video_codec_values" />
     </PreferenceCategory>
 
     <PreferenceCategory

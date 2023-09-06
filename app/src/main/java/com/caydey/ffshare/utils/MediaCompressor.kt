@@ -254,7 +254,7 @@ class MediaCompressor(private val context: Context) {
 
             // h264 codec for mp4
             if (outputMediaType == Utils.MediaType.MP4) {
-                params.add("-c:v h264")
+                params.add("-c:v ${settings.videoCodec}")
             }
 
             //  max file size (limit the bitrate to achieve this)
@@ -297,10 +297,14 @@ class MediaCompressor(private val context: Context) {
             if (resolution > maxResolution && maxResolution != 0) {
                 if (isPortrait) {
                     // rescale width
-                    params.add("-vf scale=$maxResolution:-1,setsar=1")
+                    val height_f = resolutionWidth/(resolutionHeight.toFloat()/maxResolution)
+                    val height = if (height_f.toInt()%2==0) height_f.toInt() else (height_f.toInt() + 1)
+                    params.add("-vf scale=$maxResolution:$height,setsar=1")
                 } else {
                     // rescale height
-                    params.add("-vf scale=-1:$maxResolution,setsar=1")
+                    val width_f = resolutionHeight/(resolutionWidth.toFloat()/maxResolution)
+                    val width = if (width_f.toInt()%2==0) width_f.toInt() else (width_f.toInt() + 1)
+                    params.add("-vf scale=$width:$maxResolution,setsar=1")
                 }
             }
         }
