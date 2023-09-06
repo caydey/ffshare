@@ -11,11 +11,11 @@
         <item>libx264</item>
     </array>
 
-    <string name="settings_compressed_media_name_values">
+    <array name="settings_compressed_media_name_values">
         <item>ORIGINAL</item>
         <item>UUID</item>
         <item>CUSTOM</item>
-    </string>
+    </array>
 
     <string-array name="settings_jpeg_qscale">
         <item>1</item><item>2</item><item>3</item><item>4</item>
