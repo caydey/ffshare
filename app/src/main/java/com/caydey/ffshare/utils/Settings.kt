@@ -79,6 +79,9 @@ class Settings(private val context: Context) {
         get() = preferences.getString(COMPRESSION_PRESET, "medium")!!
         set(value) = setPreference(COMPRESSION_PRESET, value)
 
+    var videoCodec: String
+        get() = preferences.getString(VIDEO_CODEC, "libx265")!!
+        set(value) = setPreference(VIDEO_CODEC, value)
     private fun setPreference(key: String, value: String) {
         preferences.edit().putString(key, value).apply()
     }
@@ -106,5 +109,6 @@ class Settings(private val context: Context) {
         const val LAST_VERSION = "pref_last_version"
         const val SAVE_LOGS = "pref_save_logs"
         const val COMPRESSION_PRESET = "pref_compression_preset"
+        const val VIDEO_CODEC = "pref_video_codec"
     }
 }

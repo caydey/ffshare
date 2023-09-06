@@ -83,6 +83,9 @@
     <string name="settings_video_max_file_size">Video max file size</string>
     <string name="settings_video_max_file_size_summary">Adjusts video bitrate to create an output less than the specified file size</string>
 
+    <string name="settings_video_codec">Video Codec</string>
+    <string name="settings_video_codec_summary">Video codec of output video.</string>
+
     <string name="settings_max_video_resolution" tools:ignore="MissingTranslation">Max video resolution</string>
     <string name="settings_max_video_resolution_summary" tools:ignore="MissingTranslation">Reduce the video output resolution</string>
     <string name="settings_max_image_resolution" tools:ignore="MissingTranslation">Max image resolution</string>

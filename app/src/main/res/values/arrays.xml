@@ -6,6 +6,11 @@
         <item>Custom</item>
     </array>
 
+    <array name="settings_video_codec_values">
+        <item>libx265</item>
+        <item>libx264</item>
+    </array>
+
     <array name="settings_compressed_media_name_values">
         <item>ORIGINAL</item>
         <item>UUID</item>
