@@ -42,7 +42,7 @@ class Utils(private val context: Context) {
                 return MediaType.MP4
             }
         }
-        if (settings.convertAudiosToMP3) {
+        if (settings.convertAudiosToMp3) {
             if (isAudio(inputFileMediaType)) {
                 return MediaType.MP3
             }
@@ -50,6 +50,11 @@ class Utils(private val context: Context) {
         if (settings.convertGifToMp4) {
             if (inputFileMediaType == MediaType.GIF) {
                 return MediaType.MP4
+            }
+        }
+        if (settings.convertImagesToJpg) {
+            if (isImage(inputFileMediaType)) {
+                return MediaType.JPEG
             }
         }
         // no conversions

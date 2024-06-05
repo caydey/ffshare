@@ -66,8 +66,8 @@
     <string name="settings_compressed_media_custom_name_summary">Only applicable if "Custom" is selected for compressed media name</string>
 
     <string name="settings_convert_videos_to_mp4">Convert all video formats to mp4</string>
-
     <string name="settings_convert_audios_to_mp3">Convert all audio formats to mp3</string>
+    <string name="settings_convert_images_to_jpg" tools:ignore="MissingTranslation">Convert all image formats to jpg</string>
 
     <string name="settings_convert_gif_to_mp4">Convert gif to mp4</string>
 

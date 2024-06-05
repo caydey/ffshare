@@ -31,9 +31,13 @@ class Settings(private val context: Context) {
         get() = preferences.getBoolean(CONVERT_VIDEOS_TO_MP4, true)
         set(value) = setPreference(CONVERT_VIDEOS_TO_MP4, value)
 
-    var convertAudiosToMP3: Boolean
+    var convertAudiosToMp3: Boolean
         get() = preferences.getBoolean(CONVERT_AUDIOS_TO_MP3, true)
         set(value) = setPreference(CONVERT_AUDIOS_TO_MP3, value)
+
+    var convertImagesToJpg: Boolean
+        get() = preferences.getBoolean(CONVERT_IMAGES_TO_JPG, true)
+        set(value) = setPreference(CONVERT_IMAGES_TO_JPG, value)
 
     var convertGifToMp4: Boolean
         get() = preferences.getBoolean(CONVERT_GIF_TO_MP4, false)
@@ -95,6 +99,7 @@ class Settings(private val context: Context) {
         const val COMPRESSED_MEDIA_CUSTOM_NAME = "pref_compressed_media_custom_name"
         const val CONVERT_VIDEOS_TO_MP4 = "pref_convert_videos_to_mp4"
         const val CONVERT_AUDIOS_TO_MP3 = "pref_convert_audios_to_mp3"
+        const val CONVERT_IMAGES_TO_JPG = "pref_convert_images_to_jpg"
         const val CONVERT_GIF_TO_MP4 = "pref_convert_gif_to_mp4"
         const val SHOW_STATUS_MESSAGES = "pref_show_status_messages"
         const val VIDEO_CRF = "pref_video_crf"

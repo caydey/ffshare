@@ -43,6 +43,10 @@
             android:key="pref_convert_audios_to_mp3"
             android:defaultValue="true"
             android:title="@string/settings_convert_audios_to_mp3" />
+        <SwitchPreference
+            android:key="pref_convert_images_to_jpg"
+            android:defaultValue="true"
+            android:title="@string/settings_convert_images_to_jpg" />
 
         <SwitchPreference
             android:key="pref_convert_gif_to_mp4"
