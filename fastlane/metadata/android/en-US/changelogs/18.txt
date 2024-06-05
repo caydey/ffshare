@@ -1,0 +1,13 @@
+New in 1.2.9
+- Added support for WEBP image formats
+- Fixed h264 "video dimensions not divisible by 2" error
+- Added "Convert all image formats to jpg" option, enabled by default
+
+New in 1.2.8
+- Added support for AMR audio files
+- Fixed screen rotation bug
+
+New in 1.2.7
+- Manualy select media files within the app
+- Seperate max resolution for images and videos
+- Added split APKs, only available from GitHub Releases

@@ -10,8 +10,8 @@ android {
         applicationId "com.caydey.ffshare"
         minSdk 26
         targetSdk 32
-        versionCode 17
-        versionName "1.2.8a"
+        versionCode 18
+        versionName "1.2.9"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
