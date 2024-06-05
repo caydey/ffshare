@@ -244,18 +244,26 @@ class MediaCompressor(private val context: Context) {
         // preset
         params.add("-preset ${settings.compressionPreset}")
 
+        val videoFormatParams = StringJoiner(",")
+
         // video
         if (utils.isVideo(outputMediaType)) { // check outputMediaType not mediaType because conversions
             // crf
             params.add("-crf ${settings.videoCrf}")
 
             // pixel format
-            params.add("-vf format=yuv420p")
+            videoFormatParams.add("format=yuv420p")
 
             // h264 codec for mp4
             if (outputMediaType == Utils.MediaType.MP4) {
                 params.add("-c:v h264")
+                // h264 requires dimensions to be divisible by 2, crop frames to be divisible by 2
+                if (mediaInformation.streams[0].width % 2 != 0L || mediaInformation.streams[0].height % 2 != 0L) {
+                    videoFormatParams.add("crop=trunc(iw/2)*2:trunc(ih/2)*2")
+                    // could also use "pad=ceil(iw/2)*2:ceil(ih/2)*2" to add column/row of black pixels
+                }
             }
+
 
             //  max file size (limit the bitrate to achieve this)
             if (settings.videoMaxFileSize != 0) {
@@ -297,18 +305,21 @@ class MediaCompressor(private val context: Context) {
             if (resolution > maxResolution && maxResolution != 0) {
                 if (isPortrait) {
                     // rescale width
-                    params.add("-vf scale=$maxResolution:-1,setsar=1")
+                    videoFormatParams.add("scale=$maxResolution:-1,setsar=1")
                 } else {
                     // rescale height
-                    params.add("-vf scale=-1:$maxResolution,setsar=1")
+                    videoFormatParams.add("scale=-1:$maxResolution,setsar=1")
                 }
             }
         }
 
+        if (videoFormatParams.length() > 0) {
+            params.add("-vf \"$videoFormatParams\"")
+        }
+
         // jpeg quality
         if (mediaType == Utils.MediaType.JPEG) {
-            val qscale = settings.jpegQscale
-            params.add("-qscale:v $qscale")
+            params.add("-qscale:v ${settings.jpegQscale}")
         }
 
         return params.toString()
