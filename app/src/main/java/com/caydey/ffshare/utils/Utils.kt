@@ -90,7 +90,7 @@ class Utils(private val context: Context) {
 
 
     private fun getFileHexSignature(inputStream: InputStream): String {
-        val arr = ByteArray(8)
+        val arr = ByteArray(16)
         inputStream.read(arr)
         val builder = StringBuilder()
         for (byte in arr) { // foreach byte in head
@@ -112,6 +112,7 @@ class Utils(private val context: Context) {
                 "jpeg" to MediaType.JPEG,
                 "png" to MediaType.PNG,
                 "gif" to MediaType.GIF,
+                "webp" to MediaType.WEBP,
                 // videos
                 "mp4" to MediaType.MP4,
                 "mkv" to MediaType.MKV,
@@ -142,6 +143,8 @@ class Utils(private val context: Context) {
                 mediaType = MediaType.PNG
             } else if (signature.startsWith("47494638")) {
                 mediaType = MediaType.GIF
+            } else if (signature.startsWith("52494646") && signature.drop(16).startsWith("57454250")) { // 52 49 46 46 ?? ?? ?? ?? 57 45 42 50
+                mediaType = MediaType.WEBP
             } else if (signature.drop(8).startsWith("6674797069736F6D")) { // ** ** ** ** 66 74 79 70 69 73 6F 6D
                 mediaType = MediaType.MP4
             } else if (signature.startsWith("1A45DFA3")) { // or webm, but assume mkv, also not that big a deal as only happens when filename is not found
@@ -214,11 +217,11 @@ class Utils(private val context: Context) {
 
     enum class MediaType {
         MP4, MKV, WEBM, AVI, // videos
-        JPEG, PNG, GIF, // images
+        JPEG, PNG, GIF, WEBP, // images
         MP3, OGG, AAC, WAV, // audios
         UNKNOWN
     }
-    fun supportedMediaType(type: MediaType): Boolean {
+    fun isSupportedMediaType(type: MediaType): Boolean {
         // obviously unsupported if MediaType isn't even known
         if (type == MediaType.UNKNOWN) return false
 
@@ -234,6 +237,7 @@ class Utils(private val context: Context) {
     }
     fun isImage(type: MediaType): Boolean {
         return type == MediaType.JPEG || type == MediaType.PNG || type == MediaType.GIF
+                || type == MediaType.WEBP
     }
     fun isVideo(type: MediaType): Boolean {
         return type == MediaType.MP4 || type == MediaType.MKV || type == MediaType.WEBM

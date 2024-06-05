@@ -63,7 +63,7 @@ class MediaCompressor(private val context: Context) {
         }
 
         val mediaType = utils.getMediaType(inputFileUri)
-        if (!utils.supportedMediaType(mediaType)) { // not supported show error
+        if (!utils.isSupportedMediaType(mediaType)) { // not supported show error
             Toast.makeText(context, context.getString(R.string.error_unknown_filetype), Toast.LENGTH_LONG).show()
             failureHandler()
             return
@@ -241,8 +241,10 @@ class MediaCompressor(private val context: Context) {
     private fun createFFmpegParams(inputFile: Uri, mediaInformation: MediaInformation, mediaType: Utils.MediaType, outputMediaType: Utils.MediaType): String {
         val params = StringJoiner(" ")
 
-        // preset
-        params.add("-preset ${settings.compressionPreset}")
+        // preset, webp does not support this
+        if (outputMediaType != Utils.MediaType.WEBP) {
+            params.add("-preset ${settings.compressionPreset}")
+        }
 
         val videoFormatParams = StringJoiner(",")
 
