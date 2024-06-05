@@ -16,22 +16,17 @@ class LogItemDialog(context: Context, private val log: Log) : Dialog(context) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.log_item_dialog)
-
-
+        
         val txtFfmpegOutput = findViewById<TextView>(R.id.logFfmpegOutput)
         val txtFfmpegTitle = findViewById<TextView>(R.id.logFfmpegCommand)
 
         // scrollbars
-        txtFfmpegTitle.movementMethod = ScrollingMovementMethod()
-
         txtFfmpegOutput.movementMethod = ScrollingMovementMethod()
         txtFfmpegOutput.setHorizontallyScrolling(true)
 
         // content
         txtFfmpegTitle.text = log.command
-
         txtFfmpegOutput.text = log.ffmpeg_output
-
 
         findViewById<Button>(R.id.logCopyButton).setOnClickListener {
             val myClipboard = context.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
@@ -41,6 +36,4 @@ class LogItemDialog(context: Context, private val log: Log) : Dialog(context) {
             Toast.makeText(context, context.getString(R.string.log_copied_toast), Toast.LENGTH_LONG).show()
         }
     }
-
-
 }

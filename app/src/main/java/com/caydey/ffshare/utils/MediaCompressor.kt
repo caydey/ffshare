@@ -239,6 +239,11 @@ class MediaCompressor(private val context: Context) {
     }
 
     private fun createFFmpegParams(inputFile: Uri, mediaInformation: MediaInformation, mediaType: Utils.MediaType, outputMediaType: Utils.MediaType): String {
+        // custom params
+        if (utils.isImage(outputMediaType) && settings.customImageParams.isNotEmpty()) return settings.customImageParams
+        if (utils.isVideo(outputMediaType) && settings.customVideoParams.isNotEmpty()) return settings.customVideoParams
+        if (utils.isAudio(outputMediaType) && settings.customAudioParams.isNotEmpty()) return settings.customAudioParams
+
         val params = StringJoiner(" ")
 
         // preset, webp does not support this

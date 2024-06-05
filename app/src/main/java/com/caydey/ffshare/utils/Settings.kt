@@ -83,6 +83,18 @@ class Settings(private val context: Context) {
         get() = preferences.getString(COMPRESSION_PRESET, "medium")!!
         set(value) = setPreference(COMPRESSION_PRESET, value)
 
+    var customVideoParams: String
+        get() = preferences.getString(CUSTOM_VIDEO_PARAMS, "")!!
+        set(value) = setPreference(CUSTOM_VIDEO_PARAMS, value)
+
+    var customImageParams: String
+        get() = preferences.getString(CUSTOM_IMAGE_PARAMS, "")!!
+        set(value) = setPreference(CUSTOM_IMAGE_PARAMS, value)
+
+    var customAudioParams: String
+        get() = preferences.getString(CUSTOM_AUDIO_PARAMS, "")!!
+        set(value) = setPreference(CUSTOM_AUDIO_PARAMS, value)
+
     private fun setPreference(key: String, value: String) {
         preferences.edit().putString(key, value).apply()
     }
@@ -111,5 +123,8 @@ class Settings(private val context: Context) {
         const val LAST_VERSION = "pref_last_version"
         const val SAVE_LOGS = "pref_save_logs"
         const val COMPRESSION_PRESET = "pref_compression_preset"
+        const val CUSTOM_VIDEO_PARAMS = "pref_custom_video_params"
+        const val CUSTOM_IMAGE_PARAMS = "pref_custom_image_params"
+        const val CUSTOM_AUDIO_PARAMS = "pref_custom_audio_params"
     }
 }

@@ -88,6 +88,12 @@
     <string name="settings_max_image_resolution" tools:ignore="MissingTranslation">Max image resolution</string>
     <string name="settings_max_image_resolution_summary" tools:ignore="MissingTranslation">Reduce the image output resolution</string>
 
+    <string name="settings_custom_params_title" tools:ignore="MissingTranslation">Custom Parameters</string>
+    <string name="settings_custom_params_summary" tools:ignore="MissingTranslation">If set, only these parameters will be used</string>
+    <string name="settings_custom_video_params" tools:ignore="MissingTranslation">Custom Video Parameters</string>
+    <string name="settings_custom_image_params" tools:ignore="MissingTranslation">Custom Image Parameters</string>
+    <string name="settings_custom_audio_params" tools:ignore="MissingTranslation">Custom Audio Parameters</string>
+
     <string name="settings_interface_options_title">Interface</string>
 
     <string name="settings_show_status_messages">Show status messages</string>
