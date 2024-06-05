@@ -55,7 +55,6 @@
     </PreferenceCategory>
 
 
-
     <PreferenceCategory
         android:key="prefs_compression"
         android:title="@string/settings_compression_options_title">
@@ -104,6 +103,25 @@
             android:summary="@string/settings_max_image_resolution_summary"
             android:entries="@array/settings_max_resolution"
             android:entryValues="@array/settings_max_resolution_values" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="prefs_custom_params"
+        android:title="@string/settings_custom_params_title"
+        android:summary="@string/settings_custom_params_summary">
+
+        <EditTextPreference
+            android:key="pref_custom_video_params"
+            android:defaultValue=""
+            android:title="@string/settings_custom_video_params" />
+        <EditTextPreference
+            android:key="pref_custom_image_params"
+            android:defaultValue=""
+            android:title="@string/settings_custom_image_params" />
+        <EditTextPreference
+            android:key="pref_custom_video_params"
+            android:defaultValue=""
+            android:title="@string/settings_custom_audio_params" />
     </PreferenceCategory>
 
     <PreferenceCategory
