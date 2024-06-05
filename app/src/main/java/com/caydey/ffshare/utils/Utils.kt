@@ -42,7 +42,7 @@ class Utils(private val context: Context) {
                 return MediaType.MP4
             }
         }
-        if (settings.convertAudiosToMP3) {
+        if (settings.convertAudiosToMp3) {
             if (isAudio(inputFileMediaType)) {
                 return MediaType.MP3
             }
@@ -50,6 +50,11 @@ class Utils(private val context: Context) {
         if (settings.convertGifToMp4) {
             if (inputFileMediaType == MediaType.GIF) {
                 return MediaType.MP4
+            }
+        }
+        if (settings.convertImagesToJpg) {
+            if (isImage(inputFileMediaType)) {
+                return MediaType.JPEG
             }
         }
         // no conversions
@@ -202,7 +207,7 @@ class Utils(private val context: Context) {
         }
         return "$bytes ${units[0]}"
     }
-    fun millisToMicrowave(millis: Int): String {
+    fun millisToMicrowaveTime(millis: Int): String {
         var remainder = millis / 1_000
         var time = ""
         for (i in 0..2) {

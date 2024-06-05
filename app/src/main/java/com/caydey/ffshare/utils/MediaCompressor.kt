@@ -120,8 +120,8 @@ class MediaCompressor(private val context: Context) {
             txtInputFileSize.text = utils.bytesToHuman(inputFileSize)
             txtOutputFile.text = outputFile.name
             txtOutputFileSize.text = utils.bytesToHuman(0)
-            txtProcessedTime.text = utils.millisToMicrowave(0)
-            txtProcessedTimeTotal.text = utils.millisToMicrowave(duration)
+            txtProcessedTime.text = utils.millisToMicrowaveTime(0)
+            txtProcessedTimeTotal.text = utils.millisToMicrowaveTime(duration)
             txtProcessedPercent.text = context.getString(R.string.format_percentage, 0.0f)
         }
 
@@ -158,7 +158,7 @@ class MediaCompressor(private val context: Context) {
                 Handler(Looper.getMainLooper()).post {
                     // update TextViews to their final values 97.8% -> 100.0%
                     txtProcessedPercent.text = context.getString(R.string.format_percentage, 100.0f)
-                    txtProcessedTime.text = utils.millisToMicrowave(duration)
+                    txtProcessedTime.text = utils.millisToMicrowaveTime(duration)
                     if (outputFileCurrentSize > 0) {
                         txtOutputFileSize.text = utils.bytesToHuman(outputFileCurrentSize)
                     }
@@ -181,7 +181,7 @@ class MediaCompressor(private val context: Context) {
             Handler(Looper.getMainLooper()).post {
                 if (showProgress) { // only show time processed if video
                     txtProcessedPercent.text = context.getString(R.string.format_percentage, (statistics.time.toFloat() / duration) * 100)
-                    txtProcessedTime.text = utils.millisToMicrowave(statistics.time.toInt())
+                    txtProcessedTime.text = utils.millisToMicrowaveTime(statistics.time.toInt())
                 }
                 txtOutputFileSize.text = utils.bytesToHuman(statistics.size)
             }
