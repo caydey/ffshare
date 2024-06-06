@@ -119,7 +119,7 @@
             android:defaultValue=""
             android:title="@string/settings_custom_image_params" />
         <EditTextPreference
-            android:key="pref_custom_video_params"
+            android:key="pref_custom_audio_params"
             android:defaultValue=""
             android:title="@string/settings_custom_audio_params" />
     </PreferenceCategory>
