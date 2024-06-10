@@ -3,15 +3,20 @@ package com.caydey.ffshare
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.Button
 import android.widget.ListView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.caydey.ffshare.databinding.ActivityLogsBinding
+import com.caydey.ffshare.utils.Settings
 import com.caydey.ffshare.utils.logs.Log
 import com.caydey.ffshare.utils.logs.LogsDbHelper
 import timber.log.Timber
 
 class LogsActivity : AppCompatActivity() {
     private val logsDbHelper by lazy { LogsDbHelper(applicationContext) }
+    private val settings: Settings by lazy { Settings(applicationContext) }
 
     private lateinit var adapter: LogItemsAdapter
     private lateinit var logs: ArrayList<Log>
@@ -33,6 +38,17 @@ class LogsActivity : AppCompatActivity() {
         val listView = findViewById<ListView>(R.id.logsView)
         logs = logsDbHelper.getLogs()
         adapter = LogItemsAdapter(this, logs)
+
+        // Show message if logs are disabled
+        if (logs.isEmpty() && !settings.saveLogs) {
+            findViewById<TextView>(R.id.txtLogsDisabled).visibility = View.VISIBLE
+            val enableLogsBtn = findViewById<Button>(R.id.btnEnableLogs)
+            enableLogsBtn.visibility = View.VISIBLE
+            enableLogsBtn.setOnClickListener {
+                settings.saveLogs = true
+                recreate()
+            }
+        }
 
         // show log dialog on click
         listView.setOnItemClickListener { _, _, position, _ ->

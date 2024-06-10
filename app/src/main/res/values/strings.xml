@@ -13,12 +13,13 @@
     <string name="ffmpeg_error">Error compressing media</string>
     <string name="ffmpeg_canceled">Canceled</string>
 
-    <string name="log_output_copy">Copy</string>
     <string name="close">Close</string>
     <string name="ffmpegCommandTitle">FFmpeg command</string>
     <string name="ffmpegOutputTitle">FFmpeg output</string>
 
+    <string name="log_output_copy">Copy</string>
     <string name="log_copied_toast">Log Saved to Clipboard</string>
+    <string name="logs_disabled" translatable="false">Logs are disabled</string>
 
     <string name="title_activity_logs">Logs</string>
 
