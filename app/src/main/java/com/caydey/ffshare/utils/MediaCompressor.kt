@@ -312,10 +312,10 @@ class MediaCompressor(private val context: Context) {
             if (resolution > maxResolution && maxResolution != 0) {
                 if (isPortrait) {
                     // rescale width
-                    videoFormatParams.add("scale=$maxResolution:-1,setsar=1")
+                    videoFormatParams.add("scale=$maxResolution:-2,setsar=1")
                 } else {
                     // rescale height
-                    videoFormatParams.add("scale=-1:$maxResolution,setsar=1")
+                    videoFormatParams.add("scale=-2:$maxResolution,setsar=1")
                 }
             }
         }
