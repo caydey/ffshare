@@ -30,6 +30,7 @@ class MediaCompressor(private val context: Context) {
     private val logsDbHelper by lazy { LogsDbHelper(context) }
 
 
+
     fun cancelAllOperations() {
         Timber.d("Canceling all ffmpeg operations")
         FFmpegKit.cancel()
@@ -270,10 +271,8 @@ class MediaCompressor(private val context: Context) {
                         videoFormatParams.add("crop=trunc(iw/2)*2:trunc(ih/2)*2")
                         // could also use "pad=ceil(iw/2)*2:ceil(ih/2)*2" to add column/row of black pixels
                     }
-
                 }
             }
-
 
             //  max file size (limit the bitrate to achieve this)
             if (settings.videoMaxFileSize != 0) {
