@@ -263,11 +263,14 @@ class MediaCompressor(private val context: Context) {
 
             // h264 codec for mp4
             if (outputMediaType == Utils.MediaType.MP4) {
-                params.add("-c:v h264")
-                // h264 requires dimensions to be divisible by 2, crop frames to be divisible by 2
-                if (mediaInformation.streams[0].width % 2 != 0L || mediaInformation.streams[0].height % 2 != 0L) {
-                    videoFormatParams.add("crop=trunc(iw/2)*2:trunc(ih/2)*2")
-                    // could also use "pad=ceil(iw/2)*2:ceil(ih/2)*2" to add column/row of black pixels
+                params.add("-c:v ${settings.videoCodec.raw}")
+                if (settings.videoCodec in setOf(Settings.VideoCodecOpts.LIBX264, Settings.VideoCodecOpts.LIBX265)) {
+                    // H.26x requires dimensions to be divisible by 2, crop frames to be divisible by 2
+                    if (mediaInformation.streams[0].width % 2 != 0L || mediaInformation.streams[0].height % 2 != 0L) {
+                        videoFormatParams.add("crop=trunc(iw/2)*2:trunc(ih/2)*2")
+                        // could also use "pad=ceil(iw/2)*2:ceil(ih/2)*2" to add column/row of black pixels
+                    }
+
                 }
             }
 

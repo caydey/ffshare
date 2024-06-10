@@ -63,6 +63,18 @@
         <item>102400</item>
     </string-array>
 
+    <string-array name="settings_video_codec">
+        <item>H.264</item>
+        <item>H.265/HEVC</item>
+        <item>MPEG-4</item>
+    </string-array>
+
+    <string-array name="settings_video_codec_values">
+        <item>LIBX264</item>
+        <item>LIBX265</item>
+        <item>MPEG4</item>
+    </string-array>
+
     <string-array name="settings_max_resolution">
         <item>360p</item>
         <item>480p</item>

@@ -6,11 +6,11 @@ import androidx.preference.*
 class PreferencesFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.preferences, rootKey)
-        dynamicallyShowCustomName();
-        dynamicallyAddCustomParamTooltips();
+        dynamicallyShowCustomName()
+        dynamicallyAddCustomParamTooltips()
     }
     private fun dynamicallyAddCustomParamTooltips() {
-        val customParamKeys = arrayOf("pref_custom_video_params", "pref_custom_audio_params", "pref_custom_image_params");
+        val customParamKeys = arrayOf("pref_custom_video_params", "pref_custom_audio_params", "pref_custom_image_params")
         for (customParamKey in customParamKeys) {
             val element = findPreference<EditTextPreference>(customParamKey)
             element?.summaryProvider = EditTextPreference.SimpleSummaryProvider.getInstance()

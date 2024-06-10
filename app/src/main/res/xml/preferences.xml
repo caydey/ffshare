@@ -54,7 +54,6 @@
             android:title="@string/settings_convert_gif_to_mp4" />
     </PreferenceCategory>
 
-
     <PreferenceCategory
         android:key="prefs_compression"
         android:title="@string/settings_compression_options_title">
@@ -88,6 +87,14 @@
             android:summary="@string/settings_video_max_file_size_summary"
             android:entries="@array/settings_video_max_file_size"
             android:entryValues="@array/settings_video_max_file_size_values" />
+
+        <ListPreference
+            android:key="pref_video_codec"
+            android:defaultValue="libx264"
+            android:summary="%s"
+            android:title="@string/settings_video_codec"
+            android:entries="@array/settings_video_codec"
+            android:entryValues="@array/settings_video_codec_values" />
 
         <ListPreference
             android:key="pref_max_video_resolution"
