@@ -70,7 +70,10 @@
     <string name="settings_convert_audios_to_mp3">Convert all audio formats to mp3</string>
     <string name="settings_convert_images_to_jpg" tools:ignore="MissingTranslation">Convert all image formats to jpg</string>
 
-    <string name="settings_convert_gif_to_mp4">Convert gif to mp4</string>
+    <string name="settings_convert_image_output" tools:ignore="MissingTranslation">Image file output extension</string>
+    <string name="settings_convert_video_output" tools:ignore="MissingTranslation">Video file output extension</string>
+    <string name="settings_convert_audio_output" tools:ignore="MissingTranslation">Audio file output extension</string>
+    <string name="settings_treat_gifs_as_videos">Treat GIFs as videos</string>
 
     <string name="settings_copy_exif_tags">Preserve Exif tags</string>
     <string name="settings_copy_exif_tags_summary">Preserve Exif tags for output files</string>
