@@ -67,7 +67,7 @@
 
     <string name="settings_convert_audios_to_mp3">Tüm ses formatlarını mp3\'e dönüştürün</string>
 
-    <string name="settings_convert_gif_to_mp4">GIF\'i mp4\'e dönüştür</string>
+    <string name="settings_treat_gifs_as_videos">GIF\'i mp4\'e dönüştür</string>
 
     <string name="settings_copy_exif_tags">Exif etiketlerini koru</string>
     <string name="settings_copy_exif_tags_summary">Çıktı dosyaları için Exif etiketlerini koru (yalnızca jpeg ve png görüntüleri için etiketleri korur)</string>

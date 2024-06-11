@@ -34,24 +34,36 @@
     <PreferenceCategory
         android:key="prefs_conversions"
         android:title="@string/settings_conversions_options_title">
-        <SwitchPreference
-            android:key="pref_convert_videos_to_mp4"
-            android:defaultValue="true"
-            android:title="@string/settings_convert_videos_to_mp4" />
+        <ListPreference
+            android:key="pref_convert_image_output"
+            android:defaultValue="UNKNOWN"
+            android:summary="%s"
+            android:title="@string/settings_convert_image_output"
+            android:entries="@array/settings_convert_image_output"
+            android:entryValues="@array/settings_convert_image_output_values"
+            />
+        <ListPreference
+            android:key="pref_convert_video_output"
+            android:defaultValue="UNKNOWN"
+            android:summary="%s"
+            android:title="@string/settings_convert_video_output"
+            android:entries="@array/settings_convert_video_output"
+            android:entryValues="@array/settings_convert_video_output_values"
+            />
+        <ListPreference
+            android:key="pref_convert_audio_output"
+            android:defaultValue="UNKNOWN"
+            android:summary="%s"
+            android:title="@string/settings_convert_audio_output"
+            android:entries="@array/settings_convert_audio_output"
+            android:entryValues="@array/settings_convert_audio_output_values"
+            />
 
         <SwitchPreference
-            android:key="pref_convert_audios_to_mp3"
-            android:defaultValue="true"
-            android:title="@string/settings_convert_audios_to_mp3" />
-        <SwitchPreference
-            android:key="pref_convert_images_to_jpg"
-            android:defaultValue="true"
-            android:title="@string/settings_convert_images_to_jpg" />
-
-        <SwitchPreference
-            android:key="pref_convert_gif_to_mp4"
+            android:key="pref_treat_gifs_as_videos"
             android:defaultValue="false"
-            android:title="@string/settings_convert_gif_to_mp4" />
+            android:title="@string/settings_treat_gifs_as_videos"
+            />
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -90,7 +102,7 @@
 
         <ListPreference
             android:key="pref_video_codec"
-            android:defaultValue="libx264"
+            android:defaultValue="LIBX264"
             android:summary="%s"
             android:title="@string/settings_video_codec"
             android:entries="@array/settings_video_codec"

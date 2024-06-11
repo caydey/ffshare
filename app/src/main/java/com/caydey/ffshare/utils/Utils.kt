@@ -36,29 +36,23 @@ class Utils(private val context: Context) {
         return Pair(outputFile, fileExtension)
     }
     private fun getOutputFileMediaType(inputFileMediaType: MediaType): MediaType {
-        // change extension if settings wants
-        if (settings.convertVideosToMp4) {
-            if (isVideo(inputFileMediaType)) {
-                return MediaType.MP4
+        var outputMediaType: MediaType = MediaType.UNKNOWN
+        if (isVideo(inputFileMediaType)) {
+            outputMediaType = settings.videoConversionOutput;
+        } else if (isImage(inputFileMediaType)) {
+            if (settings.treatGifsAsVideos && inputFileMediaType == MediaType.GIF) {
+                outputMediaType = settings.videoConversionOutput
+            } else {
+                outputMediaType = settings.imageConversionOutput
             }
+        } else if (isAudio(inputFileMediaType)) {
+            outputMediaType = settings.audioConversionOutput
         }
-        if (settings.convertAudiosToMp3) {
-            if (isAudio(inputFileMediaType)) {
-                return MediaType.MP3
-            }
+
+        if (outputMediaType == MediaType.UNKNOWN) {
+            outputMediaType = inputFileMediaType;
         }
-        if (settings.convertGifToMp4) {
-            if (inputFileMediaType == MediaType.GIF) {
-                return MediaType.MP4
-            }
-        }
-        if (settings.convertImagesToJpg) {
-            if (isImage(inputFileMediaType)) {
-                return MediaType.JPEG
-            }
-        }
-        // no conversions
-        return inputFileMediaType
+        return outputMediaType
     }
     private fun makeCacheUUIDFolder(): File {
         val cacheUUIDFolder = File(context.mediaCacheDir, UUID.randomUUID().toString())
@@ -222,7 +216,7 @@ class Utils(private val context: Context) {
 
     enum class MediaType {
         MP4, MKV, WEBM, AVI, // videos
-        JPEG, PNG, GIF, WEBP, // images
+        JPEG, JPG, PNG, GIF, WEBP, // images
         MP3, OGG, AAC, WAV, // audios
         UNKNOWN
     }

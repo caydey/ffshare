@@ -67,7 +67,7 @@
 
     <string name="settings_convert_audios_to_mp3">Convertir todos los formatos de audio a mp3</string>
 
-    <string name="settings_convert_gif_to_mp4">Convertir gif a mp4</string>
+    <string name="settings_treat_gifs_as_videos">Convertir gif a mp4</string>
 
     <string name="settings_copy_exif_tags">Conservar etiquetas EXIF</string>
     <string name="settings_copy_exif_tags_summary">Conservar etiquetas Exif en el fichero de salida (de aplicación sólo para imágenes jpeg y png)</string>

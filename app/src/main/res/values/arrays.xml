@@ -12,6 +12,51 @@
         <item>CUSTOM</item>
     </array>
 
+    <array name="settings_convert_image_output">
+        <item>original</item>
+        <item>.jpeg</item>
+        <item>.jpg</item>
+        <item>.png</item>
+        <item>.gif</item>
+        <item>.webp</item>
+    </array>
+    <array name="settings_convert_image_output_values">
+        <item>UNKNOWN</item>
+        <item>JPEG</item>
+        <item>JPG</item>
+        <item>PNG</item>
+        <item>GIF</item>
+        <item>WEBP</item>
+    </array>
+    <array name="settings_convert_video_output">
+        <item>original</item>
+        <item>.mp4</item>
+        <item>.mkv</item>
+        <item>.webm</item>
+        <item>.avi</item>
+    </array>
+    <array name="settings_convert_video_output_values">
+        <item>UNKNOWN</item>
+        <item>MP4</item>
+        <item>MKV</item>
+        <item>WEBM</item>
+        <item>AVI</item>
+    </array>
+    <array name="settings_convert_audio_output">
+        <item>original</item>
+        <item>.mp3</item>
+        <item>.ogg</item>
+        <item>.acc</item>
+        <item>.wav</item>
+    </array>
+    <array name="settings_convert_audio_output_values">
+        <item>UNKNOWN</item>
+        <item>MP3</item>
+        <item>OGG</item>
+        <item>ACC</item>
+        <item>WAV</item>
+    </array>
+
     <string-array name="settings_jpeg_qscale">
         <item>1</item><item>2</item><item>3</item><item>4</item>
         <item>5</item><item>6</item><item>7</item><item>8</item><item>9</item>
@@ -68,7 +113,6 @@
         <item>H.265/HEVC</item>
         <item>MPEG-4</item>
     </string-array>
-
     <string-array name="settings_video_codec_values">
         <item>LIBX264</item>
         <item>LIBX265</item>

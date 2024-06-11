@@ -2,7 +2,6 @@ package com.caydey.ffshare.utils
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.provider.MediaStore.Video
 
 import androidx.preference.PreferenceManager
 
@@ -34,21 +33,28 @@ class Settings(private val context: Context) {
         get() = preferences.getString(COMPRESSED_MEDIA_CUSTOM_NAME, "")!!
         set(value) = setPreference(COMPRESSED_MEDIA_CUSTOM_NAME, value)
 
-    var convertVideosToMp4: Boolean
-        get() = preferences.getBoolean(CONVERT_VIDEOS_TO_MP4, true)
-        set(value) = setPreference(CONVERT_VIDEOS_TO_MP4, value)
+    var videoConversionOutput: Utils.MediaType // UNKNOWN for original
+        get() {
+            val preferencesString = preferences.getString(CONVERT_VIDEO_OUTPUT, Utils.MediaType.UNKNOWN.name)!!
+            return Utils.MediaType.valueOf(preferencesString) // convert string to enum
+        }
+        set(value) = setPreference(COMPRESSED_MEDIA_NAME, value.toString())
+    var imageConversionOutput: Utils.MediaType // UNKNOWN for original
+        get() {
+            val preferencesString = preferences.getString(CONVERT_IMAGE_OUTPUT, Utils.MediaType.UNKNOWN.name)!!
+            return Utils.MediaType.valueOf(preferencesString) // convert string to enum
+        }
+        set(value) = setPreference(CONVERT_IMAGE_OUTPUT, value.toString())
+    var audioConversionOutput: Utils.MediaType // UNKNOWN for original
+        get() {
+            val preferencesString = preferences.getString(CONVERT_AUDIO_OUTPUT, Utils.MediaType.UNKNOWN.name)!!
+            return Utils.MediaType.valueOf(preferencesString) // convert string to enum
+        }
+        set(value) = setPreference(CONVERT_AUDIO_OUTPUT, value.toString())
 
-    var convertAudiosToMp3: Boolean
-        get() = preferences.getBoolean(CONVERT_AUDIOS_TO_MP3, true)
-        set(value) = setPreference(CONVERT_AUDIOS_TO_MP3, value)
-
-    var convertImagesToJpg: Boolean
-        get() = preferences.getBoolean(CONVERT_IMAGES_TO_JPG, true)
-        set(value) = setPreference(CONVERT_IMAGES_TO_JPG, value)
-
-    var convertGifToMp4: Boolean
-        get() = preferences.getBoolean(CONVERT_GIF_TO_MP4, false)
-        set(value) = setPreference(CONVERT_GIF_TO_MP4, value)
+    var treatGifsAsVideos: Boolean
+        get() = preferences.getBoolean(TREAT_GIFS_AS_VIDEOS, false)
+        set(value) = setPreference(TREAT_GIFS_AS_VIDEOS, value)
 
     var showStatusMessages: Boolean
         get() = preferences.getBoolean(SHOW_STATUS_MESSAGES, true)
@@ -123,10 +129,10 @@ class Settings(private val context: Context) {
     companion object {
         const val COMPRESSED_MEDIA_NAME = "pref_compressed_media_name"
         const val COMPRESSED_MEDIA_CUSTOM_NAME = "pref_compressed_media_custom_name"
-        const val CONVERT_VIDEOS_TO_MP4 = "pref_convert_videos_to_mp4"
-        const val CONVERT_AUDIOS_TO_MP3 = "pref_convert_audios_to_mp3"
-        const val CONVERT_IMAGES_TO_JPG = "pref_convert_images_to_jpg"
-        const val CONVERT_GIF_TO_MP4 = "pref_convert_gif_to_mp4"
+        const val CONVERT_VIDEO_OUTPUT = "pref_convert_video_output"
+        const val CONVERT_IMAGE_OUTPUT = "pref_convert_image_output"
+        const val CONVERT_AUDIO_OUTPUT = "pref_convert_audio_output"
+        const val TREAT_GIFS_AS_VIDEOS = "pref_treat_gifs_as_videos"
         const val SHOW_STATUS_MESSAGES = "pref_show_status_messages"
         const val VIDEO_CRF = "pref_video_crf"
         const val JPEG_QSCALE = "pref_jpeg_qscale"

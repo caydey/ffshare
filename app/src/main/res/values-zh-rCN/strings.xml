@@ -67,7 +67,7 @@
 
     <string name="settings_convert_audios_to_mp3">转换所有音频格式到MP3</string>
 
-    <string name="settings_convert_gif_to_mp4">转换GIF到MP4</string>
+    <string name="settings_treat_gifs_as_videos">转换GIF到MP4</string>
 
     <string name="settings_copy_exif_tags">保留Exif标签</string>
     <string name="settings_copy_exif_tags_summary">为输出文件保留Exif标签</string>
