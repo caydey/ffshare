@@ -16,3 +16,4 @@ local.properties
 /app/release
 
 /github_releases
+/test_files
