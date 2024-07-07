@@ -13,9 +13,21 @@ class Settings(private val context: Context) {
     }
 
     enum class VideoCodecOpts(val raw: String) {
+        COPY("copy"),
+        DEFAULT(""),
         LIBX264("libx264"),
         LIBX265("libx265"),
+        VP9("libvpx-vp9"),
         MPEG4("mpeg4")
+    }
+
+    enum class AudioCodecOpts(val raw: String) {
+        COPY("copy"),
+        DEFAULT(""),
+        AAC("aac"),
+        AC3("ac3"),
+        OPUS("libopus"),
+        FLAC("flac")
     }
 
     private val preferences: SharedPreferences
@@ -103,6 +115,13 @@ class Settings(private val context: Context) {
         }
         set(value) = setPreference(VIDEO_CODEC, value.toString())
 
+    var audioCodec: AudioCodecOpts
+        get() {
+            val audioCodecString = preferences.getString(AUDIO_CODEC, AudioCodecOpts.COPY.name)!!
+            return AudioCodecOpts.valueOf(audioCodecString) // convert string to enum
+        }
+        set(value) = setPreference(AUDIO_CODEC, value.toString())
+
     var customVideoParams: String
         get() = preferences.getString(CUSTOM_VIDEO_PARAMS, "")!!
         set(value) = setPreference(CUSTOM_VIDEO_PARAMS, value)
@@ -144,6 +163,7 @@ class Settings(private val context: Context) {
         const val SAVE_LOGS = "pref_save_logs"
         const val COMPRESSION_PRESET = "pref_compression_preset"
         const val VIDEO_CODEC = "pref_video_codec"
+        const val AUDIO_CODEC = "pref_audio_codec"
         const val CUSTOM_VIDEO_PARAMS = "pref_custom_video_params"
         const val CUSTOM_IMAGE_PARAMS = "pref_custom_image_params"
         const val CUSTOM_AUDIO_PARAMS = "pref_custom_audio_params"

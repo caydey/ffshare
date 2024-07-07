@@ -109,14 +109,35 @@
     </string-array>
 
     <string-array name="settings_video_codec">
+        <item>Copy</item>
+        <item>Do not specify (let ffmpeg decide)</item>
         <item>H.264</item>
         <item>H.265/HEVC</item>
+        <item>VP9</item>
         <item>MPEG-4</item>
     </string-array>
     <string-array name="settings_video_codec_values">
+        <item>COPY</item>
+        <item>DEFAULT</item>
         <item>LIBX264</item>
         <item>LIBX265</item>
+        <item>VP9</item>
         <item>MPEG4</item>
+    </string-array>
+
+    <string-array name="settings_audio_codec">
+        <item>Copy</item>
+        <item>Do not specify (let ffmpeg decide)</item>
+        <item>AAC</item>
+        <item>AC-3</item>
+        <item>Opus</item>
+    </string-array>
+    <string-array name="settings_audio_codec_values">
+        <item>COPY</item>
+        <item>DEFAULT</item>
+        <item>AAC</item>
+        <item>AC3</item>
+        <item>OPUS</item>
     </string-array>
 
     <string-array name="settings_max_resolution">

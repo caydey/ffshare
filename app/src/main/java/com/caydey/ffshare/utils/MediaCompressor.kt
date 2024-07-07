@@ -16,7 +16,6 @@ import androidx.core.content.FileProvider
 import com.arthenica.ffmpegkit.FFmpegKit
 import com.arthenica.ffmpegkit.FFmpegKitConfig
 import com.arthenica.ffmpegkit.FFprobeKit
-import com.arthenica.ffmpegkit.MediaInformation
 import com.caydey.ffshare.R
 import com.caydey.ffshare.utils.logs.Log
 import com.caydey.ffshare.utils.logs.LogsDbHelper
@@ -29,7 +28,7 @@ class MediaCompressor(private val context: Context) {
     private val settings: Settings by lazy { Settings(context) }
     private val logsDbHelper by lazy { LogsDbHelper(context) }
 
-
+    private val ffmpegParamMaker = FFmpegParamMaker(settings, utils)
 
     fun cancelAllOperations() {
         Timber.d("Canceling all ffmpeg operations")
@@ -108,7 +107,7 @@ class MediaCompressor(private val context: Context) {
             duration = (mediaInformation.duration.toFloat() * 1_000).toInt()
         }
 
-        val params = createFFmpegParams(inputFileUri, mediaInformation, mediaType, outputMediaType)
+        val params = ffmpegParamMaker.create(inputFileUri, mediaInformation, mediaType, outputMediaType)
         val inputSaf: String = FFmpegKitConfig.getSafParameterForRead(context, inputFileUri)
         val outputSaf: String = FFmpegKitConfig.getSafParameterForWrite(context, outputFileUri)
         val command = "-y -i $inputSaf $params $outputSaf"
@@ -239,99 +238,4 @@ class MediaCompressor(private val context: Context) {
         iteratorFunction(0, false) // start iterations
     }
 
-    private fun createFFmpegParams(inputFile: Uri, mediaInformation: MediaInformation, mediaType: Utils.MediaType, outputMediaType: Utils.MediaType): String {
-        // custom params
-        if (utils.isImage(outputMediaType) && settings.customImageParams.isNotEmpty()) return settings.customImageParams
-        if (utils.isVideo(outputMediaType) && settings.customVideoParams.isNotEmpty()) return settings.customVideoParams
-        if (utils.isAudio(outputMediaType) && settings.customAudioParams.isNotEmpty()) return settings.customAudioParams
-
-        val params = StringJoiner(" ")
-
-        // preset, webp does not support this
-        if (outputMediaType != Utils.MediaType.WEBP) {
-            params.add("-preset ${settings.compressionPreset}")
-        }
-
-        val videoFormatParams = StringJoiner(",")
-
-        // video
-        if (utils.isVideo(outputMediaType)) { // check outputMediaType not mediaType because conversions
-            // crf
-            params.add("-crf ${settings.videoCrf}")
-
-            // pixel format
-            videoFormatParams.add("format=yuv420p")
-
-            // h264 codec for mp4
-            if (outputMediaType == Utils.MediaType.MP4) {
-                params.add("-c:v ${settings.videoCodec.raw}")
-                if (settings.videoCodec in setOf(Settings.VideoCodecOpts.LIBX264, Settings.VideoCodecOpts.LIBX265)) {
-                    // H.26x requires dimensions to be divisible by 2, crop frames to be divisible by 2
-                    val stream = mediaInformation.streams[0]
-                    if (stream?.width?.rem(2) != 0L || stream?.height?.rem(2) != 0L) {
-                        videoFormatParams.add("crop=trunc(iw/2)*2:trunc(ih/2)*2")
-                        // could also use "pad=ceil(iw/2)*2:ceil(ih/2)*2" to add column/row of black pixels
-                    }
-                }
-            }
-
-            //  max file size (limit the bitrate to achieve this)
-            if (settings.videoMaxFileSize != 0) {
-                // ffmpeg does not like -maxrate & -bufsize params when the output file is webm
-                if (outputMediaType != Utils.MediaType.WEBM) {
-                    val maxBitrate = (settings.videoMaxFileSize / mediaInformation.duration.toFloat().toInt())
-                    Timber.d("Maximum bitrate for targeted filesize (%dK): %dk", settings.videoMaxFileSize, maxBitrate)
-
-                    // audio can have at most one third of the total bitrate
-                    val audioSplit = maxBitrate / 3
-                    // round audio bitrate down to 192,128,96,64,32,24
-                    val audioBitrate = if (audioSplit > 192) 192 // maximum audio bitrate is 192k
-                    else if (audioSplit > 128) 128
-                    else if (audioSplit > 96) 96
-                    else if (audioSplit > 64) 64
-                    else if (audioSplit > 32) 32
-                    else 24 // minimum audio bitrate is 24k
-
-                    // set audio bitrate
-                    params.add("-b:a ${audioBitrate}k")
-
-                    // set max video bitrate
-                    val videoBitrate = (maxBitrate - audioBitrate)
-                    params.add("-maxrate ${videoBitrate}k -bufsize ${videoBitrate}k")
-                }
-            }
-        }
-
-        // max resolution (only affects videos and images)
-        if (utils.isVideo(mediaType) || utils.isImage(mediaType)) {
-            val (resolutionWidth, resolutionHeight) = utils.getMediaResolution(inputFile, mediaType)
-            // portrait is when height is bigger than width
-            val isPortrait = resolutionHeight > resolutionWidth
-            // the resolution is the smaller of the dimensions
-            val resolution = if (isPortrait) resolutionWidth else resolutionHeight
-            // get max resolution from settings
-            val maxResolution = if (utils.isImage(mediaType)) settings.maxImageResolution else settings.maxVideoResolution
-            // only reduce resolution
-            if (resolution > maxResolution && maxResolution != 0) {
-                if (isPortrait) {
-                    // rescale width
-                    videoFormatParams.add("scale=$maxResolution:-2,setsar=1")
-                } else {
-                    // rescale height
-                    videoFormatParams.add("scale=-2:$maxResolution,setsar=1")
-                }
-            }
-        }
-
-        if (videoFormatParams.length() > 0) {
-            params.add("-vf \"$videoFormatParams\"")
-        }
-
-        // jpeg quality
-        if (mediaType == Utils.MediaType.JPEG) {
-            params.add("-qscale:v ${settings.jpegQscale}")
-        }
-
-        return params.toString()
-    }
 }

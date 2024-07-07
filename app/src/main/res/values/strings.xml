@@ -93,6 +93,7 @@
     <string name="settings_max_image_resolution_summary" tools:ignore="MissingTranslation">Reduce the image output resolution</string>
 
     <string name="settings_video_codec" tools:ignore="MissingTranslation">Video Codec</string>
+    <string name="settings_audio_codec" tools:ignore="MissingTranslation">Audio Codec</string>
 
     <string name="settings_custom_params_title" tools:ignore="MissingTranslation">Custom Parameters</string>
     <string name="settings_custom_params_summary" tools:ignore="MissingTranslation">If set, only these parameters will be used</string>

@@ -109,6 +109,14 @@
             android:entryValues="@array/settings_video_codec_values" />
 
         <ListPreference
+            android:key="pref_audio_codec"
+            android:defaultValue="COPY"
+            android:summary="%s"
+            android:title="@string/settings_audio_codec"
+            android:entries="@array/settings_audio_codec"
+            android:entryValues="@array/settings_audio_codec_values" />
+
+        <ListPreference
             android:key="pref_max_video_resolution"
             android:defaultValue="1080"
             android:title="@string/settings_max_video_resolution"
