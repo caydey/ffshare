@@ -38,6 +38,12 @@ class SettingsVersionUpdater(private val context: Context) {
         if ((latest in 6 ..14 || latest == 0) && current >= 15) {
             maxResolutionToVideoMaxResolution()
         }
+
+        // Version 21 (1.3.2) refactored video codec in preferences from LIBX26* to H26*
+        // Affects versions 19 (1.3.0) and later
+        if ((latest in 19 .. 20) && current >= 21) {
+            videoCodecPreferencesValueRefactor();
+        }
     }
 
     private fun maxResolutionToVideoMaxResolution() {
@@ -52,5 +58,19 @@ class SettingsVersionUpdater(private val context: Context) {
         val maxFileSize = settings.videoMaxFileSize
         // convert to kib
         settings.videoMaxFileSize = maxFileSize * 1024
+    }
+
+    private fun videoCodecPreferencesValueRefactor() {
+        Timber.d("converting video codec settings value from libx26* to h26*")
+        val oldVideoCodec = preferences.getString("pref_video_codec", Settings.VideoCodecOpts.DEFAULT.toString())
+
+        val newVideoCodec = when (oldVideoCodec) {
+            "LIBX264" -> "H264"
+            "LIBX265" -> "H265"
+            else -> null
+        }
+        if (newVideoCodec != null) {
+            preferences.edit().putString("pref_video_codec", newVideoCodec).apply()
+        }
     }
 }

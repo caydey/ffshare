@@ -20,8 +20,8 @@ class FFmpegParamMaker(val settings: Settings, val utils: Utils) {
             params.add("-preset ${settings.compressionPreset}")
         }
 
-        // add audio codec
         if (utils.isAudio(mediaType) || utils.isVideo(mediaType)) {
+            // add audio codec
             if (settings.audioCodec != Settings.AudioCodecOpts.DEFAULT) {
                 params.add("-c:a ${settings.audioCodec.raw}")
             }
@@ -39,7 +39,7 @@ class FFmpegParamMaker(val settings: Settings, val utils: Utils) {
                 videoScaleApplied = true
                 var pixelRounding = "-1"
                 // H.26x videos require dimensions to be divisible by 2
-                if (utils.isVideo(outputMediaType) && settings.videoCodec in setOf(Settings.VideoCodecOpts.LIBX264, Settings.VideoCodecOpts.LIBX265)) {
+                if (utils.isVideo(outputMediaType) && settings.videoCodec in setOf(Settings.VideoCodecOpts.H264, Settings.VideoCodecOpts.H265)) {
                     pixelRounding = "-2"
 
                 }

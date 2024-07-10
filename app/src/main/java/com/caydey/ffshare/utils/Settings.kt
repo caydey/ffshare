@@ -15,8 +15,8 @@ class Settings(private val context: Context) {
     enum class VideoCodecOpts(val raw: String) {
         COPY("copy"),
         DEFAULT(""),
-        LIBX264("libx264"),
-        LIBX265("libx265"),
+        H264("libx264"),
+        H265("libx265"),
         VP9("libvpx-vp9"),
         MPEG4("mpeg4")
     }
@@ -110,7 +110,7 @@ class Settings(private val context: Context) {
 
     var videoCodec: VideoCodecOpts
         get() {
-            val videoCodecString = preferences.getString(VIDEO_CODEC, VideoCodecOpts.LIBX264.name)!!
+            val videoCodecString = preferences.getString(VIDEO_CODEC, VideoCodecOpts.H264.name)!!
             return VideoCodecOpts.valueOf(videoCodecString) // convert string to enum
         }
         set(value) = setPreference(VIDEO_CODEC, value.toString())

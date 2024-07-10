@@ -119,8 +119,8 @@
     <string-array name="settings_video_codec_values">
         <item>COPY</item>
         <item>DEFAULT</item>
-        <item>LIBX264</item>
-        <item>LIBX265</item>
+        <item>H264</item>
+        <item>H265</item>
         <item>VP9</item>
         <item>MPEG4</item>
     </string-array>
