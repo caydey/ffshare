@@ -1,15 +1,61 @@
+
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="settings_compressed_media_name">
-        <item>ÂéüÂßãÊñá‰ª∂Âêç</item>
+        <item>‘≠ ºŒƒº˛√˚</item>
         <item>UUID</item>
-        <item>Ëá™ÂÆö‰πâ</item>
+        <item>◊‘∂®“Â</item>
     </array>
 
     <array name="settings_compressed_media_name_values">
         <item>ORIGINAL</item>
         <item>UUID</item>
         <item>CUSTOM</item>
+    </array>
+
+    <array name="settings_convert_image_output">
+        <item>‘≠ º</item>
+        <item>.jpeg</item>
+        <item>.jpg</item>
+        <item>.png</item>
+        <item>.gif</item>
+        <item>.webp</item>
+    </array>
+    <array name="settings_convert_image_output_values">
+        <item>UNKNOWN</item>
+        <item>JPEG</item>
+        <item>JPG</item>
+        <item>PNG</item>
+        <item>GIF</item>
+        <item>WEBP</item>
+    </array>
+    <array name="settings_convert_video_output">
+        <item>‘≠ º</item>
+        <item>.mp4</item>
+        <item>.mkv</item>
+        <item>.webm</item>
+        <item>.avi</item>
+    </array>
+    <array name="settings_convert_video_output_values">
+        <item>UNKNOWN</item>
+        <item>MP4</item>
+        <item>MKV</item>
+        <item>WEBM</item>
+        <item>AVI</item>
+    </array>
+    <array name="settings_convert_audio_output">
+        <item>‘≠ º</item>
+        <item>.mp3</item>
+        <item>.ogg</item>
+        <item>.acc</item>
+        <item>.wav</item>
+    </array>
+    <array name="settings_convert_audio_output_values">
+        <item>UNKNOWN</item>
+        <item>MP3</item>
+        <item>OGG</item>
+        <item>ACC</item>
+        <item>WAV</item>
     </array>
 
     <string-array name="settings_jpeg_qscale">
@@ -37,7 +83,7 @@
     </string-array>
 
     <string-array name="settings_video_max_file_size">
-        <item>‰∏çÈôêÂà∂</item>
+        <item>≤ªœﬁ÷∆</item>
         <item>512K</item>
         <item>1M</item>
         <item>2M</item>
@@ -63,13 +109,44 @@
         <item>102400</item>
     </string-array>
 
+    <string-array name="settings_video_codec">
+        <item>Copy£®≤ª÷ÿ–¬±‡¬Î£©</item>
+        <item>≤ª÷∏∂®£®»√FFmpegæˆ∂®£©</item>
+        <item>H.264</item>
+        <item>H.265/HEVC</item>
+        <item>VP9</item>
+        <item>MPEG-4</item>
+    </string-array>
+    <string-array name="settings_video_codec_values">
+        <item>COPY</item>
+        <item>DEFAULT</item>
+        <item>H264</item>
+        <item>H265</item>
+        <item>VP9</item>
+        <item>MPEG4</item>
+    </string-array>
+
+    <string-array name="settings_audio_codec">
+        <item>Copy£®≤ª÷ÿ–¬±‡¬Î£©</item>
+        <item>≤ª÷∏∂®£®»√FFmpegæˆ∂®£©</item>
+        <item>AAC</item>
+        <item>AC-3</item>
+        <item>Opus</item>
+    </string-array>
+    <string-array name="settings_audio_codec_values">
+        <item>COPY</item>
+        <item>DEFAULT</item>
+        <item>AAC</item>
+        <item>AC3</item>
+        <item>OPUS</item>
+    </string-array>
     <string-array name="settings_max_resolution">
         <item>360p</item>
         <item>480p</item>
         <item>720p</item>
         <item>1080p</item>
         <item>2160p</item>
-        <item>‰∏çÈôêÂà∂</item>
+        <item>≤ªœﬁ÷∆</item>
     </string-array>
     <string-array name="settings_max_resolution_values">
         <item>360</item>
