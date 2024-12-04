@@ -54,7 +54,8 @@ class FFmpegParamMaker(val settings: Settings, val utils: Utils) {
         // video
         if (utils.isVideo(outputMediaType)) { // check outputMediaType not mediaType because conversions
             // crf
-            params.add("-crf ${settings.videoCrf}")
+            val crf = if (settings.videoCrf in 0..51) settings.videoCrf else 23
+            params.add("-crf $crf")
 
             // pixel format
             videoFormatParams.add("format=yuv420p")

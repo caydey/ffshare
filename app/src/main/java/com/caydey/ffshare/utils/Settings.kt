@@ -73,8 +73,15 @@ class Settings(private val context: Context) {
         set(value) = setPreference(SHOW_STATUS_MESSAGES, value)
 
     var videoCrf: Int
-        get() = preferences.getString(VIDEO_CRF, "23")!!.toInt()
-        set(value) = setPreference(VIDEO_CRF, value.toString())
+        get() {
+            val crf = preferences.getString(VIDEO_CRF, "23")!!.toInt()
+            return if (crf in 0..51) crf else 23
+        }
+        set(value) {
+            if (value in 0..51) {
+                setPreference(VIDEO_CRF, value.toString())
+            }
+        }
 
     var jpegQscale: Int
         get() = preferences.getString(JPEG_QSCALE, "10")!!.toInt()

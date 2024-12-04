@@ -107,7 +107,15 @@ class MediaCompressor(private val context: Context) {
             duration = (mediaInformation.duration.toFloat() * 1_000).toInt()
         }
 
-        val params = ffmpegParamMaker.create(inputFileUri, mediaInformation, mediaType, outputMediaType)
+        val params = try {
+            ffmpegParamMaker.create(inputFileUri, mediaInformation, mediaType, outputMediaType)
+        } catch (e: Exception) {
+            Timber.e(e, "Error generating FFmpeg parameters")
+            Toast.makeText(context, context.getString(R.string.ffmpeg_error), Toast.LENGTH_LONG).show()
+            failureHandler()
+            return
+        }
+
         val inputSaf: String = FFmpegKitConfig.getSafParameterForRead(context, inputFileUri)
         val outputSaf: String = FFmpegKitConfig.getSafParameterForWrite(context, outputFileUri)
         val command = "-y -i $inputSaf $params $outputSaf"
