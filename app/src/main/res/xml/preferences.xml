@@ -110,7 +110,7 @@
 
         <ListPreference
             android:key="pref_audio_codec"
-            android:defaultValue="COPY"
+            android:defaultValue="DEFAULT"
             android:summary="%s"
             android:title="@string/settings_audio_codec"
             android:entries="@array/settings_audio_codec"
