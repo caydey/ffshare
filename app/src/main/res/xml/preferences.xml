@@ -102,7 +102,7 @@
 
         <ListPreference
             android:key="pref_video_codec"
-            android:defaultValue="LIBX264"
+            android:defaultValue="H264"
             android:summary="%s"
             android:title="@string/settings_video_codec"
             android:entries="@array/settings_video_codec"
