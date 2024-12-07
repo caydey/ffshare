@@ -1,10 +1,9 @@
-
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="settings_compressed_media_name">
-        <item>Ô­Ê¼ÎÄ¼þÃû</item>
+        <item>Ô­Ê¼ï¿½Ä¼ï¿½ï¿½ï¿½</item>
         <item>UUID</item>
-        <item>×Ô¶¨Òå</item>
+        <item>ï¿½Ô¶ï¿½ï¿½ï¿½</item>
     </array>
 
     <array name="settings_compressed_media_name_values">
@@ -83,7 +82,7 @@
     </string-array>
 
     <string-array name="settings_video_max_file_size">
-        <item>²»ÏÞÖÆ</item>
+        <item>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</item>
         <item>512K</item>
         <item>1M</item>
         <item>2M</item>
@@ -110,8 +109,8 @@
     </string-array>
 
     <string-array name="settings_video_codec">
-        <item>Copy£¨²»ÖØÐÂ±àÂë£©</item>
-        <item>²»Ö¸¶¨£¨ÈÃFFmpeg¾ö¶¨£©</item>
+        <item>Copyï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â±ï¿½ï¿½ë£©</item>
+        <item>ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½FFmpegï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</item>
         <item>H.264</item>
         <item>H.265/HEVC</item>
         <item>VP9</item>
@@ -127,8 +126,8 @@
     </string-array>
 
     <string-array name="settings_audio_codec">
-        <item>Copy£¨²»ÖØÐÂ±àÂë£©</item>
-        <item>²»Ö¸¶¨£¨ÈÃFFmpeg¾ö¶¨£©</item>
+        <item>Copyï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â±ï¿½ï¿½ë£©</item>
+        <item>ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½FFmpegï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</item>
         <item>AAC</item>
         <item>AC-3</item>
         <item>Opus</item>
@@ -146,7 +145,7 @@
         <item>720p</item>
         <item>1080p</item>
         <item>2160p</item>
-        <item>²»ÏÞÖÆ</item>
+        <item>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</item>
     </string-array>
     <string-array name="settings_max_resolution_values">
         <item>360</item>
