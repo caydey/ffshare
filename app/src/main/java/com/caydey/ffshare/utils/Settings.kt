@@ -18,7 +18,18 @@ class Settings(private val context: Context) {
         H264("libx264"),
         H265("libx265"),
         VP9("libvpx-vp9"),
-        MPEG4("mpeg4")
+        MPEG4("mpeg4");
+        companion object {
+            fun parseCodec(codec: String): VideoCodecOpts {
+                return when (codec) {
+                    "h264" -> H264
+                    "hevc" -> H265
+                    "vp9" -> VP9
+                    "mpeg4" -> MPEG4
+                    else -> DEFAULT
+                }
+            }
+        }
     }
 
     enum class AudioCodecOpts(val raw: String) {
@@ -27,7 +38,18 @@ class Settings(private val context: Context) {
         AAC("aac"),
         AC3("ac3"),
         OPUS("libopus"),
-        FLAC("flac")
+        FLAC("flac");
+        companion object {
+            fun parseCodec(codec: String): AudioCodecOpts {
+                return when (codec) {
+                    "aac" -> AAC
+                    "ac3" -> AC3
+                    "opus" -> OPUS
+                    "flac" -> FLAC
+                    else -> DEFAULT
+                }
+            }
+        }
     }
 
     private val preferences: SharedPreferences

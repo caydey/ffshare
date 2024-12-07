@@ -15,6 +15,8 @@ class FFmpegParamMaker(val settings: Settings, val utils: Utils) {
         val params = StringJoiner(" ")
         val videoFormatParams = StringJoiner(",")
 
+//        val (inputVideoCodec, inputAudioCodec) = getMediaCodecs(mediaInformation)
+
         // preset, webp does not support this
         if (outputMediaType != Utils.MediaType.WEBP) {
             params.add("-preset ${settings.compressionPreset}")
@@ -41,7 +43,6 @@ class FFmpegParamMaker(val settings: Settings, val utils: Utils) {
                 // H.26x videos require dimensions to be divisible by 2
                 if (utils.isVideo(outputMediaType) && settings.videoCodec in setOf(Settings.VideoCodecOpts.H264, Settings.VideoCodecOpts.H265)) {
                     pixelRounding = "-2"
-
                 }
                 if (isPortrait) {
                     videoFormatParams.add("scale=$maxResolution:$pixelRounding,setsar=1")
@@ -110,5 +111,18 @@ class FFmpegParamMaker(val settings: Settings, val utils: Utils) {
         }
 
         return params.toString()
+    }
+
+    private fun getMediaCodecs(mediaInformation: MediaInformation): Pair<Settings.VideoCodecOpts?, Settings.AudioCodecOpts?> {
+        var audioCodec: Settings.AudioCodecOpts? = null
+        var videoCodec: Settings.VideoCodecOpts? = null
+        for (stream in mediaInformation.streams) {
+            if (stream.type.lowercase() == "video") {
+                videoCodec = Settings.VideoCodecOpts.parseCodec(stream.codec);
+            } else if (stream.type.lowercase() == "audio") {
+                audioCodec = Settings.AudioCodecOpts.parseCodec((stream.codec))
+            }
+        }
+        return Pair(videoCodec, audioCodec)
     }
 }
