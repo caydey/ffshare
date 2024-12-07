@@ -122,7 +122,8 @@ class Utils(private val context: Context) {
                 "mp3" to MediaType.MP3,
                 "ogg" to MediaType.OGG,
                 "aac" to MediaType.AAC,
-                "wav" to MediaType.WAV
+                "wav" to MediaType.WAV,
+                "opus" to MediaType.OPUS
             )
 
             val extension = filename.substringAfterLast('.').lowercase()
@@ -217,7 +218,7 @@ class Utils(private val context: Context) {
     enum class MediaType {
         MP4, MKV, WEBM, AVI, // videos
         JPEG, JPG, PNG, GIF, WEBP, // images
-        MP3, OGG, AAC, WAV, // audios
+        MP3, OGG, AAC, WAV, OPUS, // audios
         UNKNOWN
     }
     fun isSupportedMediaType(type: MediaType): Boolean {
@@ -244,7 +245,7 @@ class Utils(private val context: Context) {
     }
     fun isAudio(type: MediaType): Boolean {
         return type == MediaType.MP3 || type == MediaType.OGG || type == MediaType.AAC
-                || type == MediaType.WAV
+                || type == MediaType.WAV || type == MediaType.OPUS
     }
 
     fun getAllowedMimes(): Array<String> {

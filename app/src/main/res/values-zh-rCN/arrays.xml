@@ -48,6 +48,7 @@
         <item>.ogg</item>
         <item>.acc</item>
         <item>.wav</item>
+        <item>.opus</item>
     </array>
     <array name="settings_convert_audio_output_values">
         <item>UNKNOWN</item>
@@ -55,6 +56,7 @@
         <item>OGG</item>
         <item>ACC</item>
         <item>WAV</item>
+        <item>OPUS</item>
     </array>
 
     <string-array name="settings_jpeg_qscale">

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <array name="settings_compressed_media_name">
         <item>Original</item>
         <item>UUID</item>
@@ -48,6 +48,7 @@
         <item>.ogg</item>
         <item>.acc</item>
         <item>.wav</item>
+        <item>.opus</item>
     </array>
     <array name="settings_convert_audio_output_values">
         <item>UNKNOWN</item>
@@ -55,6 +56,7 @@
         <item>OGG</item>
         <item>ACC</item>
         <item>WAV</item>
+        <item>OPUS</item>
     </array>
 
     <string-array name="settings_jpeg_qscale">
