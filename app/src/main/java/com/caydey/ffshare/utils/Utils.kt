@@ -26,10 +26,14 @@ class Utils(private val context: Context) {
 
     fun getCacheOutputFile(uri: Uri, mediaType: MediaType): Pair<File, MediaType> {
         val fileExtension = getOutputFileMediaType(mediaType) // some files are converted to different formats e.g. mkv to mp4
-        val filename: String = when (settings.compressedMediaName) {
-            Settings.CompressedMediaNameOpts.ORIGINAL -> getFilenameFromUri(uri) ?: getRandomFilename(fileExtension) // if getFilenameFromUri returns null default to randomFilename
-            Settings.CompressedMediaNameOpts.UUID -> getRandomFilename(fileExtension)
-            Settings.CompressedMediaNameOpts.CUSTOM -> "${settings.compressedMediaCustomName}.${fileExtension.name.lowercase()}"
+
+        var filename = getRandomFilename(fileExtension); // UUID
+        if (settings.compressedMediaName == Settings.CompressedMediaNameOpts.ORIGINAL) {
+            // if getFilenameFromUri returns null default to randomFilename
+            filename = getFilenameFromUri(uri) ?: getRandomFilename(fileExtension)
+            filename = filename.substringBeforeLast(".")+".${fileExtension.name.lowercase()}"
+        } else if (settings.compressedMediaName == Settings.CompressedMediaNameOpts.CUSTOM) {
+           filename = "${settings.compressedMediaCustomName}.${fileExtension.name.lowercase()}"
         }
         Timber.d("Created output file '%s'", filename)
         val outputFile = File(makeCacheUUIDFolder(), filename)
