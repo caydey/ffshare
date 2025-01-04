@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.caydey.ffshare"
         minSdk 26
-        targetSdk 32
+        targetSdk 34
         versionCode 22
         versionName "1.3.3"
 
@@ -42,7 +42,7 @@ android {
         }
     }
 
-    flavorDimensions 'version'
+    flavorDimensions += 'version'
     productFlavors {
         full {
             dimension 'version'
@@ -90,6 +90,7 @@ android {
     }
     buildFeatures {
         viewBinding true
+        buildConfig true
     }
     namespace 'com.caydey.ffshare'
 }

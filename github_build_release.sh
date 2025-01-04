@@ -1,6 +1,7 @@
 #!/bin/bash
 
 GRADLE_LOCATION=./app/build.gradle
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
 
 APP_NAME="FFShare"
 APP_VERSION=$(grep -Po '(?<=versionName \").*(?=\")' "$GRADLE_LOCATION")

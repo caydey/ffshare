@@ -68,7 +68,7 @@ class FFmpegParamMaker(val settings: Settings, val utils: Utils) {
             // H.26x requires dimensions to be divisible by 2, video scaling will account for this if applied
             if (!videoScaleApplied) {
                 val stream = mediaInformation.streams[0]
-                if (stream?.width?.rem(2) != 0L || stream?.height?.rem(2) != 0L) {
+                if (stream?.width?.rem(2) != 0L || stream.height?.rem(2) != 0L) {
                     videoFormatParams.add("crop=trunc(iw/2)*2:trunc(ih/2)*2")
                     // could also use "pad=ceil(iw/2)*2:ceil(ih/2)*2" to add column/row of black pixels
                 }
