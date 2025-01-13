@@ -13,18 +13,18 @@
     <string name="ffmpeg_error">Erreur de compression du média</string>
     <string name="ffmpeg_canceled">Annulé</string>
 
-    <string name="close">Close</string>
-    <string name="ffmpegCommandTitle">FFmpeg command</string>
-    <string name="ffmpegOutputTitle">FFmpeg output</string>
+    <string name="close">Fermer</string>
+    <string name="ffmpegCommandTitle">Commande FFmpeg</string>
+    <string name="ffmpegOutputTitle">Sortie FFmpeg</string>
 
-    <string name="log_output_copy">Copy</string>
-    <string name="log_copied_toast">Log Saved to Clipboard</string>
-    <string name="logs_disabled" translatable="false">Logs are disabled</string>
+    <string name="log_output_copy">Copier</string>
+    <string name="log_copied_toast">Journal enregistré dans le presse-papiers</string>
+    <string name="logs_disabled" translatable="false">Les journaux sont désactivés</string>
 
-    <string name="title_activity_logs">Logs</string>
+    <string name="title_activity_logs">Journaux</string>
 
     <string name="version">Version: %s</string>
-    <string name="flavor" tools:ignore="MissingTranslation">Flavor: %s</string>
+    <string name="flavor" tools:ignore="MissingTranslation">Saveur: %s</string>
     
     
     <string name="app_description">Compresser images et vidéos via ffmpeg avant de les partager</string>
@@ -32,7 +32,7 @@
     <string name="introduction_line_1">Fonctionnalité (et code) inspirée de Scrambled-Exif par juanitobananas <a href="https://gitlab.com/juanitobananas/scrambled-exif">gitlab</a></string>
     <string name="introduction_line_2">La bibliothèque FFmpeg utilisée est le kit ffmpeg de tanersener <a href="https://github.com/tanersener/ffmpeg-kit">github</a></string>    
 
-    <string name="select_file_button" tools:ignore="MissingTranslation">Select file</string>
+    <string name="select_file_button" tools:ignore="MissingTranslation">Choisir un fichier</string>
     
     <string name="ffmpeg_command">Commande ffmpeg en cours d\'exécution:</string>
     <string name="input_file">Fichier source:</string>
@@ -66,19 +66,19 @@
     <string name="settings_compressed_media_custom_name">Nom de média personnalisé</string>
     <string name="settings_compressed_media_custom_name_summary">Applicable uniquement si "Personnalisé" est sélectionné pour le nom du média compressé</string>
 
-    <string name="settings_convert_videos_to_mp4">Convert all video formats to mp4</string>
-    <string name="settings_convert_audios_to_mp3">Convert all audio formats to mp3</string>
-    <string name="settings_convert_images_to_jpg" tools:ignore="MissingTranslation">Convert all image formats to jpg</string>
+    <string name="settings_convert_videos_to_mp4">Convertir tous les formats vidéo en mp4</string>
+    <string name="settings_convert_audios_to_mp3">Convertir tous les formats audio en mp3</string>
+    <string name="settings_convert_images_to_jpg" tools:ignore="MissingTranslation">Convertir tous les formats d\'image en jpg</string>
     
-    <string name="settings_convert_image_output" tools:ignore="MissingTranslation">Image file output extension</string>
-    <string name="settings_convert_video_output" tools:ignore="MissingTranslation">Video file output extension</string>
-    <string name="settings_convert_audio_output" tools:ignore="MissingTranslation">Audio file output extension</string>
-    <string name="settings_treat_gifs_as_videos">Treat GIFs as videos</string>
+    <string name="settings_convert_image_output" tools:ignore="MissingTranslation">Extension du fichier image en sortie</string>
+    <string name="settings_convert_video_output" tools:ignore="MissingTranslation">Extension du fichier video en sortie</string>
+    <string name="settings_convert_audio_output" tools:ignore="MissingTranslation">Extension du fichier audio en sortie</string>
+    <string name="settings_treat_gifs_as_videos">Traiter les GIF comme des vidéos</string>
 
-    <string name="settings_copy_exif_tags">Preserve Exif tags</string>
-    <string name="settings_copy_exif_tags_summary">Preserve Exif tags for output files</string>
+    <string name="settings_copy_exif_tags">Préserver les balises Exif</string>
+    <string name="settings_copy_exif_tags_summary">Préserver les balises Exif pour les fichiers de sortie</string>
 
-    <string name="settings_jpeg_qscale">JPEG image qscale</string>
+    <string name="settings_jpeg_qscale">qscale de l'image JPEG</string>
     <string name="settings_jpeg_qscale_summary">Lower value will result in a larger file size with greater quality (default 10)</string>
 
     <string name="settings_video_crf">Video crf</string>
