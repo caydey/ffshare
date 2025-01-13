@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference
+            android:key="pref_save_logs"
+            android:defaultValue="false"
+            android:title="@string/settings_save_logs"
+            android:summary="@string/settings_save_logs_summary" />
     <PreferenceCategory
         android:key="prefs_output"
         android:title="@string/settings_output_options_title">
@@ -10,8 +15,9 @@
             android:title="@string/settings_compressed_media_name"
             android:summary="@string/settings_compressed_media_name_summary"
             android:entries="@array/settings_compressed_media_name"
-            android:entryValues="@array/settings_compressed_media_name_values"
-            />
+            android:entryValues="@array/settings_compressed_media_name_values" />
+
+        <!-- Only visible if pref_compressed_media_name == "CUSTOM" -->
         <EditTextPreference
             android:key="pref_compressed_media_custom_name"
             android:defaultValue=""
@@ -28,23 +34,37 @@
     <PreferenceCategory
         android:key="prefs_conversions"
         android:title="@string/settings_conversions_options_title">
-        <SwitchPreference
-            android:key="pref_convert_videos_to_mp4"
-            android:defaultValue="true"
-            android:title="@string/settings_convert_videos_to_mp4" />
+        <ListPreference
+            android:key="pref_convert_image_output"
+            android:defaultValue="UNKNOWN"
+            android:summary="%s"
+            android:title="@string/settings_convert_image_output"
+            android:entries="@array/settings_convert_image_output"
+            android:entryValues="@array/settings_convert_image_output_values"
+            />
+        <ListPreference
+            android:key="pref_convert_video_output"
+            android:defaultValue="UNKNOWN"
+            android:summary="%s"
+            android:title="@string/settings_convert_video_output"
+            android:entries="@array/settings_convert_video_output"
+            android:entryValues="@array/settings_convert_video_output_values"
+            />
+        <ListPreference
+            android:key="pref_convert_audio_output"
+            android:defaultValue="UNKNOWN"
+            android:summary="%s"
+            android:title="@string/settings_convert_audio_output"
+            android:entries="@array/settings_convert_audio_output"
+            android:entryValues="@array/settings_convert_audio_output_values"
+            />
 
         <SwitchPreference
-            android:key="pref_convert_audios_to_mp3"
-            android:defaultValue="true"
-            android:title="@string/settings_convert_audios_to_mp3" />
-
-        <SwitchPreference
-            android:key="pref_convert_gif_to_mp4"
+            android:key="pref_treat_gifs_as_videos"
             android:defaultValue="false"
-            android:title="@string/settings_convert_gif_to_mp4" />
+            android:title="@string/settings_treat_gifs_as_videos"
+            />
     </PreferenceCategory>
-
-
 
     <PreferenceCategory
         android:key="prefs_compression"
@@ -65,6 +85,14 @@
             android:entryValues="@array/settings_video_crf" />
 
         <ListPreference
+            android:key="pref_compression_preset"
+            android:defaultValue="medium"
+            android:title="@string/settings_compression_preset"
+            android:summary="@string/settings_compression_preset_summary"
+            android:entries="@array/settings_compression_preset"
+            android:entryValues="@array/settings_compression_preset" />
+
+        <ListPreference
             android:key="pref_video_max_file_size"
             android:defaultValue="0"
             android:title="@string/settings_video_max_file_size"
@@ -73,12 +101,54 @@
             android:entryValues="@array/settings_video_max_file_size_values" />
 
         <ListPreference
-            android:key="pref_max_resolution"
+            android:key="pref_video_codec"
+            android:defaultValue="DEFAULT"
+            android:summary="%s"
+            android:title="@string/settings_video_codec"
+            android:entries="@array/settings_video_codec"
+            android:entryValues="@array/settings_video_codec_values" />
+
+        <ListPreference
+            android:key="pref_audio_codec"
+            android:defaultValue="DEFAULT"
+            android:summary="%s"
+            android:title="@string/settings_audio_codec"
+            android:entries="@array/settings_audio_codec"
+            android:entryValues="@array/settings_audio_codec_values" />
+
+        <ListPreference
+            android:key="pref_max_video_resolution"
             android:defaultValue="1080"
-            android:title="@string/settings_max_resolution"
-            android:summary="@string/settings_max_resolution_summary"
+            android:title="@string/settings_max_video_resolution"
+            android:summary="@string/settings_max_video_resolution_summary"
             android:entries="@array/settings_max_resolution"
             android:entryValues="@array/settings_max_resolution_values" />
+        <ListPreference
+            android:key="pref_max_image_resolution"
+            android:defaultValue="2160"
+            android:title="@string/settings_max_image_resolution"
+            android:summary="@string/settings_max_image_resolution_summary"
+            android:entries="@array/settings_max_resolution"
+            android:entryValues="@array/settings_max_resolution_values" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="prefs_custom_params"
+        android:title="@string/settings_custom_params_title"
+        android:summary="@string/settings_custom_params_summary">
+
+        <EditTextPreference
+            android:key="pref_custom_video_params"
+            android:defaultValue=""
+            android:title="@string/settings_custom_video_params" />
+        <EditTextPreference
+            android:key="pref_custom_image_params"
+            android:defaultValue=""
+            android:title="@string/settings_custom_image_params" />
+        <EditTextPreference
+            android:key="pref_custom_audio_params"
+            android:defaultValue=""
+            android:title="@string/settings_custom_audio_params" />
     </PreferenceCategory>
 
     <PreferenceCategory

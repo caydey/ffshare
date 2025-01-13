@@ -1,0 +1,10 @@
+New in 1.2.4
+- Added logging, disabled by default (enable in settings)
+
+New in 1.2.3
+- Added support for audio files
+
+New in 1.2.2
+- Added support for AVI videos
+- Added more options for max video file size
+- Reduced apk size

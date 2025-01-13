@@ -1,0 +1,111 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">FFShare</string>
+    <string name="menu_item_settings">设置</string>
+    <string name="menu_item_logs">日志</string>
+    <string name="menu_item_delete_logs">删除所有日志</string>
+
+    <string name="error_no_uri_intent">在意图中找不到媒体</string>
+    <string name="error_unknown_filetype">文件类型未知或尚不支持</string>
+    <string name="error_invalid_file">文件无效</string>
+
+    <string name="command_x_of_y">%1$d of %2$d</string>
+
+    <string name="ffmpeg_error">压缩媒体时出错</string>
+    <string name="ffmpeg_canceled">已取消</string>
+
+    <string name="close">关闭</string>
+    <string name="ffmpegCommandTitle">FFmpeg命令</string>
+    <string name="ffmpegOutputTitle">FFmpeg输出</string>
+
+    <string name="log_output_copy">复制</string>
+    <string name="log_copied_toast">日志已复制</string>
+    <string name="logs_disabled" translatable="false">日志已禁用</string>
+
+    <string name="title_activity_logs">日志</string>
+
+    <string name="version">版本：%s</string>
+    <string name="flavor" tools:ignore="MissingTranslation">风味: %s</string>
+
+
+    <string name="app_description">在分享图片和视频之前，通过FFmpeg压缩它们</string>
+    <string name="introduction_line_0">此应用由caydey制作：<a href="https://github.com/caydey/ffshare">GitHub</a></string>
+    <string name="introduction_line_1">功能（和代码）由juanitobananas的Scrambled Exif启发：<a href="https://gitlab.com/juanitobananas/scrambled-exif">GitLab</a></string>
+    <string name="introduction_line_2">使用的FFmpeg库为ARTHENICA的FFmpegKit：<a href="https://github.com/arthenica/ffmpeg-kit">GitHub</a></string>
+
+    <string name="select_file_button" tools:ignore="MissingTranslation">选择文件</string>
+
+    <string name="ffmpeg_command">使用的FFmpeg命令：</string>
+    <string name="input_file">输入文件：</string>
+    <string name="input_file_size">输入大小：</string>
+    <string name="output_file">输出文件：</string>
+    <string name="output_file_size">输出大小：</string>
+
+    <string name="processed">已处理</string>
+    <string name="remaining">剩余</string>
+    <string name="x_of_x">，总共</string>
+
+    <string name="word_reduction">缩小</string>
+    <string name="media_reduction_message">%1$s (缩小%2$.1f%%)</string>
+    <string name="format_percentage" translatable="false">%.1f%%</string>
+
+    <string name="cancel_ffmpeg">取消</string>
+
+    <string name="logs_clear">清除</string>
+
+    <!-- Settings -->
+    <string name="settings_save_logs">启用日志记录</string>
+    <string name="settings_save_logs_summary">保存所有执行过的FFmpeg命令</string>
+
+    <string name="settings_compression_options_title">压缩选项</string>
+    <string name="settings_conversions_options_title">转换选项</string>
+    <string name="settings_output_options_title">输出选项</string>
+
+    <string name="settings_compressed_media_name">输出媒体文件名称</string>
+    <string name="settings_compressed_media_name_summary">压缩后的文件将被命名成什么</string>
+
+    <string name="settings_compressed_media_custom_name">自定义输出媒体名称</string>
+    <string name="settings_compressed_media_custom_name_summary">仅在“输出媒体名称”设置为“自定义”时有效</string>
+
+    <string name="settings_convert_videos_to_mp4">始终将视频转换为MP4格式</string>
+    <string name="settings_convert_audios_to_mp3">始终将音频转换为MP3格式</string>
+    <string name="settings_convert_images_to_jpg" tools:ignore="MissingTranslation">始终将图像转化为JPG格式</string>
+
+    <string name="settings_convert_image_output" tools:ignore="MissingTranslation">图像文件输出扩展名</string>
+    <string name="settings_convert_video_output" tools:ignore="MissingTranslation">视频文件输出扩展名</string>
+    <string name="settings_convert_audio_output" tools:ignore="MissingTranslation">音频文件输出扩展名</string>
+    <string name="settings_treat_gifs_as_videos">将GIF视为视频</string>
+
+    <string name="settings_copy_exif_tags">保留Exif标签</string>
+    <string name="settings_copy_exif_tags_summary">为输出文件保留Exif标签</string>
+
+    <string name="settings_jpeg_qscale">JPEG图片质量（qscale）</string>
+    <string name="settings_jpeg_qscale_summary">数值越小，文件体积越大，图片质量越好（默认值为10）</string>
+
+    <string name="settings_video_crf">视频CRF值</string>
+    <string name="settings_video_crf_summary">数值越小，文件体积越大，视频质量越好（默认值为23，CRF：固定速率系数）</string>
+
+    <string name="settings_video_max_file_size">视频文件大小上限</string>
+    <string name="settings_video_max_file_size_summary">将会调整视频码率，以避免输出超出设定值</string>
+
+    <string name="settings_max_video_resolution" tools:ignore="MissingTranslation">最大视频分辨率</string>
+    <string name="settings_max_video_resolution_summary" tools:ignore="MissingTranslation">将会降低视频输出分辨率</string>
+    <string name="settings_max_image_resolution" tools:ignore="MissingTranslation">最大图像分辨率</string>
+    <string name="settings_max_image_resolution_summary" tools:ignore="MissingTranslation">将会降低图像输出分辨率</string>
+
+    <string name="settings_video_codec" tools:ignore="MissingTranslation">视频编解码器</string>
+    <string name="settings_audio_codec" tools:ignore="MissingTranslation">音频编解码器</string>
+
+    <string name="settings_custom_params_title" tools:ignore="MissingTranslation">自定义命令行参数</string>
+    <string name="settings_custom_params_summary" tools:ignore="MissingTranslation">若设定，将只应用这些参数</string>
+    <string name="settings_custom_video_params" tools:ignore="MissingTranslation">自定义视频参数</string>
+    <string name="settings_custom_image_params" tools:ignore="MissingTranslation">自定义图像参数</string>
+    <string name="settings_custom_audio_params" tools:ignore="MissingTranslation">自定义音频参数</string>
+    
+    <string name="settings_interface_options_title">界面</string>
+
+    <string name="settings_show_status_messages">显示状态消息</string>
+    <string name="settings_show_status_messages_summary">弹出提示输出文件大小</string>
+
+    <string name="settings_compression_preset">FFmpeg压缩预设</string>
+    <string name="settings_compression_preset_summary">编码所需时间越长，输出质量越好；编码所需时间越短，输出质量越差</string>
+</resources>

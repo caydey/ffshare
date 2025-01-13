@@ -13,3 +13,7 @@ local.properties
 *.apk
 /repo
 /stats
+/app/release
+
+/github_releases
+/test_files

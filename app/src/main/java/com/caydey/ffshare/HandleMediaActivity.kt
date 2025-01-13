@@ -7,8 +7,11 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.SystemClock
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.caydey.ffshare.extensions.parcelable
+import com.caydey.ffshare.extensions.parcelableArrayList
 import com.caydey.ffshare.utils.MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE
 import com.caydey.ffshare.utils.MediaCompressor
 import com.caydey.ffshare.utils.Utils
@@ -24,6 +27,8 @@ class HandleMediaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_handle_media)
+
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
         if (utils.isReadPermissionGranted) {
             onMediaReceive()
@@ -56,11 +61,13 @@ class HandleMediaActivity : AppCompatActivity() {
 
     private fun onMediaReceive() {
         // "intent" variable is the shared item
-        val receivedMedia = when (intent.action) {
-            Intent.ACTION_SEND -> arrayListOf(intent.getParcelableExtra(Intent.EXTRA_STREAM)!!)
-            Intent.ACTION_SEND_MULTIPLE -> intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM)!!
-            else -> ArrayList<Uri>()
-        }
+        val receivedMedia =
+            when (intent.action) {
+                Intent.ACTION_SEND -> arrayListOf(intent.parcelable(Intent.EXTRA_STREAM)!!)
+                Intent.ACTION_SEND_MULTIPLE -> intent.parcelableArrayList(Intent.EXTRA_STREAM)!!
+                else -> ArrayList<Uri>()
+            }
+
         // unable to get file from intent
         if (receivedMedia.isEmpty()) {
             Toast.makeText(this, getString(R.string.error_no_uri_intent), Toast.LENGTH_LONG).show()

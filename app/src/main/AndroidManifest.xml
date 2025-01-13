@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.caydey.ffshare">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name="com.caydey.ffshare.App"
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -15,7 +14,16 @@
         android:theme="@style/Theme.FFShare"
         tools:targetApi="31">
         <activity
-            android:name="com.caydey.ffshare.MainActivity"
+            android:name=".LogsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_logs"
+            android:theme="@style/Theme.FFShare.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.FFShare.NoActionBar">
             <intent-filter>
@@ -24,19 +32,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="com.caydey.ffshare.PreferencesActivity"
+            android:name=".PreferencesActivity"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.caydey.ffshare.MainActivity" />
         </activity>
-
         <activity
-            android:name="com.caydey.ffshare.HandleMediaActivity"
+            android:name=".HandleMediaActivity"
             android:excludeFromRecents="true"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -62,7 +69,7 @@
                 android:resource="@xml/filepaths" />
         </provider>
         <receiver
-            android:name="com.caydey.ffshare.CacheCleanUpReceiver"
+            android:name=".CacheCleanUpReceiver"
             android:enabled="true"
             android:exported="false" />
     </application>

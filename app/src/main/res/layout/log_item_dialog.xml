@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="4dp">
+
+    <TextView
+        android:id="@+id/logFfmpegOutput"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@+id/logFfmpegOutputTitle"
+        android:ellipsize="end"
+        android:scrollbars="horizontal|vertical"
+        android:scrollHorizontally="true"
+        android:textSize="12sp"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/logCopyButton"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logFfmpegOutput"
+        android:layout_alignStart="@+id/logFfmpegOutput"
+        android:layout_marginStart="0dp"
+        android:text="@string/log_output_copy"
+        android:theme="@style/Button.Copy" />
+
+    <TextView
+        android:id="@+id/logFfmpegCommand"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logFfmpegCommandTitle"
+        android:maxLines="3"
+        android:scrollbars="vertical"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/logFfmpegCommandTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ffmpegCommandTitle" />
+
+    <TextView
+        android:id="@+id/logFfmpegOutputTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logFfmpegCommand"
+        android:layout_marginTop="8dp"
+        android:text="@string/ffmpegOutputTitle" />
+
+</RelativeLayout>

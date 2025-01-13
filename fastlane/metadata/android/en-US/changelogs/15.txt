@@ -1,0 +1,14 @@
+New in 1.2.7
+- Manualy select media files within the app
+- Seperate max resolution for images and videos
+- Added split APKs, only available from GitHub Releases
+
+New in 1.2.6
+- Added more translations
+- Logging bug fix
+- Rescaling bug fix 
+
+New in 1.2.5
+- Added FFmpeg compression preset option
+- Added support to copy video metadata
+- Added Turkish,Spanish & Galican translations

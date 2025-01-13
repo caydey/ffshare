@@ -1,0 +1,12 @@
+New in 1.2.6
+- Added more translations
+- Logging bug fix
+- Rescaling bug fix 
+
+New in 1.2.5
+- Added FFmpeg compression preset option
+- Added support to copy video metadata
+- Added Turkish,Spanish & Galican translations
+
+New in 1.2.4
+- Added logging, disabled by default (enable in settings)

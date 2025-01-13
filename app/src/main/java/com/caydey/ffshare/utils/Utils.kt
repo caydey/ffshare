@@ -13,6 +13,7 @@ import android.media.MediaMetadataRetriever
 import android.net.Uri
 import android.provider.OpenableColumns
 import androidx.core.content.ContextCompat
+import com.caydey.ffshare.BuildConfig
 import timber.log.Timber
 import java.io.InputStream
 import kotlin.math.ln
@@ -24,35 +25,38 @@ class Utils(private val context: Context) {
     private val settings: Settings by lazy { Settings(context) }
 
     fun getCacheOutputFile(uri: Uri, mediaType: MediaType): Pair<File, MediaType> {
-        val fileExtension = getOutputFileMediaType(mediaType)
-        val filename: String = when (settings.compressedMediaName) {
-            Settings.CompressedMediaNameOpts.ORIGINAL -> getFilenameFromUri(uri) ?: getRandomFilename(fileExtension) // if getFilenameFromUri returns null default to randomFilename
-            Settings.CompressedMediaNameOpts.UUID -> getRandomFilename(fileExtension)
-            Settings.CompressedMediaNameOpts.CUSTOM -> "${settings.compressedMediaCustomName}.${fileExtension.name.lowercase()}"
+        val fileExtension = getOutputFileMediaType(mediaType) // some files are converted to different formats e.g. mkv to mp4
+
+        var filename = getRandomFilename(fileExtension); // UUID
+        if (settings.compressedMediaName == Settings.CompressedMediaNameOpts.ORIGINAL) {
+            // if getFilenameFromUri returns null default to randomFilename
+            filename = getFilenameFromUri(uri) ?: getRandomFilename(fileExtension)
+            filename = filename.substringBeforeLast(".")+".${fileExtension.name.lowercase()}"
+        } else if (settings.compressedMediaName == Settings.CompressedMediaNameOpts.CUSTOM) {
+           filename = "${settings.compressedMediaCustomName}.${fileExtension.name.lowercase()}"
         }
         Timber.d("Created output file '%s'", filename)
         val outputFile = File(makeCacheUUIDFolder(), filename)
         return Pair(outputFile, fileExtension)
     }
     private fun getOutputFileMediaType(inputFileMediaType: MediaType): MediaType {
-        // change extension if settings wants
-        if (settings.convertVideosToMp4) {
-            if (isVideo(inputFileMediaType)) {
-                return MediaType.MP4
+        var outputMediaType: MediaType = MediaType.UNKNOWN
+        if (isVideo(inputFileMediaType)) {
+            outputMediaType = settings.videoConversionOutput;
+        } else if (isImage(inputFileMediaType)) {
+            if (settings.treatGifsAsVideos && inputFileMediaType == MediaType.GIF) {
+                outputMediaType = settings.videoConversionOutput
+            } else {
+                outputMediaType = settings.imageConversionOutput
             }
+        } else if (isAudio(inputFileMediaType)) {
+            outputMediaType = settings.audioConversionOutput
         }
-        if (settings.convertAudiosToMP3) {
-            if (isAudio(inputFileMediaType)) {
-                return MediaType.MP3
-            }
+
+        if (outputMediaType == MediaType.UNKNOWN) {
+            outputMediaType = inputFileMediaType;
         }
-        if (settings.convertGifToMp4) {
-            if (inputFileMediaType == MediaType.GIF) {
-                return MediaType.MP4
-            }
-        }
-        // no conversions
-        return inputFileMediaType
+        return outputMediaType
     }
     private fun makeCacheUUIDFolder(): File {
         val cacheUUIDFolder = File(context.mediaCacheDir, UUID.randomUUID().toString())
@@ -89,7 +93,7 @@ class Utils(private val context: Context) {
 
 
     private fun getFileHexSignature(inputStream: InputStream): String {
-        val arr = ByteArray(8)
+        val arr = ByteArray(16)
         inputStream.read(arr)
         val builder = StringBuilder()
         for (byte in arr) { // foreach byte in head
@@ -105,30 +109,29 @@ class Utils(private val context: Context) {
 
         // get type from file extension
         if (filename != null) {
-            val lFilename = filename.lowercase()
-            if (lFilename.endsWith(".jpg") || lFilename.endsWith(".jpeg")) { // images
-                mediaType = MediaType.JPEG
-            } else if (lFilename.endsWith(".png")) {
-                mediaType = MediaType.PNG
-            } else if (lFilename.endsWith(".gif")) {
-                mediaType = MediaType.GIF
-            } else if (lFilename.endsWith(".mp4")) { // videos
-                mediaType = MediaType.MP4
-            } else if (lFilename.endsWith(".mkv")) {
-                mediaType = MediaType.MKV
-            } else if (lFilename.endsWith(".webm")) {
-                mediaType = MediaType.WEBM
-            } else if (lFilename.endsWith(".avi")) {
-                mediaType = MediaType.AVI
-            } else if (lFilename.endsWith(".mp3")) { // audios
-                mediaType = MediaType.MP3
-            } else if (lFilename.endsWith(".ogg")) {
-                mediaType = MediaType.OGG
-            } else if (lFilename.endsWith(".aac")) {
-                mediaType = MediaType.AAC
-            } else if (lFilename.endsWith(".wav")) {
-                mediaType = MediaType.WAV
-            }
+            val extensionsToMediaType = mapOf(
+                // images
+                "jpg" to MediaType.JPEG,
+                "jpeg" to MediaType.JPEG,
+                "png" to MediaType.PNG,
+                "gif" to MediaType.GIF,
+                "webp" to MediaType.WEBP,
+                // videos
+                "mp4" to MediaType.MP4,
+                "mkv" to MediaType.MKV,
+                "webm" to MediaType.WEBM,
+                "avi" to MediaType.AVI,
+                "mov" to MediaType.MP4,
+                // audios
+                "mp3" to MediaType.MP3,
+                "ogg" to MediaType.OGG,
+                "aac" to MediaType.AAC,
+                "wav" to MediaType.WAV,
+                "opus" to MediaType.OPUS
+            )
+
+            val extension = filename.substringAfterLast('.').lowercase()
+            mediaType = extensionsToMediaType[extension] ?: MediaType.UNKNOWN
         }
         // unable to get filetype from filename extension, using signature detection
         // https://en.wikipedia.org/wiki/List_of_file_signatures
@@ -144,7 +147,9 @@ class Utils(private val context: Context) {
                 mediaType = MediaType.PNG
             } else if (signature.startsWith("47494638")) {
                 mediaType = MediaType.GIF
-            } else if (signature.drop(8).startsWith("66747970")) { // ** ** ** ** 66 74 79 70 69 73 6F 6D
+            } else if (signature.startsWith("52494646") && signature.drop(16).startsWith("57454250")) { // 52 49 46 46 ?? ?? ?? ?? 57 45 42 50
+                mediaType = MediaType.WEBP
+            } else if (signature.drop(8).startsWith("6674797069736F6D")) { // ** ** ** ** 66 74 79 70 69 73 6F 6D
                 mediaType = MediaType.MP4
             } else if (signature.startsWith("1A45DFA3")) { // or webm, but assume mkv, also not that big a deal as only happens when filename is not found
                 mediaType = MediaType.MKV
@@ -201,7 +206,7 @@ class Utils(private val context: Context) {
         }
         return "$bytes ${units[0]}"
     }
-    fun millisToMicrowave(millis: Int): String {
+    fun millisToMicrowaveTime(millis: Int): String {
         var remainder = millis / 1_000
         var time = ""
         for (i in 0..2) {
@@ -216,12 +221,27 @@ class Utils(private val context: Context) {
 
     enum class MediaType {
         MP4, MKV, WEBM, AVI, // videos
-        JPEG, PNG, GIF, // images
-        MP3, OGG, AAC, WAV, // audios
+        JPEG, JPG, PNG, GIF, WEBP, // images
+        MP3, OGG, AAC, WAV, OPUS, // audios
         UNKNOWN
+    }
+    fun isSupportedMediaType(type: MediaType): Boolean {
+        // obviously unsupported if MediaType isn't even known
+        if (type == MediaType.UNKNOWN) return false
+
+        // support if in "full" flavor
+        if (BuildConfig.FLAVOR == "full") {
+            return true
+        }
+        // video/image only flavor
+        if (!isAudio(type)) { // if not audio then its supported
+            return true
+        }
+        return false
     }
     fun isImage(type: MediaType): Boolean {
         return type == MediaType.JPEG || type == MediaType.PNG || type == MediaType.GIF
+                || type == MediaType.WEBP
     }
     fun isVideo(type: MediaType): Boolean {
         return type == MediaType.MP4 || type == MediaType.MKV || type == MediaType.WEBM
@@ -229,7 +249,13 @@ class Utils(private val context: Context) {
     }
     fun isAudio(type: MediaType): Boolean {
         return type == MediaType.MP3 || type == MediaType.OGG || type == MediaType.AAC
-                || type == MediaType.WAV
+                || type == MediaType.WAV || type == MediaType.OPUS
+    }
+
+    fun getAllowedMimes(): Array<String> {
+        if (BuildConfig.FLAVOR === "full")
+            return arrayOf("audio/*","image/*", "video/*")
+        return arrayOf("image/*", "video/*")
     }
 
 }

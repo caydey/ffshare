@@ -1,0 +1,12 @@
+New in 1.3.2
+- Added audio codec option to settings
+- Added "copy" and "default" to video and audio codec options
+
+New in 1.3.1
+- Fixed crash created by videos having missing metadata
+
+New in 1.3.0
+- Keep screen on while compression is in progress
+- Improved conversion options
+- Added custom compression commands in settings
+- Added output file extension options in settings

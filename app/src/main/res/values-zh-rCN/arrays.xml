@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="settings_compressed_media_name">
+        <item>ԭʼ�ļ���</item>
+        <item>UUID</item>
+        <item>�Զ���</item>
+    </array>
+
+    <array name="settings_compressed_media_name_values">
+        <item>ORIGINAL</item>
+        <item>UUID</item>
+        <item>CUSTOM</item>
+    </array>
+
+    <array name="settings_convert_image_output">
+        <item>ԭʼ</item>
+        <item>.jpeg</item>
+        <item>.jpg</item>
+        <item>.png</item>
+        <item>.gif</item>
+        <item>.webp</item>
+    </array>
+    <array name="settings_convert_image_output_values">
+        <item>UNKNOWN</item>
+        <item>JPEG</item>
+        <item>JPG</item>
+        <item>PNG</item>
+        <item>GIF</item>
+        <item>WEBP</item>
+    </array>
+    <array name="settings_convert_video_output">
+        <item>ԭʼ</item>
+        <item>.mp4</item>
+        <item>.mkv</item>
+        <item>.webm</item>
+        <item>.avi</item>
+    </array>
+    <array name="settings_convert_video_output_values">
+        <item>UNKNOWN</item>
+        <item>MP4</item>
+        <item>MKV</item>
+        <item>WEBM</item>
+        <item>AVI</item>
+    </array>
+    <array name="settings_convert_audio_output">
+        <item>ԭʼ</item>
+        <item>.mp3</item>
+        <item>.ogg</item>
+        <item>.acc</item>
+        <item>.wav</item>
+        <item>.opus</item>
+    </array>
+    <array name="settings_convert_audio_output_values">
+        <item>UNKNOWN</item>
+        <item>MP3</item>
+        <item>OGG</item>
+        <item>ACC</item>
+        <item>WAV</item>
+        <item>OPUS</item>
+    </array>
+
+    <string-array name="settings_jpeg_qscale">
+        <item>1</item><item>2</item><item>3</item><item>4</item>
+        <item>5</item><item>6</item><item>7</item><item>8</item><item>9</item>
+        <item>10</item><item>11</item><item>12</item><item>13</item><item>14</item>
+        <item>15</item><item>16</item><item>17</item><item>18</item><item>19</item>
+        <item>20</item><item>21</item><item>22</item><item>23</item><item>24</item>
+        <item>25</item><item>26</item><item>27</item><item>28</item><item>29</item>
+        <item>30</item><item>31</item>
+    </string-array>
+
+    <string-array name="settings_video_crf">
+        <item>0</item><item>1</item><item>2</item><item>3</item><item>4</item>
+        <item>5</item><item>6</item><item>7</item><item>8</item><item>9</item>
+        <item>10</item><item>11</item><item>12</item><item>13</item><item>14</item>
+        <item>15</item><item>16</item><item>17</item><item>18</item><item>19</item>
+        <item>20</item><item>21</item><item>22</item><item>23</item><item>24</item>
+        <item>25</item><item>26</item><item>27</item><item>28</item><item>29</item>
+        <item>30</item><item>31</item><item>32</item><item>33</item><item>34</item>
+        <item>35</item><item>36</item><item>37</item><item>38</item><item>39</item>
+        <item>40</item><item>41</item><item>42</item><item>43</item><item>44</item>
+        <item>45</item><item>46</item><item>47</item><item>48</item><item>49</item>
+        <item>50</item><item>51</item>
+    </string-array>
+
+    <string-array name="settings_video_max_file_size">
+        <item>������</item>
+        <item>512K</item>
+        <item>1M</item>
+        <item>2M</item>
+        <item>4M</item>
+        <item>8M</item>
+        <item>12M</item>
+        <item>16M</item>
+        <item>32M</item>
+        <item>50M</item>
+        <item>100M</item>
+    </string-array>
+    <string-array name="settings_video_max_file_size_values">
+        <item>0</item>
+        <item>512</item>
+        <item>1024</item>
+        <item>2048</item>
+        <item>4096</item>
+        <item>8192</item>
+        <item>12288</item>
+        <item>16384</item>
+        <item>32768</item>
+        <item>51200</item>
+        <item>102400</item>
+    </string-array>
+
+    <string-array name="settings_video_codec">
+        <item>Copy�������±��룩</item>
+        <item>��ָ������FFmpeg������</item>
+        <item>H.264</item>
+        <item>H.265/HEVC</item>
+        <item>VP9</item>
+        <item>MPEG-4</item>
+    </string-array>
+    <string-array name="settings_video_codec_values">
+        <item>COPY</item>
+        <item>DEFAULT</item>
+        <item>H264</item>
+        <item>H265</item>
+        <item>VP9</item>
+        <item>MPEG4</item>
+    </string-array>
+
+    <string-array name="settings_audio_codec">
+        <item>Copy�������±��룩</item>
+        <item>��ָ������FFmpeg������</item>
+        <item>AAC</item>
+        <item>AC-3</item>
+        <item>Opus</item>
+    </string-array>
+    <string-array name="settings_audio_codec_values">
+        <item>COPY</item>
+        <item>DEFAULT</item>
+        <item>AAC</item>
+        <item>AC3</item>
+        <item>OPUS</item>
+    </string-array>
+    <string-array name="settings_max_resolution">
+        <item>360p</item>
+        <item>480p</item>
+        <item>720p</item>
+        <item>1080p</item>
+        <item>2160p</item>
+        <item>������</item>
+    </string-array>
+    <string-array name="settings_max_resolution_values">
+        <item>360</item>
+        <item>480</item>
+        <item>720</item>
+        <item>1080</item>
+        <item>2160</item>
+        <item>0</item>
+    </string-array>
+
+    <string-array name="settings_compression_preset">
+        <item>faster</item>
+        <item>fast</item>
+        <item>medium</item>
+        <item>slow</item>
+        <item>slower</item>
+    </string-array>
+</resources>

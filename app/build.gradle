@@ -4,27 +4,83 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.caydey.ffshare"
-        minSdk 24
-        targetSdk 32
-        versionCode 11
-        versionName "1.2.3"
+        minSdk 26
+        targetSdk 34
+        versionCode 22
+        versionName "1.3.3"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    signingConfigs {
+        release {
+            // environment variables from ~/.gradle/gradle.properties
+            storeFile file(FFSHARE_RELEASE_STORE_FILE)
+            storePassword FFSHARE_RELEASE_STORE_PASSWORD
+            keyAlias FFSHARE_RELEASE_KEY_ALIAS
+            keyPassword FFSHARE_RELEASE_KEY_PASSWORD
+        }
+    }
+    
+    splits {
+        // Configures multiple APKs based on ABI.
+        abi {
+          // Enables building multiple APKs per ABI.
+          enable true
+
+          // Resets the list of ABIs for Gradle to create APKs for to none.
+          reset()
+
+          //noinspection ChromeOsAbiSupport
+          include "armeabi-v7a", "arm64-v8a"
+
+          // Create apk with merged ABI libraries
+          universalApk true
+        }
+    }
+
+    flavorDimensions += 'version'
+    productFlavors {
+        full {
+            dimension 'version'
+        }
+        video {
+            dimension 'version'
+        }
+    }
+
 
     buildTypes {
         release {
             ndk {
+                //noinspection ChromeOsAbiSupport
                 abiFilters "armeabi-v7a", "arm64-v8a"
             }
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
+        debug {
+            ndk {
+                abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+            }
+            minifyEnabled false
+        }
+
     }
+
+//    applicationVariants.all { variant ->
+//        def version = variant.name
+//        def name = variant.buildType
+//        def flavor = variant.flavorName
+//        def apkName = "${name}_${flavor}_${version}.apk"
+//        variant.outputs.all { output -> {
+//            outputFileName = apkName
+//        }}
+//    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -34,9 +90,10 @@ android {
     }
     buildFeatures {
         viewBinding true
+        buildConfig true
     }
+    namespace 'com.caydey.ffshare'
 }
-
 dependencies {
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.5.0'
@@ -49,7 +106,11 @@ dependencies {
     implementation 'androidx.exifinterface:exifinterface:1.3.3'
     implementation 'androidx.preference:preference-ktx:1.2.0'
 
-    implementation 'com.arthenica:ffmpeg-kit-full-gpl:5.1'
+    // import ffmpeg-kit-full if building with audioSupport
+    // else import ffmpeg-kit-min
+    fullImplementation 'com.arthenica:ffmpeg-kit-full-gpl:5.1'
+    videoImplementation 'com.arthenica:ffmpeg-kit-min-gpl:5.1'
+
     implementation 'com.jakewharton.timber:timber:5.0.1'
 
     testImplementation 'junit:junit:4.13.2'
