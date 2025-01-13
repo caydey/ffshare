@@ -73,39 +73,39 @@
     <string name="settings_convert_image_output" tools:ignore="MissingTranslation">Extension du fichier image en sortie</string>
     <string name="settings_convert_video_output" tools:ignore="MissingTranslation">Extension du fichier video en sortie</string>
     <string name="settings_convert_audio_output" tools:ignore="MissingTranslation">Extension du fichier audio en sortie</string>
-    <string name="settings_treat_gifs_as_videos">Traiter les GIF comme des vidéos</string>
+    <string name="settings_treat_gifs_as_videos">Traiter les GIFs comme des vidéos</string>
 
     <string name="settings_copy_exif_tags">Préserver les balises Exif</string>
     <string name="settings_copy_exif_tags_summary">Préserver les balises Exif pour les fichiers de sortie</string>
 
-    <string name="settings_jpeg_qscale">qscale de l'image JPEG</string>
-    <string name="settings_jpeg_qscale_summary">Lower value will result in a larger file size with greater quality (default 10)</string>
+    <string name="settings_jpeg_qscale">qscale de l\'image JPEG</string>
+    <string name="settings_jpeg_qscale_summary">Une valeur plus faible se traduira par une taille de fichier plus importante pour une qualité supérieure (valeur par défaut: 10).</string>
 
-    <string name="settings_video_crf">Video crf</string>
-    <string name="settings_video_crf_summary">(Constant Rate Factor) Lower value will result in a larger file size with greater quality (default 23)</string>
+    <string name="settings_video_crf">Crf Vidéo</string>
+    <string name="settings_video_crf_summary">(Constant Rate Factor) Une valeur plus faible se traduira par une taille de fichier plus importante pour une qualité supérieure (par défaut 23)</string>
 
-    <string name="settings_video_max_file_size">Video max file size</string>
-    <string name="settings_video_max_file_size_summary">Adjusts video bitrate to create an output less than the specified file size</string>
+    <string name="settings_video_max_file_size">Taille maximale du fichier vidéo</string>
+    <string name="settings_video_max_file_size_summary">Ajuste le débit vidéo pour créer une vidéo de sortie dont la taille est inférieure à la valeur spécifiée.</string>
 
-    <string name="settings_max_video_resolution" tools:ignore="MissingTranslation">Max video resolution</string>
-    <string name="settings_max_video_resolution_summary" tools:ignore="MissingTranslation">Reduce the video output resolution</string>
-    <string name="settings_max_image_resolution" tools:ignore="MissingTranslation">Max image resolution</string>
-    <string name="settings_max_image_resolution_summary" tools:ignore="MissingTranslation">Reduce the image output resolution</string>
+    <string name="settings_max_video_resolution" tools:ignore="MissingTranslation">Résolution vidéo maximale</string>
+    <string name="settings_max_video_resolution_summary" tools:ignore="MissingTranslation">Réduire la résolution de la vidéo produite</string>
+    <string name="settings_max_image_resolution" tools:ignore="MissingTranslation">Résolution d\'image maximale</string>
+    <string name="settings_max_image_resolution_summary" tools:ignore="MissingTranslation">Réduire la résolution de l\'image produite</string>
 
-    <string name="settings_video_codec" tools:ignore="MissingTranslation">Video Codec</string>
-    <string name="settings_audio_codec" tools:ignore="MissingTranslation">Audio Codec</string>
+    <string name="settings_video_codec" tools:ignore="MissingTranslation">Codec Video</string>
+    <string name="settings_audio_codec" tools:ignore="MissingTranslation">Codec Audio</string>
 
-    <string name="settings_custom_params_title" tools:ignore="MissingTranslation">Custom Parameters</string>
-    <string name="settings_custom_params_summary" tools:ignore="MissingTranslation">If set, only these parameters will be used</string>
-    <string name="settings_custom_video_params" tools:ignore="MissingTranslation">Custom Video Parameters</string>
-    <string name="settings_custom_image_params" tools:ignore="MissingTranslation">Custom Image Parameters</string>
-    <string name="settings_custom_audio_params" tools:ignore="MissingTranslation">Custom Audio Parameters</string>
+    <string name="settings_custom_params_title" tools:ignore="MissingTranslation">Paramètres de personnalisation</string>
+    <string name="settings_custom_params_summary" tools:ignore="MissingTranslation">Si cette option est activée, seuls les paramètres suivants seront employés</string>
+    <string name="settings_custom_video_params" tools:ignore="MissingTranslation">Paramètres vidéo personnalisés</string>
+    <string name="settings_custom_image_params" tools:ignore="MissingTranslation">Paramètres d\'image personnalisés</string>
+    <string name="settings_custom_audio_params" tools:ignore="MissingTranslation">Paramètres audio personnalisés</string>
 
     <string name="settings_interface_options_title">Interface</string>
 
-    <string name="settings_show_status_messages">Show status messages</string>
-    <string name="settings_show_status_messages_summary">Show output file size in toast messages</string>
+    <string name="settings_show_status_messages">Afficher les messages d\'état</string>
+    <string name="settings_show_status_messages_summary">Afficher la taille du fichier de production dans les messages de notification (toast)</string>
 
-    <string name="settings_compression_preset">FFmpeg compression preset</string>
-    <string name="settings_compression_preset_summary">Slower speed with a higher quality output or faster speed with a lower quality output</string>
+    <string name="settings_compression_preset">Préréglage de compression FFmpeg</string>
+    <string name="settings_compression_preset_summary">Vitesse plus lente avec un résultat de meilleure qualité ou vitesse plus rapide avec un résultat de moindre qualité</string>
 </resources>
