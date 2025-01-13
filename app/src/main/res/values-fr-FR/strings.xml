@@ -1,7 +1,9 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">FFShare</string>
     <string name="menu_item_settings">Paramètres</string>
-
+    <string name="menu_item_logs">Journaux</string>
+    <string name="menu_item_delete_logs">Supprimer tous les journaux</string>
+    
     <string name="error_no_uri_intent">Aucun média trouvé dans l\'intention</string>
     <string name="error_unknown_filetype">Type de fichier inconnu</string>
     <string name="error_invalid_file">Fichier invalide</string>
@@ -11,12 +13,27 @@
     <string name="ffmpeg_error">Erreur de compression du média</string>
     <string name="ffmpeg_canceled">Annulé</string>
 
+    <string name="close">Close</string>
+    <string name="ffmpegCommandTitle">FFmpeg command</string>
+    <string name="ffmpegOutputTitle">FFmpeg output</string>
 
+    <string name="log_output_copy">Copy</string>
+    <string name="log_copied_toast">Log Saved to Clipboard</string>
+    <string name="logs_disabled" translatable="false">Logs are disabled</string>
+
+    <string name="title_activity_logs">Logs</string>
+
+    <string name="version">Version: %s</string>
+    <string name="flavor" tools:ignore="MissingTranslation">Flavor: %s</string>
+    
+    
     <string name="app_description">Compresser images et vidéos via ffmpeg avant de les partager</string>
     <string name="introduction_line_0">Application Créée par Caydey <a href="https://github.com/caydey/ffshare">github</a></string>
     <string name="introduction_line_1">Fonctionnalité (et code) inspirée de Scrambled-Exif par juanitobananas <a href="https://gitlab.com/juanitobananas/scrambled-exif">gitlab</a></string>
-    <string name="introduction_line_2">La bibliothèque FFmpeg utilisée est le kit ffmpeg de tanersener <a href="https://github.com/tanersener/ffmpeg-kit">github</a></string>
+    <string name="introduction_line_2">La bibliothèque FFmpeg utilisée est le kit ffmpeg de tanersener <a href="https://github.com/tanersener/ffmpeg-kit">github</a></string>    
 
+    <string name="select_file_button" tools:ignore="MissingTranslation">Select file</string>
+    
     <string name="ffmpeg_command">Commande ffmpeg en cours d\'exécution:</string>
     <string name="input_file">Fichier source:</string>
     <string name="input_file_size">Taille de la source:</string>
@@ -49,15 +66,17 @@
     <string name="settings_compressed_media_custom_name">Nom de média personnalisé</string>
     <string name="settings_compressed_media_custom_name_summary">Applicable uniquement si "Personnalisé" est sélectionné pour le nom du média compressé</string>
 
-    <string name="settings_convert_videos_to_mp4">Convertir tous les formats vidéo en mp4</string>
-
-
-    <string name="settings_convert_audios_to_mp3">Convertir tous les formats audio en mp3</string>
-
-    <string name="settings_convert_gif_to_mp4">Convertir les gif en mp4</string>
+    <string name="settings_convert_videos_to_mp4">Convert all video formats to mp4</string>
+    <string name="settings_convert_audios_to_mp3">Convert all audio formats to mp3</string>
+    <string name="settings_convert_images_to_jpg" tools:ignore="MissingTranslation">Convert all image formats to jpg</string>
+    
+    <string name="settings_convert_image_output" tools:ignore="MissingTranslation">Image file output extension</string>
+    <string name="settings_convert_video_output" tools:ignore="MissingTranslation">Video file output extension</string>
+    <string name="settings_convert_audio_output" tools:ignore="MissingTranslation">Audio file output extension</string>
+    <string name="settings_treat_gifs_as_videos">Treat GIFs as videos</string>
 
     <string name="settings_copy_exif_tags">Preserve Exif tags</string>
-    <string name="settings_copy_exif_tags_summary">Preserve Exif tags for output files (only preserves tags for jpeg and png images)</string>
+    <string name="settings_copy_exif_tags_summary">Preserve Exif tags for output files</string>
 
     <string name="settings_jpeg_qscale">JPEG image qscale</string>
     <string name="settings_jpeg_qscale_summary">Lower value will result in a larger file size with greater quality (default 10)</string>
@@ -68,13 +87,25 @@
     <string name="settings_video_max_file_size">Video max file size</string>
     <string name="settings_video_max_file_size_summary">Adjusts video bitrate to create an output less than the specified file size</string>
 
-    <string name="settings_max_resolution">Max resolution</string>
-    <string name="settings_max_resolution_summary">Reduce the output resolution, (resolutions under this value will be unaffected)</string>
+    <string name="settings_max_video_resolution" tools:ignore="MissingTranslation">Max video resolution</string>
+    <string name="settings_max_video_resolution_summary" tools:ignore="MissingTranslation">Reduce the video output resolution</string>
+    <string name="settings_max_image_resolution" tools:ignore="MissingTranslation">Max image resolution</string>
+    <string name="settings_max_image_resolution_summary" tools:ignore="MissingTranslation">Reduce the image output resolution</string>
+
+    <string name="settings_video_codec" tools:ignore="MissingTranslation">Video Codec</string>
+    <string name="settings_audio_codec" tools:ignore="MissingTranslation">Audio Codec</string>
+
+    <string name="settings_custom_params_title" tools:ignore="MissingTranslation">Custom Parameters</string>
+    <string name="settings_custom_params_summary" tools:ignore="MissingTranslation">If set, only these parameters will be used</string>
+    <string name="settings_custom_video_params" tools:ignore="MissingTranslation">Custom Video Parameters</string>
+    <string name="settings_custom_image_params" tools:ignore="MissingTranslation">Custom Image Parameters</string>
+    <string name="settings_custom_audio_params" tools:ignore="MissingTranslation">Custom Audio Parameters</string>
 
     <string name="settings_interface_options_title">Interface</string>
 
     <string name="settings_show_status_messages">Show status messages</string>
     <string name="settings_show_status_messages_summary">Show output file size in toast messages</string>
 
-
+    <string name="settings_compression_preset">FFmpeg compression preset</string>
+    <string name="settings_compression_preset_summary">Slower speed with a higher quality output or faster speed with a lower quality output</string>
 </resources>
