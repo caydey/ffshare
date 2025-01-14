@@ -1,0 +1,12 @@
+FFShare achemine les fichiers image, vidéo et audio via ffmpeg avant de les partager.
+
+Cela réduit la taille du fichier et présente également l'avantage supplémentaire de supprimer toutes les métadonnées pouvant être jointes à ces fichiers.
+
+Pour ce faire, partagez simplement vos fichiers multimédias et choisissez <i>FFShare</i>. L'application s'ouvre en affichant la progression de la compression et une fois terminée, une nouvelle boîte de dialogue de partage réapparaît avec le nouveau fichier compressé.
+
+<b>APK divisés</b>
+L'APK téléchargé depuis F-Droid est la version complète de l'application avec toutes les fonctionnalités et la compatibilité abi incluses. Un choix d'APK plus petits est disponible sur https://github.com/caydey/ffshare/releases
+
+<b>Code source</b>
+Cette application est open source et hébergée sur GitHub. Une étoile serait grandement appréciée.
+https://github.com/caydey/ffshare
