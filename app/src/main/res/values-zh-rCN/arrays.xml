@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <array name="settings_compressed_media_name">
-        <item>ԭʼ�ļ���</item>
+        <item>原始文件名</item>
         <item>UUID</item>
-        <item>�Զ���</item>
+        <item>自定义</item>
     </array>
 
     <array name="settings_compressed_media_name_values">
@@ -13,7 +13,7 @@
     </array>
 
     <array name="settings_convert_image_output">
-        <item>ԭʼ</item>
+        <item>原始</item>
         <item>.jpeg</item>
         <item>.jpg</item>
         <item>.png</item>
@@ -29,7 +29,7 @@
         <item>WEBP</item>
     </array>
     <array name="settings_convert_video_output">
-        <item>ԭʼ</item>
+        <item>原始</item>
         <item>.mp4</item>
         <item>.mkv</item>
         <item>.webm</item>
@@ -43,7 +43,7 @@
         <item>AVI</item>
     </array>
     <array name="settings_convert_audio_output">
-        <item>ԭʼ</item>
+        <item>原始</item>
         <item>.mp3</item>
         <item>.ogg</item>
         <item>.acc</item>
@@ -84,7 +84,7 @@
     </string-array>
 
     <string-array name="settings_video_max_file_size">
-        <item>������</item>
+        <item>不限制</item>
         <item>512K</item>
         <item>1M</item>
         <item>2M</item>
@@ -111,8 +111,8 @@
     </string-array>
 
     <string-array name="settings_video_codec">
-        <item>Copy�������±��룩</item>
-        <item>��ָ������FFmpeg������</item>
+        <item>Copy（不重新编码）</item>
+        <item>不指定（让FFmpeg决定）</item>
         <item>H.264</item>
         <item>H.265/HEVC</item>
         <item>VP9</item>
@@ -128,8 +128,8 @@
     </string-array>
 
     <string-array name="settings_audio_codec">
-        <item>Copy�������±��룩</item>
-        <item>��ָ������FFmpeg������</item>
+        <item>Copy（不重新编码）</item>
+        <item>不指定（让FFmpeg决定）</item>
         <item>AAC</item>
         <item>AC-3</item>
         <item>Opus</item>
@@ -141,13 +141,14 @@
         <item>AC3</item>
         <item>OPUS</item>
     </string-array>
+
     <string-array name="settings_max_resolution">
         <item>360p</item>
         <item>480p</item>
         <item>720p</item>
         <item>1080p</item>
         <item>2160p</item>
-        <item>������</item>
+        <item>不限制</item>
     </string-array>
     <string-array name="settings_max_resolution_values">
         <item>360</item>
