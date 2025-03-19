@@ -90,6 +90,7 @@
         <item>2M</item>
         <item>4M</item>
         <item>8M</item>
+        <item>10M</item>
         <item>12M</item>
         <item>16M</item>
         <item>32M</item>
@@ -103,6 +104,7 @@
         <item>2048</item>
         <item>4096</item>
         <item>8192</item>
+        <item>10240</item>
         <item>12288</item>
         <item>16384</item>
         <item>32768</item>
