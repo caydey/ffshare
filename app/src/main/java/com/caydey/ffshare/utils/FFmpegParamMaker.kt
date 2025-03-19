@@ -4,6 +4,7 @@ import android.net.Uri
 import com.arthenica.ffmpegkit.MediaInformation
 import timber.log.Timber
 import java.util.StringJoiner
+import kotlin.math.ceil
 
 class FFmpegParamMaker(val settings: Settings, val utils: Utils) {
     fun create(inputFile: Uri, mediaInformation: MediaInformation, mediaType: Utils.MediaType, outputMediaType: Utils.MediaType): String {
@@ -78,7 +79,9 @@ class FFmpegParamMaker(val settings: Settings, val utils: Utils) {
             if (settings.videoMaxFileSize != 0) {
                 // ffmpeg does not like -maxrate & -bufsize params when the output file is webm
                 if (outputMediaType != Utils.MediaType.WEBM) {
-                    val maxBitrate = (settings.videoMaxFileSize / mediaInformation.duration.toFloat().toInt())
+                    // Calculate maximum bitrate in kbps.
+                    // Ceil duration to ensure the maximum is strict. toInt to floor result, ffmpeg takes ints.
+                    val maxBitrate = (settings.videoMaxFileSize * 8 / ceil(mediaInformation.duration.toFloat())).toInt()
                     Timber.d("Maximum bitrate for targeted filesize (%dK): %dk", settings.videoMaxFileSize, maxBitrate)
 
                     // audio can have at most one third of the total bitrate
