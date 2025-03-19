@@ -78,7 +78,8 @@ class FFmpegParamMaker(val settings: Settings, val utils: Utils) {
             if (settings.videoMaxFileSize != 0) {
                 // ffmpeg does not like -maxrate & -bufsize params when the output file is webm
                 if (outputMediaType != Utils.MediaType.WEBM) {
-                    val maxBitrate = (settings.videoMaxFileSize / mediaInformation.duration.toFloat().toInt())
+                    // maxBitrate in kbps
+                    val maxBitrate = (settings.videoMaxFileSize * 8 / mediaInformation.duration.toFloat().toInt())
                     Timber.d("Maximum bitrate for targeted filesize (%dK): %dk", settings.videoMaxFileSize, maxBitrate)
 
                     // audio can have at most one third of the total bitrate
