@@ -1,5 +1,7 @@
 package com.caydey.ffshare
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.preference.*
 
@@ -8,6 +10,27 @@ class PreferencesFragment : PreferenceFragmentCompat() {
         setPreferencesFromResource(R.xml.preferences, rootKey)
         dynamicallyShowCustomName()
         dynamicallyAddCustomParamTooltips()
+        setupAboutLinks()
+    }
+
+    private fun setupAboutLinks() {
+        findPreference<Preference>("pref_about_source")?.setOnPreferenceClickListener {
+            openUrl("https://github.com/caydey/ffshare")
+            true
+        }
+        findPreference<Preference>("pref_about_inspiration")?.setOnPreferenceClickListener {
+            openUrl("https://gitlab.com/juanitobananas/scrambled-exif")
+            true
+        }
+        findPreference<Preference>("pref_about_ffmpeg")?.setOnPreferenceClickListener {
+            openUrl("https://github.com/arthenica/ffmpeg-kit")
+            true
+        }
+    }
+
+    private fun openUrl(url: String) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        startActivity(intent)
     }
     private fun dynamicallyAddCustomParamTooltips() {
         val customParamKeys = arrayOf("pref_custom_video_params", "pref_custom_audio_params", "pref_custom_image_params")

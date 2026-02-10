@@ -1,9 +1,15 @@
 package com.caydey.ffshare.utils
 
+import android.content.ContentValues
 import android.content.Context
+import android.os.Build
+import android.os.Environment
+import android.provider.MediaStore
 import androidx.core.app.ActivityCompat
 import com.caydey.ffshare.extensions.mediaCacheDir
 import java.io.File
+import java.io.FileInputStream
+import java.io.FileOutputStream
 import java.util.*
 import android.Manifest
 import android.app.Activity
@@ -258,4 +264,90 @@ class Utils(private val context: Context) {
         return arrayOf("image/*", "video/*")
     }
 
+    /**
+     * Copies a file to Downloads/ffshare folder.
+     * Returns the Uri of the copied file, or null if failed.
+     */
+    fun copyToDownloads(sourceFile: File, mediaType: MediaType): Uri? {
+        return try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                // Android 10+ use MediaStore
+                copyToDownloadsMediaStore(sourceFile, mediaType)
+            } else {
+                // Older versions use direct file access
+                copyToDownloadsLegacy(sourceFile)
+            }
+        } catch (e: Exception) {
+            Timber.e(e, "Failed to copy file to Downloads")
+            null
+        }
+    }
+
+    @android.annotation.TargetApi(Build.VERSION_CODES.Q)
+    private fun copyToDownloadsMediaStore(sourceFile: File, mediaType: MediaType): Uri? {
+        val mimeType = getMimeType(mediaType)
+        val relativePath = "${Environment.DIRECTORY_DOWNLOADS}/ffshare"
+
+        val contentValues = ContentValues().apply {
+            put(MediaStore.Downloads.DISPLAY_NAME, sourceFile.name)
+            put(MediaStore.Downloads.MIME_TYPE, mimeType)
+            put(MediaStore.Downloads.RELATIVE_PATH, relativePath)
+            put(MediaStore.Downloads.IS_PENDING, 1)
+        }
+
+        val resolver = context.contentResolver
+        val uri = resolver.insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, contentValues)
+
+        uri?.let {
+            resolver.openOutputStream(it)?.use { outputStream ->
+                FileInputStream(sourceFile).use { inputStream ->
+                    inputStream.copyTo(outputStream)
+                }
+            }
+
+            contentValues.clear()
+            contentValues.put(MediaStore.Downloads.IS_PENDING, 0)
+            resolver.update(it, contentValues, null, null)
+        }
+
+        Timber.d("Copied ${sourceFile.name} to Downloads/ffshare")
+        return uri
+    }
+
+    private fun copyToDownloadsLegacy(sourceFile: File): Uri? {
+        val downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+        val ffshareDir = File(downloadsDir, "ffshare")
+        if (!ffshareDir.exists()) {
+            ffshareDir.mkdirs()
+        }
+
+        val destFile = File(ffshareDir, sourceFile.name)
+        FileInputStream(sourceFile).use { input ->
+            FileOutputStream(destFile).use { output ->
+                input.copyTo(output)
+            }
+        }
+
+        Timber.d("Copied ${sourceFile.name} to Downloads/ffshare")
+        return Uri.fromFile(destFile)
+    }
+
+    private fun getMimeType(mediaType: MediaType): String {
+        return when (mediaType) {
+            MediaType.MP4 -> "video/mp4"
+            MediaType.MKV -> "video/x-matroska"
+            MediaType.WEBM -> "video/webm"
+            MediaType.AVI -> "video/x-msvideo"
+            MediaType.JPEG, MediaType.JPG -> "image/jpeg"
+            MediaType.PNG -> "image/png"
+            MediaType.GIF -> "image/gif"
+            MediaType.WEBP -> "image/webp"
+            MediaType.MP3 -> "audio/mpeg"
+            MediaType.OGG -> "audio/ogg"
+            MediaType.AAC -> "audio/aac"
+            MediaType.WAV -> "audio/wav"
+            MediaType.OPUS -> "audio/opus"
+            else -> "application/octet-stream"
+        }
+    }
 }

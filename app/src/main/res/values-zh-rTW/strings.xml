@@ -27,13 +27,6 @@
     <string name="flavor" tools:ignore="MissingTranslation">風味：%s</string>
 
     <string name="app_description">在分享前透過 ffmpeg 壓縮圖片和影片</string>
-    <string name="introduction_line_0">應用程式由 caydey 建立 <a href="https://github.com/caydey/ffshare">github</a>
-    </string>
-    <string name="introduction_line_1">功能（和程式碼）靈感來自 juanitobananas 的 Scrambled-Exif <a href="https://gitlab.com/juanitobananas/scrambled-exif">gitlab</a>
-    </string>
-    <string name="introduction_line_2">使用的 FFmpeg 函式庫是 arthenica 的 ffmpeg-kit <a href="https://github.com/arthenica/ffmpeg-kit">github</a>
-    </string>
-
     <string name="select_file_button" tools:ignore="MissingTranslation">選擇檔案</string>
 
     <string name="ffmpeg_command">ffmpeg 命令執行中：</string>

@@ -8,7 +8,7 @@
     <string name="error_unknown_filetype">Type de fichier inconnu</string>
     <string name="error_invalid_file">Fichier invalide</string>
 
-    <string name="command_x_of_y">%d de %d</string>
+    <string name="command_x_of_y">%1$d de %2$d</string>
 
     <string name="ffmpeg_error">Erreur de compression du média</string>
     <string name="ffmpeg_canceled">Annulé</string>
@@ -28,10 +28,6 @@
     
     
     <string name="app_description">Compresser images et vidéos via ffmpeg avant de les partager</string>
-    <string name="introduction_line_0">Application Créée par Caydey <a href="https://github.com/caydey/ffshare">github</a></string>
-    <string name="introduction_line_1">Fonctionnalité (et code) inspirée de Scrambled-Exif par juanitobananas <a href="https://gitlab.com/juanitobananas/scrambled-exif">gitlab</a></string>
-    <string name="introduction_line_2">La bibliothèque FFmpeg utilisée est le kit ffmpeg de tanersener <a href="https://github.com/tanersener/ffmpeg-kit">github</a></string>    
-
     <string name="select_file_button" tools:ignore="MissingTranslation">Choisir un fichier</string>
     
     <string name="ffmpeg_command">Commande ffmpeg en cours d\'exécution:</string>
@@ -45,7 +41,7 @@
     <string name="x_of_x">de</string>
 
     <string name="word_reduction">réduction</string>
-    <string name="media_reduction_message">%s (%.1f%% réduction)</string>
+    <string name="media_reduction_message">%1$s (%2$.1f%% réduction)</string>
     <string name="format_percentage" translatable="false">%.1f%%</string>
 
     <string name="cancel_ffmpeg">Annuler</string>

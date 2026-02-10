@@ -1,9 +1,9 @@
 package com.caydey.ffshare
 
-import androidx.multidex.MultiDexApplication
+import android.app.Application
 import timber.log.Timber
 
-class App: MultiDexApplication() {
+class App: Application() {
     companion object {
         var versionName = ""
     }
@@ -13,7 +13,7 @@ class App: MultiDexApplication() {
 
         // save version name as static variable for use with Log class and MainActivity classes
         @Suppress("DEPRECATION")
-        versionName = packageManager.getPackageInfo(applicationContext.packageName, 0).versionName
+        versionName = packageManager.getPackageInfo(applicationContext.packageName, 0).versionName ?: ""
 
         // check if there has been a version change and if it requires the settings to be changed
         settingsVersionUpdater.check()

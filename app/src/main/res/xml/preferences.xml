@@ -3,7 +3,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <SwitchPreference
             android:key="pref_save_logs"
-            android:defaultValue="false"
+            android:defaultValue="true"
             android:title="@string/settings_save_logs"
             android:summary="@string/settings_save_logs_summary" />
     <PreferenceCategory
@@ -11,7 +11,7 @@
         android:title="@string/settings_output_options_title">
         <ListPreference
             android:key="pref_compressed_media_name"
-            android:defaultValue="UUID"
+            android:defaultValue="ORIGINAL"
             android:title="@string/settings_compressed_media_name"
             android:summary="@string/settings_compressed_media_name_summary"
             android:entries="@array/settings_compressed_media_name"
@@ -26,7 +26,7 @@
 
         <SwitchPreference
             android:key="pref_copy_exif_tags"
-            android:defaultValue="false"
+            android:defaultValue="true"
             android:title="@string/settings_copy_exif_tags"
             android:summary="@string/settings_copy_exif_tags_summary" />
     </PreferenceCategory>
@@ -159,6 +159,23 @@
             android:defaultValue="true"
             android:title="@string/settings_show_status_messages"
             android:summary="@string/settings_show_status_messages_summary" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="prefs_about"
+        android:title="@string/settings_about_title">
+        <Preference
+            android:key="pref_about_source"
+            android:title="@string/about_source_code"
+            android:summary="@string/about_source_code_summary" />
+        <Preference
+            android:key="pref_about_inspiration"
+            android:title="@string/about_inspiration"
+            android:summary="@string/about_inspiration_summary" />
+        <Preference
+            android:key="pref_about_ffmpeg"
+            android:title="@string/about_ffmpeg_kit"
+            android:summary="@string/about_ffmpeg_kit_summary" />
     </PreferenceCategory>
 
 </PreferenceScreen>

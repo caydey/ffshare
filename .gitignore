@@ -18,3 +18,7 @@ local.properties
 
 /github_releases
 /test_files
+
+
+*.jks
+AGENTS.md

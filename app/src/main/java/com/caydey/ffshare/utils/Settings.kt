@@ -58,7 +58,7 @@ class Settings(private val context: Context) {
     var compressedMediaName: CompressedMediaNameOpts
         get() {
             // 2nd param is the default value
-            val preferencesString = preferences.getString(COMPRESSED_MEDIA_NAME, CompressedMediaNameOpts.UUID.name)!!
+            val preferencesString = preferences.getString(COMPRESSED_MEDIA_NAME, CompressedMediaNameOpts.ORIGINAL.name)!!
             return CompressedMediaNameOpts.valueOf(preferencesString) // convert string to enum
         }
         set(value) = setPreference(COMPRESSED_MEDIA_NAME, value.toString())
@@ -115,7 +115,7 @@ class Settings(private val context: Context) {
         set(value) = setPreference(MAX_IMAGE_RESOLUTION, value.toString())
 
     var copyExifTags: Boolean
-        get() = preferences.getBoolean(COPY_EXIF_TAGS, false)
+        get() = preferences.getBoolean(COPY_EXIF_TAGS, true)
         set(value) = setPreference(COPY_EXIF_TAGS, value)
 
     var lastVersion: Int

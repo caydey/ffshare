@@ -28,9 +28,16 @@
 
 
     <string name="app_description">Compress images and videos through ffmpeg before sharing them</string>
-    <string name="introduction_line_0">App Created by caydey <a href="https://github.com/caydey/ffshare">github</a></string>
-    <string name="introduction_line_1">Functionality (and code) inspired by Scrambled-Exif by juanitobananas <a href="https://gitlab.com/juanitobananas/scrambled-exif">gitlab</a></string>
-    <string name="introduction_line_2">FFmpeg library used is ffmpeg-kit by arthenica <a href="https://github.com/arthenica/ffmpeg-kit">github</a></string>
+    <string name="app_credits" tools:ignore="MissingTranslation">App created by <a href="https://github.com/caydey">caydey</a> and co-authored by <a href="https://github.com/paulasquin">Paul Asquin</a></string>
+
+    <!-- About section (Settings) -->
+    <string name="settings_about_title" tools:ignore="MissingTranslation">About</string>
+    <string name="about_inspiration" tools:ignore="MissingTranslation">Inspired by Scrambled-Exif by juanitobananas</string>
+    <string name="about_inspiration_summary" translatable="false">gitlab.com/juanitobananas/scrambled-exif</string>
+    <string name="about_ffmpeg_kit" tools:ignore="MissingTranslation">FFmpeg library: ffmpeg-kit by arthenica</string>
+    <string name="about_ffmpeg_kit_summary" translatable="false">github.com/arthenica/ffmpeg-kit</string>
+    <string name="about_source_code" tools:ignore="MissingTranslation">Source code</string>
+    <string name="about_source_code_summary" translatable="false">github.com/paulasquin/ffshare</string>
 
     <string name="select_file_button" tools:ignore="MissingTranslation">Select file</string>
 
@@ -108,4 +115,22 @@
 
     <string name="settings_compression_preset">FFmpeg compression preset</string>
     <string name="settings_compression_preset_summary">Slower speed with a higher quality output or faster speed with a lower quality output</string>
+
+    <!-- Notification strings -->
+    <string name="notification_channel_encoding" tools:ignore="MissingTranslation">Media Encoding</string>
+    <string name="notification_channel_encoding_desc" tools:ignore="MissingTranslation">Shows progress while encoding media</string>
+    <string name="notification_encoding_starting" tools:ignore="MissingTranslation">Starting encoding…</string>
+    <string name="notification_encoding" tools:ignore="MissingTranslation">Encoding media</string>
+    <string name="notification_encoding_multiple" tools:ignore="MissingTranslation">Encoding %1$d of %2$d</string>
+
+    <!-- Usage tips section -->
+    <string name="usage_title" tools:ignore="MissingTranslation">How to Use</string>
+    <string name="usage_tip_share" tools:ignore="MissingTranslation">Share any media file with FFShare to compress it</string>
+    <string name="usage_tip_select" tools:ignore="MissingTranslation">Or tap \"Select file\" to choose from your device</string>
+    <string name="usage_tip_settings" tools:ignore="MissingTranslation">Customize quality and format in Settings</string>
+
+    <!-- Recent tasks section -->
+    <string name="recent_tasks_title" tools:ignore="MissingTranslation">Recent Tasks</string>
+    <string name="recent_tasks_empty" tools:ignore="MissingTranslation">No recent tasks</string>
+    <string name="recent_tasks_view_all" tools:ignore="MissingTranslation">View all</string>
 </resources>

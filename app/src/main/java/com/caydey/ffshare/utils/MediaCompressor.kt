@@ -13,9 +13,9 @@ import android.widget.TableRow
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.FileProvider
-import com.arthenica.ffmpegkit.FFmpegKit
-import com.arthenica.ffmpegkit.FFmpegKitConfig
-import com.arthenica.ffmpegkit.FFprobeKit
+import com.antonkarpenko.ffmpegkit.FFmpegKit
+import com.antonkarpenko.ffmpegkit.FFmpegKitConfig
+import com.antonkarpenko.ffmpegkit.FFprobeKit
 import com.caydey.ffshare.R
 import com.caydey.ffshare.utils.logs.Log
 import com.caydey.ffshare.utils.logs.LogsDbHelper
@@ -107,11 +107,11 @@ class MediaCompressor(private val context: Context) {
             duration = (mediaInformation.duration.toFloat() * 1_000).toInt()
         }
 
-        val params = ffmpegParamMaker.create(inputFileUri, mediaInformation, mediaType, outputMediaType)
+        val ffmpegParams = ffmpegParamMaker.create(inputFileUri, mediaInformation, mediaType, outputMediaType)
         val inputSaf: String = FFmpegKitConfig.getSafParameterForRead(context, inputFileUri)
         val outputSaf: String = FFmpegKitConfig.getSafParameterForWrite(context, outputFileUri)
-        val command = "-y -i $inputSaf $params $outputSaf"
-        val prettyCommand = "ffmpeg -y -i $inputFileName $params ${outputFile.name}"
+        val command = "-y -i $inputSaf $ffmpegParams $outputSaf"
+        val prettyCommand = "ffmpeg -y -i $inputFileName $ffmpegParams ${outputFile.name}"
 
         // set TextViews
         Handler(Looper.getMainLooper()).post {
